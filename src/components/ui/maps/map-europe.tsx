@@ -1,0 +1,1536 @@
+"use client";
+import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { cn } from "@/lib/utils";
+import { Tooltip, TooltipContent, TooltipTrigger } from "../tooltip";
+import countries from "i18n-iso-countries";
+import enLocale from "i18n-iso-countries/langs/en.json";
+import faLocale from "i18n-iso-countries/langs/fa.json";
+import { AvailableCountriesType } from "@/types/availableCountries";
+
+interface Props {
+    className?: string;
+    setCountryAction: (county: string) => void;
+    country: string;
+    availableCountries: AvailableCountriesType[];
+}
+
+export const MapEurope: React.FC<Props> = ({ className, setCountryAction, country, availableCountries }) => {
+    const ref = useRef<SVGSVGElement>(null);
+    const [countryId, setCountryId] = useState("");
+    const [countryName, setCountryName] = useState("");
+
+    useEffect(() => {
+        if (!country) return;
+        countries.registerLocale(enLocale);
+        countries.registerLocale(faLocale);
+        const enName = countries.getName(countryId, "en") || "";
+        const faName = countries.getName(countryId, "fa") || "";
+        setCountryName(`${faName} — ${enName}`);
+    }, [countryId]);
+
+    const handleClick = (event: React.MouseEvent<SVGPathElement, MouseEvent>) => {
+        const target = event.target as SVGPathElement;
+        setCountryAction(target.id);
+    };
+
+    const onHover = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+        const target = event.target as SVGPathElement;
+        const id = target.id ? target.id.split("_")[2] : "";
+
+        setCountryId(id);
+    };
+
+    function isAvailable(id: string): boolean {
+        return !!availableCountries?.some((c) => c.code.includes(id.split("_")[2]));
+    }
+
+    useLayoutEffect(() => {
+        if (!ref.current) return;
+        const children = Array.from(ref.current.querySelectorAll("path"));
+        children.forEach((child) => {
+            if (child.id === country) {
+                child.style.fill = "#0077B6";
+            } else {
+                child.style.fill = "currentColor";
+            }
+        });
+    }, [country]);
+    return (
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width={394.4}
+            height={299.994}
+            preserveAspectRatio="xMinYMin"
+            className={cn(["w-full h-full text-[#aaaaaa]", className])}
+            ref={ref}
+            viewBox="65.945 0.452 394.4 299.994"
+        >
+            <rect
+                width={4322.25}
+                height={3287.65}
+                x={-1584.36}
+                y={-1314.07}
+                fill="none"
+                rx={0}
+                ry={0}
+                style={{
+                    WebkitTapHighlightColor: "transparent",
+                    fillOpacity: 0,
+                }}
+                transform="scale(.4562)"
+            />
+            <Tooltip>
+                <TooltipTrigger asChild onMouseEnter={onHover}>
+                    <path
+                        id="sm_state_BE"
+                        fill="currentColor"
+                        fillOpacity={1}
+                        stroke="#fff"
+                        strokeLinejoin="round"
+                        strokeOpacity={1}
+                        strokeWidth={1.621}
+                        className={cn(
+                            "transition-colors",
+                            isAvailable("sm_state_BE")
+                                ? "hover:text-[#03045E] cursor-pointer"
+                                : "text-gray-200 pointer-events-none"
+                        )}
+                        onClick={handleClick}
+                        d="m470 401.8 1.6-.5.8.8 1.2.1 3 2.3-.4 1.5 1.7.7.4 2-2.3 1.3-.6 1.7-1.7-.7-1.3 1.3-1.4 2.5-.2 1.7 2 2.4-1.1 1.7-3.4.4-2.8-2.6-3.3-1.5-1.7-.1-.4-2-.6-.6.8-2.7-1.9.6-.5 1.4-1.3.6-2.2.3-2.3-.3-.5-.6.7-1.4-.7-.7.4-1.6-1.6-1.1-3.6-.4-.9.3-.6-2-4.2-1.1-.5-2-1.6-1.8-3.2 1-2.9-2.4v-1.2l-.9-2.2 5.1-2.5 4.7-1.7.3 1.3 1.2.7 1.2-.6 3.9 1.1 3.2-1.5.6-1.2 2.1.3-.2-.9 1.4-.7 1.5.8 1.5-1 1.1 1.3 2.5-.8.5 1.6 2.6 1.4 1.9-.4 1.7 1.3 2.6 1.1-1 2.9-1.1 1.3.7 1.1Z"
+                        data-name="sm_state_BE"
+                        opacity={1}
+                        style={{
+                            WebkitTapHighlightColor: "transparent",
+                            opacity: 1,
+                            cursor: "pointer",
+                            strokeOpacity: 1,
+                            strokeLinejoin: "round",
+                            fillOpacity: 1,
+                        }}
+                        transform="scale(.4562)"
+                    />
+                </TooltipTrigger>
+                <TooltipContent>{countryName}</TooltipContent>
+            </Tooltip>
+            <Tooltip>
+                <TooltipTrigger asChild onMouseEnter={onHover}>
+                    <path
+                        id="sm_state_FR"
+                        fill="currentColor"
+                        fillOpacity={1}
+                        stroke="#fff"
+                        strokeLinejoin="round"
+                        strokeOpacity={1}
+                        strokeWidth={1.621}
+                        className={cn(
+                            "transition-colors",
+                            isAvailable("sm_state_FR")
+                                ? "hover:text-[#03045E] cursor-pointer"
+                                : "text-gray-200 pointer-events-none"
+                        )}
+                        onClick={handleClick}
+                        d="m521.2 524.1-.3 2.3 1 1.7.6 6.5-1.8 3.2.1 3-1.6 4.3-.8 1.1-3.8-2-1.2-1.1 1-1.8-2.2-.9.4-1.7-.2-.9-1.6-.5 1-1.3v-.8l-1.5-1-.3-.9 1.3-1.1-.6-.9.1-1.3.9-1.9 1.2-.9 2.8-.8 1.2-1.1 1.9.6.6-1.2-.2-2.7.3-1.1 1.3.5.4 2.7Zm-133.9-47.9-.4 1.4-1.9-2.4 1-.5 1.3 1.5Zm84.4-55.6 2.1 1.2h1.4l2-.6 1.3.7 1.4.1 3.5 4.3 1.8-.7 1.4.4.3.9 2.1.1 3-.6 2 1.4 4.8.8 1.6.6.1 1.3-3.5 3.8-1.4 5.5-1 1.8-.3 1.5.2 2.4-.6 2v1.5l1.1 1.3-1.5.7-.8 1.4-2.7.3-.8-.8h-1.1l-1.8 1.4 1.3 1.1-.6.9-3.8 4-2.1.9-.5 2.9-3 2.2-1.1 2.9.8.7-.3 1.5-1.5 1v1l1.4.1 2.3-1.6-.5-1.3 2.3-1.5 1.9-.1 2.2.3.8 2.2-.5 1.7 2.3 2.3.9 1.4-2.6 1.7.1 1.6.9.6 1.7 2.6 1.8 1.6-.8 2.5-1.2.3-1.7 1.3-1.9-.2-.8.4 1.5 3.1 3.2 1.4.5 1.7-.8.7-1.4 2.5.7 1.3.1 1.4.9.9 5.1 2.4 3.3-.6.3 2-2.1 2.6.2 1.5-.6.3-.8.3-2.4 1.1-3.9 3.4-1.8 1-.7 1.8-2 1.4-2.4.5-2.3 1-1.1-.4h-2.8l-1.7-1.2-3.4-.8-1.1-1.8-2.5-.1-.8-1.5-1.9.3-1.5.7-2-.1-5.9-1.8-1.4-1.4-1.7.5-1.6 1.6-6.5 4.1-2.6 4.3-.1 1.2.7 3.9 1.6 2.5-3.1-.6-3.8 1.1-1.2.8-4.7-1.2-2.1 1.1-1.3-1.2-2.8-1.2v-1.5l-2.6-.6-.9.7-1.1-1.5-1.7-.3-2.5-1-4-1.1-.8 2.4h-4.7l-.7-.4-3.1.4-3.2-2.1-3.6.4-2.2-2.1-2.2-.2-4.4-1.7-1.8.4.3-3.2-4.3-1.3-.5-1.3 2-.5 1.9-1.9 1.7-7.1 1.3-8.3 1-1.6 1.2-.4-1-1.2-1.1 1.5.7-7.6.5-2.8.9-3 3.1 2.4.8 1 .9 3.4.6.1-1.1-4.6-1.8-2.3-3.6-2.3-.5-1.3 1.8-.6-.5-1.8-.5-5.9-3-.6-4.8-2.6-1.7-2.6-1.6-1.9-.4-1.7.9-1.8-.8-1.1-1.4-.8 1.1-1.6-3-.2-1.8-.5-.3-1.1 1.3-1.4-1.6-.8-2.6.2-.2-1.7-2.2.3-1.2-.3-1.1-1.1-1.3.2-2.2-.4-.8-.7-4.8-1.3-2-.1-1.9.6-1.1-.3-1.3-2.2-3.1-1.1.6-.7 3.1-.6.6-.7-2.2-.9-.2-1.2 1.6.3.1-1.2-4 .1-.4-1.3.5-1.4 2.3-1.2 5.8-1.4 2.5.2 1.7-.2 3-1.6 2.9-.4 2.7.8 2.5 2.8 1.2 1 3.1-1.7 4.4.1.9.9 1.2-1.7 1 1 4.7-.2-1.5-2.5-.2-6-1.3-1.7-2.1-4.3.2-1.4 3.2.3 2.7-.6 1.3.4.3 2.8 1.1 1.6h2.2l2.3.5 3 .1 4.3.8 1.8-.5 3.5-2-1.8-.7-.2-.7.9-2.2 5.2-2.5 3.7-.7 3.8-1.3 2-1.4 1.2-1.8.5-1.3.3-6.8 1-2.2 2.9-1.6 6.4-1.1.9-.5.9 2.2v1.2l2.9 2.4 3.2-1 1.6 1.8.5 2 4.2 1.1.6 2 .9-.3 3.6.4 1.6 1.1-.4 1.6.7.7-.7 1.4.5.6 2.3.3 2.2-.3 1.3-.6.5-1.4 1.9-.6-.8 2.7.6.6.4 2 1.7.1 3.3 1.5 2.8 2.6 3.4-.4Z"
+                        data-name="sm_state_FR"
+                        opacity={1}
+                        style={{
+                            WebkitTapHighlightColor: "transparent",
+                            opacity: 1,
+                            cursor: "pointer",
+                            strokeOpacity: 1,
+                            strokeLinejoin: "round",
+                            fillOpacity: 1,
+                        }}
+                        transform="scale(.4562)"
+                    />
+                </TooltipTrigger>
+                <TooltipContent>{countryName}</TooltipContent>
+            </Tooltip>
+            <Tooltip>
+                <TooltipTrigger asChild onMouseEnter={onHover}>
+                    <path
+                        id="sm_state_BG"
+                        fill="currentColor"
+                        fillOpacity={1}
+                        stroke="#fff"
+                        strokeLinejoin="round"
+                        strokeOpacity={1}
+                        strokeWidth={1.621}
+                        className={cn(
+                            "transition-colors",
+                            isAvailable("sm_state_BG")
+                                ? "hover:text-[#03045E] cursor-pointer"
+                                : "text-gray-200 pointer-events-none"
+                        )}
+                        onClick={handleClick}
+                        d="m759.6 509.6.2 3.7-.9 1.8-2-.6-2.2.5-1 2-1.2 1.2v2.6l.4 4.2-1.6.7-2.9 3.7 3 1.8 1.7 2.2 2.4 2.5.5 1.2-1.7-.2-.9.4h-1.8l-1.5.6-3.4-2.5-3.5.3-1.5 1.1-3.4.4-1 2.2-1.9.3-.3 1.4-1.6-.5-1.6 1.1.7 1 .9 2.7-.2.8-2.5 1.2-1.8-.3-3.2.4-3.4.9-1.7-1.1-3.7-1.2-.9.6-2.4-1.4-1.2-1.7-1.6.5-4.2-.1-.2.9-1.9.2-3 1.1-2.6-.2-2.4.2-1 1-3-.2v-4.2l.5-1.7-.9-1-1.7-3.3-3.4-1.8-3.3-3.2 1-.3 1.1-1.7-1.4-2.9v-3.3l1.1-.6 1.8-.1 1.1-1.6 1.6-1.7.3-1.4-1.6-1-1.3-1.6-2.9-1.5-2.4-3.9-.6-2.4.4-2.3 2.1-1 .2-1.9.9-.7 4.3 2.5-1.8 2 .9 1.8 3.7-.6 3.9.3 5.3 1 3.5.4 2.5-.5 9.4 1.7 4.2.2 2.3-.6 1.6-.9 1.2-1.6 3.3-2.1 3.2-1.2 4.4-.9 2.9-.4 4.5 2.3 3.2.4.9.6 1.7-.5 2.5 2.6 2.2.7 2.6.5h2Z"
+                        data-name="sm_state_BG"
+                        opacity={1}
+                        style={{
+                            WebkitTapHighlightColor: "transparent",
+                            opacity: 1,
+                            cursor: "pointer",
+                            strokeOpacity: 1,
+                            strokeLinejoin: "round",
+                            fillOpacity: 1,
+                        }}
+                        transform="scale(.4562)"
+                    />
+                </TooltipTrigger>
+                <TooltipContent>{countryName}</TooltipContent>
+            </Tooltip>
+            <Tooltip>
+                <TooltipTrigger asChild onMouseEnter={onHover}>
+                    <path
+                        id="sm_state_DK"
+                        fill="currentColor"
+                        fillOpacity={1}
+                        stroke="#fff"
+                        strokeLinejoin="round"
+                        strokeOpacity={1}
+                        strokeWidth={1.621}
+                        className={cn(
+                            "transition-colors",
+                            isAvailable("sm_state_DK")
+                                ? "hover:text-[#03045E] cursor-pointer"
+                                : "text-gray-200 pointer-events-none"
+                        )}
+                        onClick={handleClick}
+                        d="m533.5 340 2.1 1 2.4.3.4 1.9-3.5.7-5.1-2.1.1-2.5 2.3-.2 1.3.9Zm13.7-1.1-2.3.1-1.9 1-.3-1.2 1.6-1 1.2.2 1.7.9Zm-28.8 1.2-1.2.2-1.7-.5-.6-2.3 2.7 1.1.8 1.5Zm8 2-1.4-1.5 2.5-2.9.7-.2-1.8 4.6Zm50.1-4-2.4-.2-2.4-1 .1-2 .5-.9 4.5 2.3-.3 1.8Zm-52.1-8.7 2.3 4.3-.1 2.8-1.8 1.2h-2.1l-5.4-1.7-1.7-2.9-.1-2.3 4.8-1.4 2.6.8 1.5-.8Zm23.3.2-1 .6-.7-.9.9-.9.8 1.2Zm-23.9-2.8h-.9v-3l1.5 1.6-.6 1.4Zm22.6 0 .1 1.5-.7.7-2 .7-1.1 1.8 2 1.2.5 1.5-1 .7-2.6.7v5.6l-2.2.6-1.5-2.1-.1-.9-1.3-3.1-2-.4-2.2.1-1.5-1.8.1-2.1-1-2-1.3-.6.4-1.4 3.1-.2 1.5-1.9v-.9l1.8-.2.8.7.1 2.6 1.6.5 1.1-2.9-.9-1.1 3.9-2.2 1.1-.1 3 .9-.4 2.1.7 2ZM514.8 341l-1.5-.4-3.1.7-5.2-1.3-2.7-.1-.5-2.1-.8-1.4 1.1-.3-.9-3.9-3.2-1.3-2.5-1.4.5-5.6-1-2.3.1-6.9 1.3-.1 3.1.8 1.5.9.6-1.9 1.6-1.6 2-.8 1.6 1.3.3-4.5-1.6-.5-1.3.4-1.3 1.9-1 2.4-1.9.2-1.5.7-2.4-1.4.1-1.4 1.6-1.9 2-1.9h2.2l1.6-.6 3.9.1 2.8-1.3 2.8-3.6 1.5-1.5 3.3-.5 3-1.7-.8 2.5 1.2 1.7v3l-.9 1-1.4 2.5.2 5.6 2.5 1.5h4.1l1 1.1-.7 2.2-2.6 1.4h-.9l-1.4-1.1-1.1.9-1.2 5.1-2-.1-1.2.5 1.4 1.2-1.3.8-3.4 3.1 1.1 3.4-.2.9-1.5 1.3-.6 1.1 2.3.3 1.3 2.9Z"
+                        data-name="sm_state_DK"
+                        opacity={1}
+                        style={{
+                            WebkitTapHighlightColor: "transparent",
+                            opacity: 1,
+                            cursor: "pointer",
+                            strokeOpacity: 1,
+                            strokeLinejoin: "round",
+                            fillOpacity: 1,
+                        }}
+                        transform="scale(.4562)"
+                    />
+                </TooltipTrigger>
+                <TooltipContent>{countryName}</TooltipContent>
+            </Tooltip>
+            <Tooltip>
+                <TooltipTrigger asChild onMouseEnter={onHover}>
+                    <path
+                        id="sm_state_HR"
+                        fill="currentColor"
+                        fillOpacity={1}
+                        stroke="#fff"
+                        strokeLinejoin="round"
+                        strokeOpacity={1}
+                        strokeWidth={1.621}
+                        className={cn(
+                            "transition-colors",
+                            isAvailable("sm_state_HR")
+                                ? "hover:text-[#03045E] cursor-pointer"
+                                : "text-gray-200 pointer-events-none"
+                        )}
+                        onClick={handleClick}
+                        d="m611.2 521.2 2.3.4-1.1.9-1.2-1.3Zm12.9 1.5 1.6-.1.6.9 6.2 3.8 1.7.7 1.2 1.9-4.8-3.1-4.4-2.5-3.1-.7-4.3-2-.5-.9 5.8 2Zm-6.3-3.5-.8.1-5.6-.1-1.7-.3-.5-1.3 1.8.2.5.6 6.3.8Zm-5.3-2.3-2 .1-2.6-.8.3-1.1 4.8.6-.5 1.2Zm-21.2-16.5-.3.4-3.3-2.7-.3-1.9 2.8 2.7 1.1 1.5Zm-4.9-6.5-1.9-.2.8-1.1 1.1 1.3Zm-4.2 1.5-.9-.1-1.7-4.2.4-1.2-.8-2 .9-.3.5 2.1 1 .9-.1 1.6.7 3.2Zm3.7-4.9-1.5.3-1-1-1.3-.2-1-1 1-.7.5-1.2 3.3 3.8Zm49.5-14.7-.7 1.5 1.6 2.7.2 1.6 1.3.4-.4 2 1.2 1 3 1 .9 1.5-2.3.1-1.7.4.7 2.6-1 1.6-2.2-.2-1.3-2.2-1.1-.8-2.2-.2-2.6-.7-1.8.2-1.8-.3-2.2 1-1.6-1.3-1.7.6-2.8-.7-2.5-.1-2.7-1.6-1.5 1.2-3.2-.3-2.7 3.2-1.8-1-1.7-1.8-1.8-.4-1.2.6-.3 5 .1 1.4 1.9 1.3 3.4 3.2 1.3 4 2.3 2.4 2.8 2.3 1.7 2 5 4.1 2.4 1.1.4 2.2 1.5 1.6 3 2.5-.3 1.6-3.5-2.8-2.6-1.5-3.1-2.8-3.8-1.1-2.7-1.2-3.3.6-1.8-.2-.7-2.2-5.8-3.9-4.3-4-.8-1.3 3.1-1.2-1.4-.8-3.9-3.4-1.2-1.6-.1-4.1-.8-1.7-2.9-2.2-1.1-1.1-2.1-.7-1.4.9-.3 1.9-3 5h-1.3l-3.1-4.2-.5-1.9-1.3-3.9.7-.5.5.6 3.3.8 1.4-1.3 1.1.5 3.6-.1.6-.3 1.2-2.2 2.6 2.1 1.5.7 1.3-.5 2 .7 1.6.2 1.2-.4-.8-2.3.7-.7-1-1.1 2.1-1 2.1-.6.4-1.1-.2-2.2-.9-.9.4-1.4 4.4-1.7.7-1h2v-1.7l.9-.8 2.5.6 2.9 1.2 1.7 1.2.9 1.3 2.7 1.8 2.2 2.2 1.3.7 2.5.6 1.3 1.3 3.3.9 4.9.2 2.5-.9 1.1-1.4 2.9-.4Z"
+                        data-name="sm_state_HR"
+                        opacity={1}
+                        style={{
+                            WebkitTapHighlightColor: "transparent",
+                            opacity: 1,
+                            cursor: "pointer",
+                            strokeOpacity: 1,
+                            strokeLinejoin: "round",
+                            fillOpacity: 1,
+                        }}
+                        transform="scale(.4562)"
+                    />
+                </TooltipTrigger>
+                <TooltipContent>{countryName}</TooltipContent>
+            </Tooltip>
+            <Tooltip>
+                <TooltipTrigger asChild onMouseEnter={onHover}>
+                    <path
+                        id="sm_state_DE"
+                        fill="currentColor"
+                        fillOpacity={1}
+                        stroke="#fff"
+                        strokeLinejoin="round"
+                        strokeOpacity={1}
+                        strokeWidth={1.621}
+                        className={cn(
+                            "transition-colors",
+                            isAvailable("sm_state_DE")
+                                ? "hover:text-[#03045E] cursor-pointer"
+                                : "text-gray-200 pointer-events-none"
+                        )}
+                        onClick={handleClick}
+                        d="m567.9 355.2-3.4-.1-.2-1.7-1.1-1-.1-1 4.7 2.6.1 1.2Zm-34.8-8.1h-1.8l-1.4-.7.8-1 1.7.4.7 1.3Zm28.3.5-1.3.7h-1.3l-1.3 1.3-2.1-1.1-.5-1.1.1-2.2.6-1.4 2-.9.9 1.2 1.7.6-.5 1.7 1.7 1.2Zm-46.6-6.6 1.8.7 1.6 1.6.1 1.4-1.7 1.6 3.2-.3.8 1.2 1.7-.4 4.5 1.8 3.2-.9.7 1.4-.6 1.5-2.2 1.6 1.4 1.2 2.1-.2 3.6.9 3.3-2.5 1.1-.5 3.6-.3 5.1-4.5 5.3.9 1.5 1.9 3.7 2.1 3.2-.2 1.3 2 .8 2.5 1.9 1.3 2.8.5.7 2.6 1.8 4.1-.3 2.7-1.9 1.8-.7 1.6 1.6 1.4 3.3 2.1 1.4 1.7-.6 2.6 2 2.3.8 1.9-.7 2.6-.8 1.1 1.9 3.1v1.6l2.2.9 1.6 3.2-.4 2.3-1.6 3.6-.9.7-1.4-.6v-.9l-1.5-1.5-2.2-.4-.8.6 1.5 1.5-1.9.6-3.5 1.5-4.4 1-.6 1.2-1.1-.1-1.6.7-.6 1-2 .3-.8 1.3-2.1-.4-2.6.6-1.1.6-1.9 2.6-1.9-2-.5.7 2.5 3.4 2.3 1.3.6 1.6-1.2 1.7 1.4 1.5 1.8 2.7 2.3 2h1.3l2.9 2.6 2.5 1.5 1.3 1.6h1.3l2.9 2.2.6.7-.2 2.8-1.3.9-2.3-.9-.7 2.9-1 1-2.9.8-3.1 1.8-.6 1.3 2.5 2.8.1 1.3-.6 1.3 1.7.3.3 1.9-.3 1.5-1.7-.4-1.2-.9-.2-1.1-1.1-.5-2.5.5-1.5-.8-2-.3-.1 1.4-5.7.5-3.9 1.5-1.1.9-3.8.5-1.4-1.9-2.7-.4-2.8.1-.2 1.9-1 1.6-1.6.5.1-1.3-1.2-.3-.9-1.4-3.5-1.6-.7.5-2.2-1.2-5.1-2.3 1 1.6-3.7.2-1.1-.9-.8.2-1.4-1h-1.3l-1.3 1.2.2 1.5-2.6-.2-3.3.6-2.8-.1-1-.3-1.1-1.3v-1.5l.6-2-.2-2.4.3-1.5 1-1.8 1.4-5.5 3.5-3.8-.1-1.3-1.6-.6-4.8-.8-2-1.4-3 .6-2.1-.1-.3-.9-1.4-.4-1.8.7-3.5-4.3-1.4-.1.6-3 .9-.9v-1.4l-2.8-1.1-1.5-1.6-.3-2.2.6-1.7 2.3-1.3-.4-2-1.7-.7.4-1.5-3-2.3.6-2.4-1.9-1.2.5-.8 2.2-1.6-.7-1.2 1.3-2.8V391l-3.1-4.1.7-1.1 1.8-.7 2.3.8 4.5-1.3.7-1-1-.9.3-.9 2.6-1.6.6-2.6-.8-1-2.6-.3-.7-1 .6-1.6 3.1.1 1.1-3.8.7-1.7-.1-4.3-1.7-1.4.5-2.7 1.1-1.4.9-.4 4-.3 4.5.1 1.9 2.2-.6 1.2 1.6.3.9-2.4 1.4.8 1.1-.1-.5-1.7.2-1.6.9-1.4 3.3.6 3.6-.3.1-.6-2.8-.5-.9-1.1-.2-3.9-1.5-.8-1.6.3v-1.5l3.4-1.1v-1l-3.4-3.8-.2-1.6 2.7.1 5.2 1.3 3.1-.7 1.5.4Z"
+                        data-name="sm_state_DE"
+                        opacity={1}
+                        style={{
+                            WebkitTapHighlightColor: "transparent",
+                            opacity: 1,
+                            cursor: "pointer",
+                            strokeOpacity: 1,
+                            strokeLinejoin: "round",
+                            fillOpacity: 1,
+                        }}
+                        transform="scale(.4562)"
+                    />
+                </TooltipTrigger>
+                <TooltipContent>{countryName}</TooltipContent>
+            </Tooltip>
+            <Tooltip>
+                <TooltipTrigger asChild onMouseEnter={onHover}>
+                    <path
+                        id="sm_state_BA"
+                        fill="currentColor"
+                        fillOpacity={1}
+                        stroke="#fff"
+                        strokeLinejoin="round"
+                        strokeOpacity={1}
+                        strokeWidth={1.621}
+                        className={cn(
+                            "transition-colors",
+                            isAvailable("sm_state_BA")
+                                ? "hover:text-[#03045E] cursor-pointer"
+                                : "text-gray-200 pointer-events-none"
+                        )}
+                        onClick={handleClick}
+                        d="m638.2 492.2 2.8-.7 1.5.8-.5 2.5-1.6 2.7-.1 2.6.5.8 2.4 1.2 3.3 2.9-.3.8-3.1-.1-.5.8 3.2 3.7-.2 2.2-2.5-.3-.7.8-3.2.5 1.4 2.2-2.3.2-2 1.7-.5 1.7.1 1.5-1.7.2-.5.7.6 3 1.1 1.6-.1.8-1.1 1-1.7-.7-6.2-3.8-.6-.9-1.6.1-1.1-.6.3-1.6-3-2.5-1.5-1.6-.4-2.2-2.4-1.1-5-4.1-1.7-2-2.8-2.3-2.3-2.4-1.3-4-3.4-3.2-1.9-1.3-.1-1.4.3-5 1.2-.6 1.8.4 1.7 1.8 1.8 1 2.7-3.2 3.2.3 1.5-1.2 2.7 1.6 2.5.1 2.8.7 1.7-.6 1.6 1.3 2.2-1 1.8.3 1.8-.2 2.6.7 2.2.2 1.1.8 1.3 2.2 2.2.2Z"
+                        data-name="sm_state_BA"
+                        opacity={1}
+                        style={{
+                            WebkitTapHighlightColor: "transparent",
+                            opacity: 1,
+                            cursor: "pointer",
+                            strokeOpacity: 1,
+                            strokeLinejoin: "round",
+                            fillOpacity: 1,
+                        }}
+                        transform="scale(.4562)"
+                    />
+                </TooltipTrigger>
+                <TooltipContent>{countryName}</TooltipContent>
+            </Tooltip>
+            <Tooltip>
+                <TooltipTrigger asChild onMouseEnter={onHover}>
+                    <path
+                        id="sm_state_HU"
+                        fill="currentColor"
+                        fillOpacity={1}
+                        stroke="#fff"
+                        strokeLinejoin="round"
+                        strokeOpacity={1}
+                        strokeWidth={1.621}
+                        className={cn(
+                            "transition-colors",
+                            isAvailable("sm_state_HU")
+                                ? "hover:text-[#03045E] cursor-pointer"
+                                : "text-gray-200 pointer-events-none"
+                        )}
+                        onClick={handleClick}
+                        d="M671 437.8h1.5l1.4 2.3 2.2.8.9 1.1 2.3.4.9.7.7 1.7-2.2 2.3-4.6 1.1-1.9 2.4-1.2 1 .1 1.7-1.4 1.4-.7 2.5-1.4 1.5v1.2l-1.6 2.7.2 1.3-2.1 1.5-1.5 4.7-1.3.9-2.6-.3-2.5 2-1.4-.5-3.2.9-1-.5-2.8-.3-1.1.2-2.9-.4-1 .3-1.5 1.6-2.2 1-1.6-.5-2.1 1.3-2.9.4-1.1 1.4-2.5.9-4.9-.2-3.3-.9-1.3-1.3-2.5-.6-1.3-.7-2.2-2.2-2.7-1.8-.9-1.3-1.7-1.2-2.9-1.2-1.9-2.2-1.4-3.3-2.4-.1 1.8-1.7 2.5-.5.3-1.8-1.1-1.6.5-.7-.4-1.5 2.2-1.2.5-1.4-.5-1.1-2.6-.7 1.3-1.4 2.5.9 3.9-.3-.7-2 .6-1.9.6-.7 2.1.3 4.2 2.7 1.6.7 4.7.1 7-.4.6-1-.5-1.3.4-1 1.4-.7 4.3-.4 2.4-.6 1-1.5.7-.2 3.5 1.4 5-2.5 1.6-3.5 1.8-.4 2.7.1 2.5.6 4.6-.7 1.4.9 2.2 2.2.6.2 4.3-1.1Z"
+                        data-name="sm_state_HU"
+                        opacity={1}
+                        style={{
+                            WebkitTapHighlightColor: "transparent",
+                            opacity: 1,
+                            cursor: "pointer",
+                            strokeOpacity: 1,
+                            strokeLinejoin: "round",
+                            fillOpacity: 1,
+                        }}
+                        transform="scale(.4562)"
+                    />
+                </TooltipTrigger>
+                <TooltipContent>{countryName}</TooltipContent>
+            </Tooltip>
+            <Tooltip>
+                <TooltipTrigger asChild onMouseEnter={onHover}>
+                    <path
+                        id="sm_state_FI"
+                        fill="currentColor"
+                        fillOpacity={1}
+                        stroke="#fff"
+                        strokeLinejoin="round"
+                        strokeOpacity={1}
+                        strokeWidth={1.621}
+                        className={cn(
+                            "transition-colors",
+                            isAvailable("sm_state_FI")
+                                ? "hover:text-[#03045E] cursor-pointer"
+                                : "text-gray-200 pointer-events-none"
+                        )}
+                        onClick={handleClick}
+                        d="m646.5 260 2 .2-.6 2.8-2.3-1.8.9-1.2Zm-1.9.5-2.1-.6.9-.8 1.2 1.4Zm-6.5-2.7-1.5.7-.3-1.7 1.8 1Zm25.5-62.9-1.5.5-1.3-.3-.2-.9 2-.6 1 1.3Zm30.1-54.6-3.7 1.3 1.6.8.8 1.2-2 3.2.1.6 3.1 4 7.2 1.7 2.3 1.8 3.6 2.3 1.8.9.1 1.9-3 3-2.6 3.1-1.2 1.7.4 1.7 2.6 2.1 2.3 2.2 3 3.5 3 2.5 3 4.2.4 1.4-3.7.7 1.2.9-.6 1.3.3 1.9-.5 1.5 1.9.3.3 1.3-1.7 1v.9l1.4 1.7 1 .6 3.2.6.9 1.6-1 1.7 1.8 2.2 4.5 1.8.7 1.3.2 1.7-2.4 3-2 .8.7.8 4.5 2.6 6.6 2.9 2.6 1.3 2.1 1.9 2.2 1.6.5 1-1.6 4.5-.7 1.2-2.2 2.2-3.4 2.8-2.3 2.3-5.3 5.9-1.9 1.5-2.1 2.2-4.9 3.3-.7.8-2.5 1.5-5.6 5.2-3.5 1-2.6-1.1-1.8.2-1.2.8-2.5.2-2 .6-1-.7-.7.6-1.9.2-2-1 .3 1.5-3.3 1.5-.8-.9-2 1-2.1.2-1.1.8-5.9 1.1-1.5 1.3-1.2-.3-6.7 1.1-2.9-.2-2.7 2-1.8.4 1.5-3-2.4-1.1-1.2-1.6-.7.4-.3 1.5-1.5.8-2-.1-.4-2.4.8-2.3-3.6-.6-3.8-1.4-.9-.1-.7-1.3-2 .9-2.1-.9-1.7-5.3v-1.3l.9-1.6-.1-3.4-.6-2 1.1-.6-.9-1.6-2.2-3-1.6-1.1.5-3.3-.6-1.6-1.9-1.1-1.1-2.9.6-2.4 2.4-2.2v-1.2l.9-1.1-.5-1.3 2.7-.5 1 .4 2.4-.4 1.9-1-1.1-1.8 1.5-.7 1.2-1.2-.1-1 2.3-.5 2.4-1.9 2.3-1.1 2.3-1.9 1.1-.1.3-1.3 2.5-1.9.8-1.6 2.3-1.8 2.2-3.9 3.8-1.2 3.8.3-.6-1.7 1-.3-.6-1.3-1-.6v-4.6l-1.3-.9-4.5-1.6-1.7-.1-1.2-1.2-4.6-.7-1.6-2.5-1.9-2.2-1.8-.6-1.3-2.6v-1.3l1.5-1.3-.1-1.8.7-1.4-.6-.9-3.3-2.6-.8-1.6.1-1.1 1-.8-.6-1.3-2.8-.4.3-1.9-.7-1.4-.4-2.4 1.1-1-1.8-.9-1.9-1.5-1.4-.1-1.2-1.6-3.5-1.8-8.3-1.7-4.2-1.8-4.8-2.3-2.9-1.1-.4-.9-2.9-.8.5-.4h2.1l1.9.4.5-.6-1-1.4 1.9-1.1h3.6l7.9 5.5 1.4 1.8 6.9.6.8.5 1.8-.1 3.7-.9 1.2-1.2 1.5.1 3.6 1.1 3.9.8 2.6.8 1.3-.6.5-1.7 1.6-1.3 2.1-.3 1.5-1.4-.7-3.2.6-1.7.7-3.8 2.6-1.7 1.7-1.8 2.1-.2 3.8.4.9-.2 3.5-1.6 2.9-.3 1.8 1.2 4.2 2 4.2 1.1 3.6.8 2.6 2.7-.7 1-3.2 2.9v.7l1.7 1.3Z"
+                        data-name="sm_state_FI"
+                        opacity={1}
+                        style={{
+                            WebkitTapHighlightColor: "transparent",
+                            opacity: 1,
+                            cursor: "pointer",
+                            strokeOpacity: 1,
+                            strokeLinejoin: "round",
+                            fillOpacity: 1,
+                        }}
+                        transform="scale(.4562)"
+                    />
+                </TooltipTrigger>
+                <TooltipContent>{countryName}</TooltipContent>
+            </Tooltip>
+            <Tooltip>
+                <TooltipTrigger asChild onMouseEnter={onHover}>
+                    <path
+                        id="sm_state_BY"
+                        fill="currentColor"
+                        fillOpacity={1}
+                        stroke="#fff"
+                        strokeLinejoin="round"
+                        strokeOpacity={1}
+                        strokeWidth={1.621}
+                        className={cn(
+                            "transition-colors",
+                            isAvailable("sm_state_BY")
+                                ? "hover:text-[#03045E] cursor-pointer"
+                                : "text-gray-200 pointer-events-none"
+                        )}
+                        onClick={handleClick}
+                        d="m724.5 321.5 1.8 1.3 1.2-.4 1.9-.1 3.1 2.2 1.6-.9 1.5-.3 3.6 1.2.2 2.3 1.7 1.5 2.1-1.3 2.7-1.1h3.4l2.7.9 2.4 1.8 3.5 1.4.4 2.5-.6 1.8 2.1 2.1.5 1.3-1.3 2v2l4.1 2 .5.5-.5 1.8 1.4.6 1.8 2.4 1.5 1.4 4.9 2.1.7.8-.4 2.8 5.3.5 3.2 1.3v1.1l.7 1.1 2.8 1.4.6 1.7-2.6 1-.3.9-3 1.8-3.5-.2-2.4-1.5-2.9.1-1.4 2.7 3.9 3.3.6 1-.2 1.5 1 1.5.5 3.3 1.6 1.4 1.3 1.8-5-.1-1.4.8-1.7-.4-1.1.5-2.2 2.3-.8 1.2-1 3.3 1.8 3.6-.8 1.4-2.7-.9-.5-1.2-2-1.1-7.1.6-2.3.8-.6-.5-2.5-3-3.8 1.6-.6 1.1-1-.3-.8-1.3-5.1-1-1.9.7-1.9-.5-1.2 1.7-.8-1.4-1.1-.4-3 .1-1-.3-1.8-2.1H722l-6.1-.9-6.5-1.5-7.8-.4-2.4.1-2.3.5-5.9.5-.8 1.4-1.6 1.6-1.9 1.2-1.1-.5-1.9-.3-1.1.5.1 1.4-1-1.6-.1-1.3.8-1.5-.4-1.1.2-2.4-.8-1-1.8-1-3.3-1.3v-1.2l2-2.7.8-.5 4-1.7.6-1.6-.9-3.9-1.7-3.6-2.9-4.9-2.1-5.1 2.9.4 1.6-.3 3.7-.3 1.6.9 3.3-1.3 1.8.1.8-2.6 2 .2 1.4-1.2 2.1-.5 1-.7 1.7 2.3 2-.2v-1l-.9-1.1-1.9-.5.5-2 1-1.5-.4-2.3 1.1-3 2.6-.6.8-.6 1-2 3.6.1.4-1.1 1.3-1-3.9-1 .7-3.1v-1.8l2.6-.6 1.2-1.5 1.1-.3 3 .4 3.1.1.4-1.7 2.5-2.4 1.4-.8 1.3-.2Z"
+                        data-name="sm_state_BY"
+                        opacity={1}
+                        style={{
+                            WebkitTapHighlightColor: "transparent",
+                            opacity: 1,
+                            cursor: "pointer",
+                            strokeOpacity: 1,
+                            strokeLinejoin: "round",
+                            fillOpacity: 1,
+                        }}
+                        transform="scale(.4562)"
+                    />
+                </TooltipTrigger>
+                <TooltipContent>{countryName}</TooltipContent>
+            </Tooltip>
+            <Tooltip>
+                <TooltipTrigger asChild onMouseEnter={onHover}>
+                    <path
+                        id="sm_state_GR"
+                        fill="currentColor"
+                        fillOpacity={1}
+                        stroke="#fff"
+                        strokeLinejoin="round"
+                        strokeOpacity={1}
+                        strokeWidth={1.621}
+                        className={cn(
+                            "transition-colors",
+                            isAvailable("sm_state_GR")
+                                ? "hover:text-[#03045E] cursor-pointer"
+                                : "text-gray-200 pointer-events-none"
+                        )}
+                        onClick={handleClick}
+                        d="M712.9 637.7h2.3l1.7-1 2.2 3.7 1.7-.1 3.5-.9 3.7.2 1.4 1 2.6.2 2.3.5 3.3-.7.4.4.1 2.8 1.2.2.7-.7 1.7-.6h1.8l1.6-.8-.4 3.5-.9.4-4.4-.1-8.1 1-5.3.4-.7-.2-.7-2.2-3.3-1.1-6.2-1-1.5-.4-3.1.2-1.1-1-.4-1.8.2-1.9 1.4.3.4-1.4 1.9 1.1Zm43.4 1.1-1.6-2.1 1.1-.5 1.2 2.4-.7.2Zm-54.7-11.4-1.4.2-.7-2.2.5-1 2.1 2.1-.5.9Zm62.7 4.1-1.7-.4.4-1.8-.7-1.6 2.3-2.7 3.2-1.3.9.9-.9 2.5-.9 1.3.4 1-1.6.2-1.4 1.9Zm-19-10.3-1.5 1.2-.9-.6 1.9-1.2.5.6Zm6.2-2.2v-.7l1.3-1.1 2.5-1 1.2.6-2.5 1.4-1.5.1-1 .7Zm-22.2-5.4-.9 1.3-1.3-.7.4-1.2 1.1-.6.7 1.2Zm3.6 1.6-1.1.6-1.4-2.2 1.9-2 .9.7.1 1.8-.4 1.1Zm5.4-8.8.6-1.6 1.6-.1v1.1l-2.2.6Zm-21.7-.7-1-.4.4-1.2 1.1.5-.5 1.1Zm31.6-3.7 2.8.7-.7 1-1.6.9-1.7-.9-1.2-1.2 2.4-.5Zm-76.7.1.4 1.2-1.1 1-1.6-1.2-1.2-1.8.9-1.1.9 1.2 1.7.7Zm53.1.7-1.4-.1-2.4-2.1.9-1.4.9 1.2 1.3.1.7 2.3Zm-57.3-9.7.3 1.8.9.3 1.3 1.6-.2 1.2-2.1-.8-1 .2-1.1-2-1.3.2.6-1.8 1.4.1 1.2-.8Zm70.8 2.5-1.1.9-1.8-1.7 1.4-1.3-2.1-2.4-.1-1 2.1-.5 1.3.9.6 1.2.4 2.6-.7 1.3Zm-70.2-6.1-1.3.1-.4-.9.8-2.4 1.1.3.2 2.5-.4.4Zm34.6-5.4.9 1.7 5.5 2.5 2.8.3 1.7 2.6-.2.6 1.5 3.8 1.1.9 2.7.3.4 1.9-.9.8-1.9-.7-2.1-1.6-.4-1.3-2.2-2.9-3.6-.2-1.5-.7-.6-1.7-1.5-.9-2-1.9-1.5-1.1-3-1.1-.6-.7 1.9-1.3 2.1-.5 1.4 1.2Zm37.9-5.8-.1.9 1.9 1.5.7 1-1.2 2.1-4-.8-.8-.8 1.6-1.3-.9-.5-1.2 1.5-2.2-.7-.9-.9.7-1.4 1.5.1 1.7-.8v-.6l2.3-.2.9.9Zm-81.3-1.6-1.3.3-1.2-.8-1.2-1.9-2.2-2.2.7-1.1 1.6-.4 1.4 1.2-1.1 1.2.8.7.9 2.4 1.6.6Zm67.8-8.6-.7 1.4-.1 1.3-3.8-.7-.3-2.3 2.2-.1.8.8 1-.9.9.5Zm2.4-6.9-1.4.4-1.7-1.3 1.4-.5 1.7 1.4Zm-11.9-3-1.6.6-1.8-1.1 1.1-2.3 1.3.1 1 1.3v1.4Zm15.9-1.7-.5-.7-2.1-1.2-4.6-.6-2.3-.9-.9.2-2-1-1.2.4-2.5 1.7-1.5-.2-1.6-1-2.2.4-1.7 1.9-1.8 1-1.8-.4h-2.3l-.2 1.1 2 2.1-.5 1 .5 1 2.1.1 2.5 1.3-.7.7-3.2-1.2-1.2-.1-1.2 1.2 3.5 2.7.5 1.4-.6.9-1.5-.8-2.5-3.2-3.1-.6-.4.6 1.2 2.4 2.9 1.7-.6.6-3-1-1.1-1.6-.4-2-5.5-2.8-1.4-2.8-2.2 1.3.4 2-.6 3.8.4 1.3 3.5 3.7 1.3 2.7 2.6 2.1 2.6 3.2.7 1.8-1.3 1.1-1.3-.5.3-1.9-2.2-1.2-1.9 1.2 1.5 2.3.5 1.2-.4 1.3-1.6.8-2.6.1 2.4 1.4 3.3 1 1.6 1.1 1.5.1 1.7 2.1 2.6.6 1.7 2.1 2 .5 1.7.8 1 2.1.3 2.9.6 2.1.1 1.7-1.1.5-1.3-1.6-4.2-3.6-1-.4-1 .7-2.9.5-1.9 1.3 1.5 1.3.1 1.2.8 1.5 2 .4 2 2.4-3 1-1.1.7-.8-.5-.2-1.2-4.3-2.2-.6.6.7 2.4 1.3 1.6 2.2 4.3 1.3 3.7-.2 2.1 1 1.5.1 1.5-1.7-1.2-2.2-2.5-.8-1.5-2.2.1-1.3 3.3.2 1.9-1.6-1.1-.2-2.9-2.1-2.8-.9-.4-1.3-1.9-1.5.6-.1 2.9-.4 1-2.2-1.9-2.3-3.5-.2-1.8 1.4-1.7-.3-1.2-1.6-2.5-2.1-1.5-1.2-.5-.7-1.6-2-1.3v-1l2-1.7 1-2.6 1.9.5 1.4-.2 2-2.4 1.6.1 3.9 2.1 4.2 1.2 2.1 1 1.2 1.1 1.6.3-.5-1.4.8-.4h2.1l.2-1.6-2-.6-.8.2-2.4-1.4-2.3-.8-2.2-1.5-1.2 1.3h-1.2l-3.4-.9-2.1.7-4.2.7-1.1-1.3-2.6 1-1-.7-1.9-4.2-1.7-1.9-1.2-.5-.2-1.9 1.5-.2 2.4.9.9-.6-.6-1.6-2.5-.2-1.8.5-2.8-2.2-1.5-1.7-2.2-1.1-1.7-3.4-2.6-2.6 2.7.9.7-.7.3-1.5.9-.7-1-2.2 1.7-1.3 1.9-.3.6-.5.3-2 1.2-3.1 1.7-.8.8-2.6-1.1-1.8v-1.1l4.6-.3.9-.6 2.3.6 2.4-1.3 1.7-2.5.8-.3 3-.4 3.3.6 2.9-1 .2-2.1 2-.3 3 .2 1-1 2.4-.2 2.6.2 3-1.1 1.9-.2.2-.9 4.2.1 1.6-.5 1.2 1.7 2.4 1.4.9-.6 3.7 1.2 1.7 1.1 3.4-.9 3.2-.4 1.8.3 2.5-1.2.2-.8-.9-2.7-.7-1 1.6-1.1 1.6.5 1.2.3 2.3 1.5.9 3.1-3.4 2.5.5 4.4-2.5 3.2-.8.4Z"
+                        data-name="sm_state_GR"
+                        opacity={1}
+                        style={{
+                            WebkitTapHighlightColor: "transparent",
+                            opacity: 1,
+                            cursor: "pointer",
+                            strokeOpacity: 1,
+                            strokeLinejoin: "round",
+                            fillOpacity: 1,
+                        }}
+                        transform="scale(.4562)"
+                    />
+                </TooltipTrigger>
+                <TooltipContent>{countryName}</TooltipContent>
+            </Tooltip>
+            <Tooltip>
+                <TooltipTrigger asChild onMouseEnter={onHover}>
+                    <path
+                        id="sm_state_NL"
+                        fill="currentColor"
+                        fillOpacity={1}
+                        stroke="#fff"
+                        strokeLinejoin="round"
+                        strokeOpacity={1}
+                        strokeWidth={1.621}
+                        className={cn(
+                            "transition-colors",
+                            isAvailable("sm_state_NL")
+                                ? "hover:text-[#03045E] cursor-pointer"
+                                : "text-gray-200 pointer-events-none"
+                        )}
+                        onClick={handleClick}
+                        d="m452.2 392.5-.6 1.2-3.2 1.5-3.9-1.1-1.2.6-1.2-.7-.3-1.3 2.8-.4 3.5.7 1.5-.6 1.2.5 1.4-.4Zm-3.4-5.3 1.5 1.4-1.5.3-1.6-1 1.6-.7Zm18.1-8.5-3-.4-.9-.7 2.4-1.7 3.2-1.5 1.7.4.5.9-1.1 1.1-2.8 1.9Zm-7.6-11.5-1.1 1.1-.6-1.4 1.7-1.4v1.7Zm-7.1 25.3-2.6-.8-2.2.5-2.8-.7-1.7-1.3 1.2-.7 2.3-.1 4 .7 1.2-.9-.6-1-2.3-2.1 1.6-2.7 1.4-1 3.2-3.8.9-2 1.2-5.5 1-2 1.4.5 2-.8 3.4-2 1-1.7 1-.9 4-1.6 2.1-.4 8.9-.5 1.8 1.7 2.7.6.1 4.3-.7 1.7-1.1 3.8-3.1-.1-.6 1.6.7 1 2.6.3.8 1-.6 2.6-2.6 1.6-.3.9 1 .9-.7 1-4.5 1.3-2.3-.8-1.8.7-.7 1.1 3.1 4.1v1.2l-1.3 2.8.7 1.2-2.2 1.6-.5.8 1.9 1.2-.6 2.4-1.2-.1-2.4-.3-.7-1.1 1.1-1.3 1-2.9-2.6-1.1-1.7-1.3-1.9.4-2.6-1.4-.5-1.6-2.5.8-1.1-1.3-1.5 1-1.5-.8-1.4.7.2.9-2.1-.3Zm18.1-15.6.9-.9-.5-1.9-2.1-.3-.5-.8.4-2.5-2.8-.4-.4-2.5-1.5.3-2.3 1.5.6 1.3 1.6 1.6v.9l-2.1.7.1 2.6-.2 1.6 5.4 1.4 3.4-2.6Z"
+                        data-name="sm_state_NL"
+                        opacity={1}
+                        style={{
+                            WebkitTapHighlightColor: "transparent",
+                            opacity: 1,
+                            cursor: "pointer",
+                            strokeOpacity: 1,
+                            strokeLinejoin: "round",
+                            fillOpacity: 1,
+                        }}
+                        transform="scale(.4562)"
+                    />
+                </TooltipTrigger>
+                <TooltipContent>{countryName}</TooltipContent>
+            </Tooltip>
+            <Tooltip>
+                <TooltipTrigger asChild onMouseEnter={onHover}>
+                    <path
+                        id="sm_state_PT"
+                        fill="currentColor"
+                        fillOpacity={1}
+                        stroke="#fff"
+                        strokeLinejoin="round"
+                        strokeOpacity={1}
+                        strokeWidth={1.621}
+                        className={cn(
+                            "transition-colors",
+                            isAvailable("sm_state_PT")
+                                ? "hover:text-[#03045E] cursor-pointer"
+                                : "text-gray-200 pointer-events-none"
+                        )}
+                        onClick={handleClick}
+                        d="m306 611.9-1.2.2-4.5 2.5H299l-2.5-1.1-4.5-.4-1.5-.3-1.8.7h-1.5l-1.1 1-.8-.3 1-2.1 1.6-4.1v-2.6l.4-2.2-.3-2.1-.7-1.4 1.1-3.5v-1.8l-.9-2.3 2.8.3-1.7-1.4h-1.5l-2.3.9-1.5.1.1-1.4-.5-1.8 2-.6 1.6-1.7-.3-1.6-1.2 1.1-.6 1.4-2.8.7-1.5-.5v-1.9l.6-1.7.4-2.3.8-2.2-.2-1.4 1.6-1.3 1.4-1.9 4.3-8.9-.6-1 1.7-6.6 1.2-2.3.6-4.3-.2-2-.7-2-.7-4.3v-1.4l-.9-1.8.1-1 1.4-1.7 1.2-1.1 1.9-.9 4.1-1 1 1.8-1.3 1.9.9 1.3 3-1.1 2.9-.1 2.2.8h1.4l2.5-.9.8-1.4 1.5.5 5.2.1.7 1.1.1 3.1 1.9.2 1.9.9.3 1.1-2.5 2.5-2.1 1.1-1.6 1.4-1.1 1.6-2 1.6.8 2 .4 3.5-.4 3.8.4 1.1-2.7 2.1-.2 1 1.4 1.3v1.9l-1.7 3.5-1 .5h-4.3l-1.1.3 1.1 1.9 1.4 1.2.3 1.9 1.6 3.2 1.7.4.5.8-.6 2.4-3.2 3-.9 4 3 4.3 1.7-.2-.7 2.4-2.1.6-3.5 4.3-.8 2.2 1.1 6.4Z"
+                        data-name="sm_state_PT"
+                        opacity={1}
+                        style={{
+                            WebkitTapHighlightColor: "transparent",
+                            opacity: 1,
+                            cursor: "pointer",
+                            strokeOpacity: 1,
+                            strokeLinejoin: "round",
+                            fillOpacity: 1,
+                        }}
+                        transform="scale(.4562)"
+                    />
+                </TooltipTrigger>
+                <TooltipContent>{countryName}</TooltipContent>
+            </Tooltip>
+            <Tooltip>
+                <TooltipTrigger asChild onMouseEnter={onHover}>
+                    <path
+                        id="sm_state_NO"
+                        fill="currentColor"
+                        fillOpacity={1}
+                        stroke="#fff"
+                        strokeLinejoin="round"
+                        strokeOpacity={1}
+                        strokeWidth={1.621}
+                        className={cn(
+                            "transition-colors",
+                            isAvailable("sm_state_NO")
+                                ? "hover:text-[#03045E] cursor-pointer"
+                                : "text-gray-200 pointer-events-none"
+                        )}
+                        onClick={handleClick}
+                        d="m458 260.9.1 1.7-1-.1-.7-1.1-.2-2 .7-.5 1.1 2Zm-1.8-11.1h-1.8l.3-1.3.9-.3.6 1.6Zm32.5-31.9-2.3-.2-1-.8 2.8-.8.7.5-.2 1.3Zm3.6-4.6-.3-.9 2.7-.6.9 1-3.3.5Zm28-16.6-4.2.3-.3-1.1 2.1-.8h1.2l1.2 1.6Zm6.8-10.5-2 .3.1-1.1 1.8-.3.1 1.1Zm4.1-5.7-.1-1.1 1-1.2 1 .4-.3 1.5-1.6.4Zm3.1-24.9-1.5.7 1.1-2.6 1.1-.7.4 1.5-1.1 1.1Zm8.5-5.2 2.3.2-.5.8-1.4.3-1.1.8-1.9.2-1.9 1-1.6.3-.4-1.2.9-1h1.3l1-1.2 3.3-.2Zm12.4-9 2.2 2.1-.3 1.5-1.2.7-3.3.1-1.6-.9-2.2.6-1.6-1.1 1.6-1.4 2.6.4.5-1.7 1.7.3.4-1.5 1.2.9Zm6.3 5 1.3-1.1 1.5-.4.6-2.2 1.8-.5 1.6 1 .9 1.2-.2 1.1-3.1 1.2-2.5 2-1.6-.2-.7.7-2.4.6-1.7-.9-.9.9-1.4.4-1.2-.4-2.9 1.5-2.8.3-1-1.1 3.1-1.9 5.1-.6 2.9-2.3.4-2.5.6-.9-1.3-.6.2-1.7 2.4-1.7 1.3-1.4 1.5-.3.9 1.1-1.1 1.4-1.6 1.2 1.1 1.5.6 2.4-1.4 2.2Zm15.5-13.7 1.4.8 1.5-.3 2.3.7 1 1.5-1.2.9.4 1.7-3.8.5-.9-.5-1.5.9-1.4 1.4-2.2-.6.2-1.6-.3-2.3.7-.5 2.9.3-.4-2 1.3-.9Zm124-2.6-1.8.4.2-1.8 1.6 1.4Zm-92.4-3.8-1.3.4-1.8-.3-.7-1 2.2-1 1.7.3-.1 1.6Zm-15.1.3 1 .7 1.5-.5 1.1 1-1.4.8-.8 1.2-2 .1-2.9 2.3-.1.8-5 .5-1.5-.3 1.7-2.7h1.7l1.7-.8-.3-.8 2.5-2 .6-1.7 1.4-1 .8 2.4Zm4.8-2 1.4.2 1.3 1.6h-2.3l-2-1.8h1.6Zm37.3-4.3.5 1.1-3.3 2.1-1.6.1-2.1-1.2.1-.8 1.9-.9.9.1 2.7-1.4.9.9Zm3.9-.3-1.8.5-1.7-.9-.2-1.6.8-.3 3.2 1.2-.3 1.1Zm-6.4-3.2-.4.8-2.7 2.1-2.2.7-1.8-.3-.8.6h-2l-2-.6-2-1.2 3.5-.1.6-.5h1.5l2.8-.4 1.1.3 2.1-1.4h2.3Zm60.6 23.5L692 139v-.7l3.2-2.9.7-1-2.6-2.7-3.6-.8-4.2-1.1-4.2-2-1.8-1.2-2.9.3-3.5 1.6-.9.2-3.8-.4-2.1.2-1.7 1.8-2.6 1.7-.7 3.8-.6 1.7.7 3.2-1.5 1.4-2.1.3-1.6 1.3-.5 1.7-1.3.6-2.6-.8-3.9-.8-3.6-1.1-1.5-.1-1.2 1.2-3.7.9-1.8.1-.8-.5-6.9-.6-1.4-1.8-7.9-5.5h-3.6l-1.9 1.1 1 1.4-.5.6-1.9-.4h-2.1l-.5.4-5.1.2 2.6 1.6.1 2-1.4 1.9-1.6.9 2.9.9-2.5 1.6-1-.1-8.6-1.7-2.9-.1-4.1-.9-2.1.5v.8l.8 3.6-2.1 3.1-6.3-1.8-1.5.9-3.7 1.9-1.5 3.5-1.1 1.1-2.7.6-.5 1.1 2.7 2.3 1 1.3-.2 1.4-1.5 1-3.3 2.9-3 2.9-1.3.9 1 2.5-3.3 1.5-2.4.5-3.8.4 1.4 3.9-.6 2.7-.1 4.7-3.3 5-4.4 5 4.7 1.6 1.1 2.9.1 1.2-1.7 2.2-7.1-.9-3.3.4-3.3 1.5-3.5 3.8-1.2 1 .5 1.5-2 2.8 2.7 4.1-1.1 1.1.6 2.8-.1 1.8 2.5 4.4v1.6l-.9 6.4 3.8 2.1 1.2.4 3.4 2.7-.4 1.9-1.3 2.5h-2.4l-1.8.6.3 1.6 3.1 4.9.5 1.4-.6 2.1-.1 2.8-1.9 2-1.3.8-2.6.7-.9 2.4-1.5 1.5 1.6 4.4-.6 3.9-.7 1.4-1.9.2-1-1.8-.4-1-6-1.2-2.3-2.9-.4-3.1-2.5 1.2.6 1.1v2.3l-2.5 3.9-1.1-.2-1.3.8-1.3.2-.6-1-1.1.2-.8 1-3.4 1.3 1 .7-1.7 1-.6.9-2.7 1.5-4.3 3.9-2.3 1.1-1.6 1.2h-1.4l-1.8.9-4.6.9-3.1-.4-2.1.4-1.1-.7v-1.1l-1.2-.1-.8 1.2-1.6-.4.7-2.4-3.1-.1-3.8-1.6-.9-.8-3.1-1.3-1.4-1.4-.8-1.6.3-3.6.6-.5 2.7.8 2.8 1.3-.1-1.2-2.4-1.6.8-1.8-.2-1.6 2.6-2.1-.4-.7-3.4 2-3.1.9-1.1 1.2-1.1.6h-2.1l-.5-.9.5-3.3 1.2-2.7 1.8-1 3.4.7 1-1 1.3-.2 2.4-1.2-4.1.5-1.2-1 2.8-2.4 1.2-1.4.3-1.5 2.2-1.7 1.8-.8 1.6.6 1.5-1.9-5 1.1-2 1.1-2.7 2.8-.2 1.1-2 .9-1.5 1.5-.6 1.2-2.8 1.9-1.4.3v-2.4l1.1-2-.3-1.6 3.2.2 1.8-1.2h-2.7l-1.4-.7-1.2-1.5-.6-1.9 1.1-1.8-2.2-2-.5-2.2-.1-2.5.9-.5 2.1.4 2.4-.2 5.2-.9 3.4.6 1.4-.1 2-.7 1.9-.1 2.2 1.2.7-.5 5.4-1.2-3-1.5.1 1.4-3.6.3-3.2-.6-1.3-.6-.5 1.3-1.1.3-3.4-.5-4.7.3-2.1.7-1.4-.1-2.5-1.2-.9-.9-.3-2.6 2.8-.3-1.9-2.3-1.9-1.3-.2-1.4.7-1.3 1.5.2 3.8-.1 6 1.5 4.9-.3-.8-.6h-2.9l-7.2-1.3-2.2.1-1.2-.3-.7-1 .4-1.9 1.1-.4 1.2.6 1.9-2.3 1.9-1 2-.5 2 1 1.3-.1 4-.8-1.3-.5-3.5.5-.2-.5 2.4-2.3 4.2-.4 5.9.5 2.3.8.4-1.8 5.3-1.4-6.8.8-1.8-.5-4.9.7-.1-1.3 2.3-2.3 4.1-.9 1.9-1.1 3.1-.2 2.6.3 1.2 1.3 4.4 1.7-5.1-4 1.1-1.7 3.3-.4v-1.6l-2.2-.3v-1.2l1.9-.9 2.8-.7 3.2.8-.6 1.3.9.5 1.7-1.5 3.9-.8 2.8 2.1.5 1.1 1.1-.5 2.7-.5 2.7.3 1.8-.2-1-1.3.4-1 2.4-1 1.7-.3 2.6-1.2-.8-1-1.4-.3 2.9-1.5-1.7-.6-2.4.9-1.6.9 1.5 1-1.1 1.1-6.1 2.8-3 .8-1.4-.1-1.9-2.5-2.1-.1 1.3-2.2 1.6-.8 1.4-2.3 2.3-1.3 3.2-3.3 2.8-1.1.9-1.1 3-1.5 3-.9.3-1-2.7.9.4-2.1 1.4-1 6.8-2.8 1.6 1.3 2.1-.2 2.3-1.6-.3-.7-2.1 1h-1.5l-.4-.6-2.1-.5-.3-1.2 1.3-2.8 3.4-3.3.5-1.3 1.3-.7 1.7.2-.2-1.1-2.1-1.1 6.2-1.1h3l2.4-.9.5-1-6.4 1.1-2.4.1-.8-2.7.2-1.5 1.9-2.2 1.4-.2 1.7-1.1.1-1.5 2.3-.8 2.1-2.1 2.3-.5 1.4.2 3-.7 6.6-.1.1-.6-6.3-.3-3.5.2-.4-.6 2.8-2.7 2-1 1.7.2 1.8 1 .6-.8-1.6-1.5.7-1.5-2.6 1.1-1.8.3-.9-2 2.3-2h2.3l.3-1.5 3.3-1.3 1.9-.2 1.5-.6.6.4.9 2.3 1.5.3 1-.8-1.3-1.1-1.1-1.8 2-1.5 2.3-.2 2.6.7 2.3-.2.9-1.2-6.3-.1-.8-.9 1.2-1.2 2.2-.8 2.5-.1 2.4-1.4.9-1.1.3-1.6 1.4-1.3 3.9-.8-.6-2.2.8-1.4 1-.6 2.1 1.5 1.8.5-.5-1.4.3-1.2h2.1l1-.5.3-1.3 1.4-1.2 4.7-.7.5 2.5.7 1.4.8-2.8 1.6-2.1 2.4-.9.9 1.1-.4 4.3-1.9 2.4 1.5-.2 2.5-2.3.6-1.2-.7-2.8.6-.8 3.5-.1 1.9.4.7-1.5 1.7-.1 1.8.9 4.1 1.4-1.3-2.2-1-.8-2.1-.5-2.2-1 1.2-1 2.4.3 2-.8 2.2-.2 1.1.6.8-1 2.5-.5 2.8.9 1.6 2.7 2.4 1.4-.1-1.4.6-1.9 2.3-2 2.1-1 1.4-.1 2.9-3.4-1.6-1 3.3-2.3 1.1-.1 5.4 2.1 1.5-.9 3.4.8-.8 1-3.1 2.9-.5.8-.1 2.2-1.2 1.4.8 1.4 1.6-.4 1.8-1.3.1-1.3 4.3-3.7 1.9-2.1 2.3-1.7 1.5-.3.9 1.1-.2 1.5.2 4.3 3.7-1.4 1.1-3 1.1-.7-.8-1.4.4-1.1 2.3-1.3 2.2.4 3.3.3 2.7.8.2 1.4-.8.9-2.9 1.1.7.7 2-.6.9 5.5.9-2.1 1-.7.1-1.5.8-1.9 1.8-1.3h2.7l3.3 1.7 2.5.3 1.8.8 2.4-.7 2 1 .1 1 3.8.3 3.8 1.6.6 1.6-4.4 1-1.8 1-3.3.4-11.5-.7.4.7 8.3 1.5.6.5.4 2.1 1.8.7 3.5-.2v-1.3l3.2.6 3.8.2 1.1 1.7-.3 1.5-2.4.1-4.2-1.4-.4 2.3-1.1.9-5.8 1.3-1.1 2.6-2.2 1Zm-40.5-27.7 3.7.5 2.2 1.4-3.6.5-1.7-.1-2-1.8 1.4-.5Zm-339.6 3.9-.1-1 4.5-1.5 1.9-1.4 3.4-.5-.2 1.8-3 .8-3.3.5-3.2 1.3Zm269.2-45-1 .5-1.9-.8-.8-1.2 3-.1.7 1.6Zm9.6-50.1 3.9.2 2 1.9 1.4 2 1.3.2 4.7-.4 3.4.7-1.4 1.1v1.2l5.5 1.3 1.8.1 3-.4 6.5 1.7-6.6 1.1-2 1.9-3.7 1.3h-2.6l-2.3 1.3-2.2.1-1.5-1.9 2.2-1.3-3.1-.4-1.2.5-10.5 1-1.1-.2-.9-1.2 2.8-.6.2-1.1 2.5-2.4-5.5-1.6-2-1.2-.8-1-2.5-.9v-1l-1.7.1-.4-1.2 10.8-.9Zm46.2-.6h-1.3l-2.6-.8.7-1 3.2 1.8Zm-137.6.4 3.5 1.5 1.9.5 2.3 1.5-.7.9-2-1.2-3.6-1.3-2.3-.2-3.3-2.5-1.5-.8-.8-1.7 3.6.7 1.6 1-.3.8 1.6.8Zm155.6-3.4 2.7.1-.1.6-7.3-.4-3.8.7.4-.9 2.4-.6 3.7-.1 2 .6ZM546.7 7l1.4-.6 5.4.8 2.5.9 1.3 1-1.9 1.9 1.7 1 3.2-1.7 2.7.3 1.7.9 1 1.1-.2 1.4 3.1 1.1 3.4-.2 2.4.3 1.5 1 1.9-.2.2-.8 2.6.2 3 .8-2.1.9 2.1.8 3.4.6 2.1.6-1.5 1.4h-3.2l-2.9.3-5.4.3-3 1.6-2.5 1.8-.4 1.6.6 1.1-1.5.5-3.3.2.2 3.9-.8 1.9-3.3.3-1.8 1.1-1.2 2.1-2.1 2 1 1-2.1 1.9 1.2 1.8-1 .6-2.1.3-2.2-.3-2.3-1.1-6.7-2.2-4.3-2.4-6-1.3-3.3-1.6-1.5-1.3.3-1.4 2.8-.2 2.9.7 1.7-1.9 11.3-1.1 7.3-.2-1.9-1.3-6.9.7-4.3-.2-2.1.1-2.1.6-4.3.5-4.6-.1-2.9-1-1.3-2 1.2-.6 3.8.1 6.4-.9 3-.8 3.1-.1-.5-.8 1.8-.4 2.4-.2 5.6.1.2-.6-2.6-.6-.9-.6 2.6-1.8-2.2.1-3 1.3-1.8.5-4.6.3-1.7-1.6.9-1.2-.8-.7-1.3 1.3-2.1.3-2-.9-1.9.5.7 1-.6 1 2 .9-2.3.6-2.1 1.1-3.9.2-4.5.1-4.6-1.6-2.2-1.2-1.8-1.2-2.7-.6-1.7-.8-.4-1.1-1.4-.7-.7-1.2h4.4l-1.7-1.8.5-1.6-3.4.1.4.9-2.2 1-1.2-.2-2.3-1.9-2.4-2.4.4-1.3-1.2-1 1.5-.7 2.5.9.8-.7 3.8-.4 4.6 1.1.4-1.1 4.2.5 3-.6 5-.3 2 .4-1 1.1-6.3.3-4 1.3 5.7-.2 1 .1.6 1.1 3 .5 2.3 1 .8-.5-.6-2.2 4.4-2.3 2.1.4 2.1.9 4 3 2.3 1.9 6.1 2.8-.7-1.5-4.2-4.5-.9-1.7.9-1.7 1.1-.5-.4-1.3 1.3-.5 2.4.3 2.6 1.3Zm134.7-2.3-8 .4-.9-.3 15.7-1.4 1.7.5-8.5.8ZM562.5 2.8l-1.8.6-3.2-.5.9-.7 4.1.6Zm18.6.5 5.6.1 1.5.9 5.5 1.1.8-1.5-.6-2.2 1.9-.1 1.7-.6 3.1.3.2 1.3-.5 1.4 2.1.1 2.8-.3 1.9-1.1 2.4.1 1.3-.6 1.4.6 8.2.7 3.3.6h5.2l3.7.2 2.8 1 1.1 1.7-.9.4-6.7 2-1.6.7-2.4 2.3-4.1.7-3.5-.3-3 .7-1.9 1-1.5.2-9.2-.4-2.2-1.1 1.2-.9-8.2.3-9.2-.1-1-.5-5.6-.5-4.2-1.1 1.1-.5h5.8l-.7-1.5-2.9-.1-1.8.4-4.3.2-4-.1-1.9-.3-3.8-1-.7-.8 2.8-.4 2.1-.7-4.5-.3-1.9-.3-.6-.9 5.9-.2 5 .8-.7-2.2 3.9 1.1.2-1.1-2-1.4 2-.1 4.5.7 5.1 1.6Z"
+                        data-name="sm_state_NO"
+                        opacity={1}
+                        style={{
+                            WebkitTapHighlightColor: "transparent",
+                            opacity: 1,
+                            cursor: "pointer",
+                            strokeOpacity: 1,
+                            strokeLinejoin: "round",
+                            fillOpacity: 1,
+                        }}
+                        transform="scale(.4562)"
+                    />
+                </TooltipTrigger>
+                <TooltipContent>{countryName}</TooltipContent>
+            </Tooltip>
+            <Tooltip>
+                <TooltipTrigger asChild onMouseEnter={onHover}>
+                    <path
+                        id="sm_state_TR"
+                        fill="currentColor"
+                        fillOpacity={1}
+                        stroke="#fff"
+                        strokeLinejoin="round"
+                        strokeOpacity={1}
+                        strokeWidth={1.621}
+                        className={cn(
+                            "transition-colors",
+                            isAvailable("sm_state_TR")
+                                ? "hover:text-[#03045E] cursor-pointer"
+                                : "text-gray-200 pointer-events-none"
+                        )}
+                        onClick={handleClick}
+                        d="m733.4 565.7-2.9.5-.1-1.5 2.2-.6.8 1.6Zm194.5-21.5 4.3 1.3 1.1-1 3.6.1 3.4.8.9-1.9 1.4-.4 1.4.3.6 1.1 1.2.4 3.5 2.5 1.1 1.7 1.9.2 1.3 1.2 1.3 1.6 1.7 1.2 1.7 3.3-.2 2.3-1 1.4.8 1.9 1.9 3-.5.6 1.8.9 2.9.9 3.5-.4 1.6.7 2.3 1.7 3.2 2.8.8.9-3.3-1.9-1.4 1.6-.1 3.8-.6.4-2.8-.1-1.2.4 1.2 2.5 1.4 1.2v2.3l2.1 2.5.2 2.1.9 2.2.3 2.2.5.7 1.4.3-.6 3.8-.6 1.2-.4 2 1.7.6 3.2 2 .1 1.3.6 1.5.3 2 3.2 2.3v2.3l-2.1-.5-3.7 3.1-1.2-1.2-.3-2.4-1.5-1.5-1.3-.2-2.1 1.4-4.2-.3-2.9-1.1-2.9-.8-1.9.6-2.2-.7-1.5 1.9-2 1.9-1.2.3-1.6-2.6-1.3-.2-1.2 1.3-2.2.8-4.6 1-3.2.3-4.1-.6-3.2.2-3.1 1.4-5.2 2.8-4.1 1.4-4.2.9-7.6-.2-1.1-.3-3.5-2.3-3.4-.6-3.4 1.6-2.3.8-3.5 1.6-4.8-.1-1.9-1.7-3.7-.7-.6 1.6-.3 3.8 1.8 3.1-3.3 1.4v2.6l-1.8 1.1-.8 1.6-2.2-1.2-1-.1.7-1.3-2.5-4.9.7-1.5 3.5-3.9-.4-2.4-2-1.6-2.9 2.1-1.7.8-.3 1.2-1.1.8-1.8.4-2.9-1-3.2-1.4-1.9-1.1-1.4-.3-1.3.5-3.5 2.8-3.1 4.1-.8.8-3.2 1.7-2.2.6-1-.1-4.4.8-2.2.1-1.6.9-3.5-1-2.2-1.3-1.4-1.3-2.3-2.9-1.6-1.3-3.3-1.2-5.8-3-5.3-.7-4-.3-.7 1.1.1 4.2-.5 1.2-.1 2.2-1.1 1.1-2.1-1-1.9.9-3.7 1.3-1.2.1-4.6-1.6-2.9-2.1-.6-2-1.3-2.7-1.8.3-2.3-.4-3.2-1.6-2.4-.1-1.2 1.9-1 .7-1.3-.4.8-1.3-3.7.2-1.8 1-1.5-.1-1-1 2-.6 3.9-.4.9-.4.9-1.3 1.7-1.2-1.2-.5-6 .3-4.2-.2-1 .7-.4-1.6 3.6-1.4-.3-1.3-4.2-2.2-.3-1.6-2-3.1 1.9-.5.1-2.5-.4-1.5-3.9-1.3-.8.1-1.1-1.3-1.7-.9-1.2.7-3.3-1.4-.6-.6.5-1.4 1-1.1-.9-1.9-.1-1 1.8-.1 1 1.1.3 2.2 3.6.7 2.9-.6-2.5-1.1-1.1-1.2-1.2-2.3 1.8-1.1 1.2-1.7-2.7-1.2.2-2.4-2.5-2.7.3-.8 2.3-2.8-1.2-.7-4.3.7-1.6.6-3.1.2-.3-1.6.6-1.3-.5-3.4.2-1.8 1.7-.6 1.7-2.7 3-3.1h3.5l1.3-.9h2.1l.8 1.2 1.9.9 3.2-.1 1.4-.9-1.6-1.5 1.7-.5 1.5.4-.1 1.8 4.1-.5 4.4.4 1.4-.2h3.4l.5-.5-3.6-1.7 2-1.5 6.8-1.2 3.7-.8-5.7-.8-1.4-.6-2-1.4-1-1.1.3-2.6.6-.7 2.2-.1 7.7 1.2 5.3-.8 6.1 1.8 5.6-.4 1.1-.7 1.1-2.6 7.4-4.2 2.4-2.1 2.8-1.2 5-1.4 4-1.7 1.2-.2 10.4.8 7 .1 3-1.6 2 .5-.1 2.1 2.6 2.6 3.5 1.4 4.4-1.2 1.8.5 2.2 4 1.5 1.4 1.8.9 1.3.2 1.5-1.4 1.7-.1 2.9 1.3 1.2 1.4 4.8 1.1 4.3.6 2 1.2 6.2 1.2 2.2-.2 3.6-1.3 7-1.3 5.2 1.9 2.5.1 1.7.5 1.7-.3 5-2.3 1.4-1.2 1.7-.4 5.2-3.3.9-1.4ZM756 537.1l-.1 1.8 1 2 2.3 2.7 2 1.4 8.1 3.3 1.4.3-.9 3.5-2.1.5-6.4-1.5-1.6-.1-2.9 1.4-2.3-.4-3.1.6-.6 2.1-2 2.4-3.3 1.9-2.5 1-3.5 3.7-1.5 2.2-1.5.7.5-2-.3-1.7 2.3-2 3.3-1.6.7-1.3-5.4.3h-3.3l-1-1.8.8-.4 2.5-3.2-.5-4.4 3.4-2.5-.9-3.1-2.3-1.5-1.2-.3.3-1.4 1.9-.3 1-2.2 3.4-.4 1.5-1.1 3.5-.3 3.4 2.5 1.5-.6h1.8l.9-.4 1.7.2Z"
+                        data-name="sm_state_TR"
+                        opacity={1}
+                        style={{
+                            WebkitTapHighlightColor: "transparent",
+                            opacity: 1,
+                            cursor: "pointer",
+                            strokeOpacity: 1,
+                            strokeLinejoin: "round",
+                            fillOpacity: 1,
+                        }}
+                        transform="scale(.4562)"
+                    />
+                </TooltipTrigger>
+                <TooltipContent>{countryName}</TooltipContent>
+            </Tooltip>
+            <Tooltip>
+                <TooltipTrigger asChild onMouseEnter={onHover}>
+                    <path
+                        id="sm_state_LI"
+                        fill="currentColor"
+                        fillOpacity={1}
+                        stroke="#fff"
+                        strokeLinejoin="round"
+                        strokeOpacity={1}
+                        strokeWidth={1.621}
+                        className={cn(
+                            "transition-colors",
+                            isAvailable("sm_state_LI")
+                                ? "hover:text-[#03045E] cursor-pointer"
+                                : "text-gray-200 pointer-events-none"
+                        )}
+                        onClick={handleClick}
+                        d="m519.4 458.5-1.2-.1-.1-1.7.5-1.5 1.1 2.5-.3.8Z"
+                        data-name="sm_state_LI"
+                        opacity={1}
+                        style={{
+                            WebkitTapHighlightColor: "transparent",
+                            opacity: 1,
+                            cursor: "pointer",
+                            strokeOpacity: 1,
+                            strokeLinejoin: "round",
+                            fillOpacity: 1,
+                        }}
+                        transform="scale(.4562)"
+                    />
+                </TooltipTrigger>
+                <TooltipContent>{countryName}</TooltipContent>
+            </Tooltip>
+            <Tooltip>
+                <TooltipTrigger asChild onMouseEnter={onHover}>
+                    <path
+                        id="sm_state_LV"
+                        fill="currentColor"
+                        fillOpacity={1}
+                        stroke="#fff"
+                        strokeLinejoin="round"
+                        strokeOpacity={1}
+                        strokeWidth={1.621}
+                        className={cn(
+                            "transition-colors",
+                            isAvailable("sm_state_LV")
+                                ? "hover:text-[#03045E] cursor-pointer"
+                                : "text-gray-200 pointer-events-none"
+                        )}
+                        onClick={handleClick}
+                        d="m711.6 301.2 1.9.3.5 1.1 3.2 1.7.7 2.2-.8 1.6-.3 3.1 1.8-.3 1 .6.3 1.2 1.7 2.1 1.3.8 1.9 4.2-.3 1.7-1.3.2-1.4.8-2.5 2.4-.4 1.7-3.1-.1-3-.4-1.1.3-1.2 1.5-2.6.6-2.3-.5-1.5-.7-2.6-2.1-5.4-3.1-.9-.4-6.1-1-2.4-2.9-2.3.2-1.7 1.3-4.6.4-3.7-.9-2.3-.1-4.9-.5-1.6.7-1-.9-4.3.1-5.9-.5-4.7 1.4-3.6 1.9-2.8 1.7-.8-2.8-.6-5.5.1-2.8 1.9-1.6.8-1.2.6-4.5 2.5-3.6 2.4-.4 3.1-1 3.5-.9 1.4 1.9 4.9 3 1.2 1 2.3 3.4 4.4 1.8 3.1-.6 3.6-2.4 1-1.1v-1.1l-1.2-4.7-1.1-2 .1-1.3 8.4-2.8 1.5 1 1.1-.7 5.6 2.5 2.3.5.6.7 3.5 2.7 2.8 1.1 4-1.2 3.4 1 1.9.2Z"
+                        data-name="sm_state_LV"
+                        opacity={1}
+                        style={{
+                            WebkitTapHighlightColor: "transparent",
+                            opacity: 1,
+                            cursor: "pointer",
+                            strokeOpacity: 1,
+                            strokeLinejoin: "round",
+                            fillOpacity: 1,
+                        }}
+                        transform="scale(.4562)"
+                    />
+                </TooltipTrigger>
+                <TooltipContent>{countryName}</TooltipContent>
+            </Tooltip>
+            <Tooltip>
+                <TooltipTrigger asChild onMouseEnter={onHover}>
+                    <path
+                        id="sm_state_LT"
+                        fill="currentColor"
+                        fillOpacity={1}
+                        stroke="#fff"
+                        strokeLinejoin="round"
+                        strokeOpacity={1}
+                        strokeWidth={1.621}
+                        className={cn(
+                            "transition-colors",
+                            isAvailable("sm_state_LT")
+                                ? "hover:text-[#03045E] cursor-pointer"
+                                : "text-gray-200 pointer-events-none"
+                        )}
+                        onClick={handleClick}
+                        d="M707.9 328.5v1.8l-.7 3.1 3.9 1-1.3 1-.4 1.1-3.6-.1-1 2-.8.6-2.6.6-1.1 3 .4 2.3-1 1.5-.5 2 1.9.5.9 1.1v1l-2 .2-1.7-2.3-1 .7-2.1.5-1.4 1.2-2-.2-.8 2.6-1.8-.1-3.3 1.3-1.6-.9-3.7.3-1.6.3-2.9-.4-.8-3-1.1-.9-4.5-2.2-2.3-.7-.6.6-1.3-2v-2.1l1-3.1-1.3-1.3-1.4-.6-.9-1.3-5.7-.1-2.4-.6-3.9-1.4-2-1.2-1.8.2-.6-1.2.2-1.6-1.1-2.4-1.6-2.9-.7-3.8 2.8-1.7 3.6-1.9 4.7-1.4 5.9.5 4.3-.1 1 .9 1.6-.7 4.9.5 2.3.1 3.7.9 4.6-.4 1.7-1.3 2.3-.2 2.4 2.9 6.1 1 .9.4 5.4 3.1 2.6 2.1 1.5.7 2.3.5Z"
+                        data-name="sm_state_LT"
+                        opacity={1}
+                        style={{
+                            WebkitTapHighlightColor: "transparent",
+                            opacity: 1,
+                            cursor: "pointer",
+                            strokeOpacity: 1,
+                            strokeLinejoin: "round",
+                            fillOpacity: 1,
+                        }}
+                        transform="scale(.4562)"
+                    />
+                </TooltipTrigger>
+                <TooltipContent>{countryName}</TooltipContent>
+            </Tooltip>
+            <Tooltip>
+                <TooltipTrigger asChild onMouseEnter={onHover}>
+                    <path
+                        id="sm_state_LU"
+                        fill="currentColor"
+                        fillOpacity={1}
+                        stroke="#fff"
+                        strokeLinejoin="round"
+                        strokeOpacity={1}
+                        strokeWidth={1.621}
+                        className={cn(
+                            "transition-colors",
+                            isAvailable("sm_state_LU")
+                                ? "hover:text-[#03045E] cursor-pointer"
+                                : "text-gray-200 pointer-events-none"
+                        )}
+                        onClick={handleClick}
+                        d="m475.4 411.7.3 2.2 1.5 1.6 2.8 1.1v1.4l-.9.9-.6 3-1.3-.7-2 .6h-1.4l-2.1-1.2 1.1-1.7-2-2.4.2-1.7 1.4-2.5 1.3-1.3 1.7.7Z"
+                        data-name="sm_state_LU"
+                        opacity={1}
+                        style={{
+                            WebkitTapHighlightColor: "transparent",
+                            opacity: 1,
+                            cursor: "pointer",
+                            strokeOpacity: 1,
+                            strokeLinejoin: "round",
+                            fillOpacity: 1,
+                        }}
+                        transform="scale(.4562)"
+                    />
+                </TooltipTrigger>
+                <TooltipContent>{countryName}</TooltipContent>
+            </Tooltip>
+            <Tooltip>
+                <TooltipTrigger asChild onMouseEnter={onHover}>
+                    <path
+                        id="sm_state_RO"
+                        fill="currentColor"
+                        fillOpacity={1}
+                        stroke="#fff"
+                        strokeLinejoin="round"
+                        strokeOpacity={1}
+                        strokeWidth={1.621}
+                        className={cn(
+                            "transition-colors",
+                            isAvailable("sm_state_RO")
+                                ? "hover:text-[#03045E] cursor-pointer"
+                                : "text-gray-200 pointer-events-none"
+                        )}
+                        onClick={handleClick}
+                        d="m751.4 483.2 1.5 1.6 1.8.9 4 .9.6-1.2.9.3 1.6-.5 2.2-1.3 2.2-.2 2.2.7 1.9 1.8-.2 4.3-.7 2.1-6.2 1.3.4-.6-.7-2-1-1-.9 1.1.6 1.7-.7 1.4-.2 2.4.6.9-1.6 2-.5 1.3.8 4.8-.4 3.7h-2l-2.6-.5-2.2-.7-2.5-2.6-1.7.5-.9-.6-3.2-.4-4.5-2.3-2.9.4-4.4.9-3.2 1.2-3.3 2.1-1.2 1.6-1.6.9-2.3.6-4.2-.2-9.4-1.7-2.5.5-3.5-.4-5.3-1-3.9-.3-3.7.6-.9-1.8 1.8-2-4.3-2.5-.8-1.2-1.6-.9-.5-1.7 2.5-1.8-3-1.6-1.7.5-1.7 1.8-1.3.2-1-1.2-1.5-.7-3.5-.7-1.5-1.2-2.1-.6.2-.6 1.8-.8-2.3-1.1 1.5-2-.9-1.1-2.6-.8-3.8-1.9-2.2-1.8-.4-4.1-.8.2-1.8-2-2.9-1.7-1.7-2 3.2-.9 1.4.5 2.5-2 2.6.3 1.3-.9 1.5-4.7 2.1-1.5-.2-1.3 1.6-2.7v-1.2l1.4-1.5.7-2.5 1.4-1.4-.1-1.7 1.2-1 1.9-2.4 4.6-1.1 2.2-2.3 2.1-.9.9-1.2h.7l2.7 1.5 2.7-.1 6.9 1.4 3.6-.7 1.2.3 4.3 3.3 2.1-.5 1-1.2 3.4-1.3 8.4-1.2 1.1-1.9.2-1.4 3.7-.8h2.1l2.5 1.6 2.5 3 3 4.9 1.5 1.3 2.5 3.2 2.1 1.8 1.3 1.7 3 2.1 1.4 2.9 1.4 2.3.5 2.9-.9 4.8.1 2.6 1.4 5-.9.7 2 2.3Z"
+                        data-name="sm_state_RO"
+                        opacity={1}
+                        style={{
+                            WebkitTapHighlightColor: "transparent",
+                            opacity: 1,
+                            cursor: "pointer",
+                            strokeOpacity: 1,
+                            strokeLinejoin: "round",
+                            fillOpacity: 1,
+                        }}
+                        transform="scale(.4562)"
+                    />
+                </TooltipTrigger>
+                <TooltipContent>{countryName}</TooltipContent>
+            </Tooltip>
+            <Tooltip>
+                <TooltipTrigger asChild onMouseEnter={onHover}>
+                    <path
+                        id="sm_state_PL"
+                        fill="currentColor"
+                        fillOpacity={1}
+                        stroke="#fff"
+                        strokeLinejoin="round"
+                        strokeOpacity={1}
+                        strokeWidth={1.621}
+                        className={cn(
+                            "transition-colors",
+                            isAvailable("sm_state_PL")
+                                ? "hover:text-[#03045E] cursor-pointer"
+                                : "text-gray-200 pointer-events-none"
+                        )}
+                        onClick={handleClick}
+                        d="m666.8 348 .6-.6 2.3.7 4.5 2.2 1.1.9.8 3 2.1 5.1 2.9 4.9 1.7 3.6.9 3.9-.6 1.6-4 1.7-.8.5-2 2.7v1.2l3.3 1.3 1.8 1 .8 1-.2 2.4.4 1.1-.8 1.5.1 1.3 1 1.6 1.2 1.8v1.3l2.7 2.8 1.9 2.8 1.4 1-1.2 1.3 1.8 2.6.1 1.3-1.2 1.8-3 .5-4.8 4.6-2.4 2.7-3.4 4.4-.6 1 1.5 3.8-.1 1.8 1.9 1.4-.4.9-3.3-.7-.9-.2-5.7-1.9-.8-1.4-1-.7-3.1-1-3.6-.3-3.2.2-1.4 1.5-1.8-.1-2.4-1-3 .1-2.3 1-1.1 2.1-1.7-.6-1.4.4-.6-2.7-1.4-.4-3-3-2.2 1.3-1 1.7H631l-.5-1.5-1.3-.2-.5-1.6-2.8-2.2-.5-1.8-2.7-.8-.5.2-3.5-1.8-1.8 1-1-.6-2.7-2.3 1.4-.5V409l-3.6.7-3.3-1.9-2.2-.6h-1.3l1.7 2.4-3.5 2.5-1-.4-1.5-1.9-2-1.8-1.6-.9 1.6-1.2.7-1.1-1.8-1.2-3.2.7-.8-.9-2.7-1.1-4.6-1.1-1-1.1-.3-1.1-3.3-.8.1 1.9-2.1.4 1.6-3.6.4-2.3-1.6-3.2-2.2-.9v-1.6l-1.9-3.1.8-1.1.7-2.6-.8-1.9-2-2.3.6-2.6-1.4-1.7-3.3-2.1-1.6-1.4.7-1.6 1.9-1.8.3-2.7-1.8-4.1-.7-2.6 2.8.9.7-.5-.1-1.8-4.1-.7-.1-1.2 2 .4 3.8-1.4 6.5-1.8 6.9-1.7 3.3-.5 2-2.2 1.9-1.7 3.8-.7 1.3-.8 2.8-1.2 6.6-1.2 5.5-.4 5.4 2.3-.9.3-3-1.2 2.2 3.5 1.1 1.2 2 .9 1.7.3 4.9-.5 2.2-1.1.5.1 6.6.4 22.9.9 7 .1Z"
+                        data-name="sm_state_PL"
+                        opacity={1}
+                        style={{
+                            WebkitTapHighlightColor: "transparent",
+                            opacity: 1,
+                            cursor: "pointer",
+                            strokeOpacity: 1,
+                            strokeLinejoin: "round",
+                            fillOpacity: 1,
+                        }}
+                        transform="scale(.4562)"
+                    />
+                </TooltipTrigger>
+                <TooltipContent>{countryName}</TooltipContent>
+            </Tooltip>
+            <Tooltip>
+                <TooltipTrigger asChild onMouseEnter={onHover}>
+                    <path
+                        id="sm_state_XK"
+                        fill="currentColor"
+                        fillOpacity={1}
+                        stroke="#fff"
+                        strokeLinejoin="round"
+                        strokeOpacity={1}
+                        strokeWidth={1.621}
+                        className={cn(
+                            "transition-colors",
+                            isAvailable("sm_state_XK")
+                                ? "hover:text-[#03045E] cursor-pointer"
+                                : "text-gray-200 pointer-events-none"
+                        )}
+                        onClick={handleClick}
+                        d="m674 532.8-2.1.4-1.5 1.9-1.6-1.2-1 .1-3.4 1.5-.2 2.6-.5.8-1.7-.3-.1-2.2-1.4-3.2-1.9-1.3-1.4-.5-2-2.9-.5-.4.2-1.3-.9-1.5 2-.4.2-.7 1.6-.4 1.5-.5v-1.4l1.7-1.3.4-1-.6-1.6 1.7-.9 1.1 1.3 2.8 1.3 2.3 2.1.2.7 2.2 1.2v1.3l4.7 1.2-.2 1.2-1.2 3.2-1 .9.6 1.3Z"
+                        data-name="sm_state_XK"
+                        opacity={1}
+                        style={{
+                            WebkitTapHighlightColor: "transparent",
+                            opacity: 1,
+                            cursor: "pointer",
+                            strokeOpacity: 1,
+                            strokeLinejoin: "round",
+                            fillOpacity: 1,
+                        }}
+                        transform="scale(.4562)"
+                    />
+                </TooltipTrigger>
+                <TooltipContent>{countryName}</TooltipContent>
+            </Tooltip>
+            <Tooltip>
+                <TooltipTrigger asChild onMouseEnter={onHover}>
+                    <path
+                        id="sm_state_CH"
+                        fill="currentColor"
+                        fillOpacity={1}
+                        stroke="#fff"
+                        strokeLinejoin="round"
+                        strokeOpacity={1}
+                        strokeWidth={1.621}
+                        className={cn(
+                            "transition-colors",
+                            isAvailable("sm_state_CH")
+                                ? "hover:text-[#03045E] cursor-pointer"
+                                : "text-gray-200 pointer-events-none"
+                        )}
+                        onClick={handleClick}
+                        d="m514.1 449.1.8 1.1 2.6 1.3h1.2l.9.7-1 3-.5 1.5.1 1.7 1.2.1 3.3.8.4 1 1.5.8 2.3.4 2-1.9.8.3.5 1.5-.5 3.1.5 1.8-1.9-.2-1-.9-1.3.3-.6 1.8 1.5 3.5-1.2.3-1.4-1.9-.7-.1-2.9 1.1-2-.8-.8-2.1-2 .1v2.9l-.5 1.1-2.2 2.6-.2 1 .7 1.7-1.2.7-.9-1.4-1.3-1.2.4-1.2-2.2-.6-2.4-2-.2-2.5-1-.6-3.4 2.9.6 1.5-1.6 2.2-2.4 1.4-3.1-.8-2.6 1-2.4.5-1.4-.7-.9-1.4-2.3-2.3.5-1.7-.8-2.2-2.2-.3-1.9.1-2.3 1.5.5 1.3-2.3 1.6-1.4-.1v-1l1.5-1 .3-1.5-.8-.7 1.1-2.9 3-2.2.5-2.9 2.1-.9 3.8-4 .6-.9-1.3-1.1 1.8-1.4h1.1l.8.8 2.7-.3.8-1.4 1.5-.7 1 .3 2.8.1 3.3-.6 2.6.2-.2-1.5 1.3-1.2h1.3l1.4 1 .8-.2 1.1.9 3.7-.2Z"
+                        data-name="sm_state_CH"
+                        opacity={1}
+                        style={{
+                            WebkitTapHighlightColor: "transparent",
+                            opacity: 1,
+                            cursor: "pointer",
+                            strokeOpacity: 1,
+                            strokeLinejoin: "round",
+                            fillOpacity: 1,
+                        }}
+                        transform="scale(.4562)"
+                    />
+                </TooltipTrigger>
+                <TooltipContent>{countryName}</TooltipContent>
+            </Tooltip>
+            <Tooltip>
+                <TooltipTrigger asChild onMouseEnter={onHover}>
+                    <path
+                        id="sm_state_AD"
+                        fill="currentColor"
+                        fillOpacity={1}
+                        stroke="#fff"
+                        strokeLinejoin="round"
+                        strokeOpacity={1}
+                        strokeWidth={1.621}
+                        className={cn(
+                            "transition-colors",
+                            isAvailable("sm_state_AD")
+                                ? "hover:text-[#03045E] cursor-pointer"
+                                : "text-gray-200 pointer-events-none"
+                        )}
+                        onClick={handleClick}
+                        d="m423.4 528.8-2.8 1.1-.7-.4v-2.1l.9-.7 2.6.6v1.5Z"
+                        data-name="sm_state_AD"
+                        opacity={1}
+                        style={{
+                            WebkitTapHighlightColor: "transparent",
+                            opacity: 1,
+                            cursor: "pointer",
+                            strokeOpacity: 1,
+                            strokeLinejoin: "round",
+                            fillOpacity: 1,
+                        }}
+                        transform="scale(.4562)"
+                    />
+                </TooltipTrigger>
+                <TooltipContent>{countryName}</TooltipContent>
+            </Tooltip>
+            <Tooltip>
+                <TooltipTrigger asChild onMouseEnter={onHover}>
+                    <path
+                        id="sm_state_EE"
+                        fill="currentColor"
+                        fillOpacity={1}
+                        stroke="#fff"
+                        strokeLinejoin="round"
+                        strokeOpacity={1}
+                        strokeWidth={1.621}
+                        className={cn(
+                            "transition-colors",
+                            isAvailable("sm_state_EE")
+                                ? "hover:text-[#03045E] cursor-pointer"
+                                : "text-gray-200 pointer-events-none"
+                        )}
+                        onClick={handleClick}
+                        d="m655.5 285.3 3.9.2 4 1.8-1.8.7-3.7 2.5-.3.5-2.6-.1-1.4.2-1 .9-.9 2.8-1.6.5-.3-.9 1.6-1.8-1.5-1.4-1.9-.7.9-1.8-1.6-1.6 1.5-.2 1 .5 2-.5.5-1 3.2-.6Zm8.3 1-.9.2-2.4-1.1 1-1 1.9.5.4 1.4Zm-5.4-4-.8.7-.9-.6-.9 1.6-1.3.3-1.9-2.5-2.9-.5-1.3-.7 4.5-.4 1.2-1.6 1.3.1.4.9 2.1.3.9 1-.4 1.4Zm53.2 18.9-1.9-.2-3.4-1-4 1.2-2.8-1.1-3.5-2.7-.6-.7-2.3-.5-5.6-2.5-1.1.7-1.5-1-8.4 2.8 1-3.4.1-3.6-2.3-.4-.9 1.3-1.3.3-4.1-1.3-1.2-2.1-1.6-1.1-.8-1.2v-1.8l-1.5-2 .7-1.1-.7-2.8 3-1.2 3.3-.2.9-1.3 2-1.3 2.3.2 3.1-1 6.3.1.4-1.7h3.2l7.6 1.2h1.8l2.8 1.2 1.4.3h4l6.3.5 1.2-1 1.5 1.2-1 1.4-1.2.4-.9 3.2-.8 1-1.7-.3-2.5.2-2 .5-1.3 1.1.1 1.1 2.6 2.3 1.4 2.8 2.6 2.2.8 1.3 2.4 2.9 1.8 2.5-2.3.6-1.2 2-.2 2Z"
+                        data-name="sm_state_EE"
+                        opacity={1}
+                        style={{
+                            WebkitTapHighlightColor: "transparent",
+                            opacity: 1,
+                            cursor: "pointer",
+                            strokeOpacity: 1,
+                            strokeLinejoin: "round",
+                            fillOpacity: 1,
+                        }}
+                        transform="scale(.4562)"
+                    />
+                </TooltipTrigger>
+                <TooltipContent>{countryName}</TooltipContent>
+            </Tooltip>
+            <Tooltip>
+                <TooltipTrigger asChild onMouseEnter={onHover}>
+                    <path
+                        id="sm_state_IS"
+                        fill="currentColor"
+                        fillOpacity={1}
+                        stroke="#fff"
+                        strokeLinejoin="round"
+                        strokeOpacity={1}
+                        strokeWidth={1.621}
+                        className={cn(
+                            "transition-colors",
+                            isAvailable("sm_state_IS")
+                                ? "hover:text-[#03045E] cursor-pointer"
+                                : "text-gray-200 pointer-events-none"
+                        )}
+                        onClick={handleClick}
+                        d="m240.3 177.9 1.2.1 2.8-.8 2.2-1.1.5 1.1-2.5 2.4 2.2.9 2 .3-.1 1.7-1.7 1.6.8.3 3.5-.5 1 2.3 1.5-.2 2.4.3 1.4 1.2 1.2-.3.5.9-.7 1.2-1.5.6 2.1 2.9v1.1l-1 .7h-1.3l-1 2.1-1.2 1.1-2 1-2.6-.5-1.1 1.5.2 1.4-1.3 1.3-5.3 2.1H240l-2.6.5-6.2 2-4.7 2.8-2 .7-3.1.3-1.8.5-5.9.8-2 .5-1.2 1.1-.5 1.4-4 1.1-3.8.7-6.4-.5-5.4-1.3-4.5-.3-3.8-2.5-2.9-1-3.6-1.8-2.3 1.1-12.4.3-.8-.5-.2-2.1 1.1-.8 1.3 1.2 5-1.1 2.7-1.9 2.5-2.7-3.5 1.2-.2-1.9-.9-1.1-1.7-.8-.3-.8 1.1-.9-2.3-1.2-2.6.1-6.6-.5-3.8 1-2 .1-.9-1v-1.1l1.5-.3 1.8.1 4.1-.6 1.4-.6.8.5 3.6-1.1 1 .2 4-.2 4.4-.1 1.1-.8.4-1.1-2.8.9-3.7-.5-.6-.9 3.6-1.6 2.7-.8-.8-1.3-3.2.2-.7-.8-2.6-.4-1.8.3-.9-.5-2.4.6-5.2.9-3.3.9-3.1-1.1-2.4-.2 1.4-1.4 2-.1 1.7.8.1-3.2 1.2.3 2.8 1.1-.7-2.8 2.2.1-2.2-1.6.5-1 1.6-.3.8-1h2.4l2.3 1.1.2 1.4h2.1l1.1-.8.9.6.5 1.2h1.2l.4-2.2-3.6-1.1-.3-1.4 3.7-.1-1.7-1.1-3 .2-1.4-.4 2.6-1.2h3.4l1.4.2 2.3 1.7 2 .6 3.1 2.3 2.2.9v1.2l.7.8-2.3 3.4.9.7-.8 1.6 1.9.6 1 1.7.9-1.8 1.5-1.9 2.3-1.3.9.1.9 1 .9.1 1.4-2 .7-4.3 1.7-.9 1.8.7 1.3 1.6 2.6 2.1 1.8-.5.1-2.3 1-1.3 2-.3 2.2-.8 2.3-.2 1.7 1.4 1.2 1.4 1.7 1.1.7 1.8.9-.3-.2-1.7-1.4-2.6.3-.9 4.1.2 3 2.3 1.3-.3 3.6-2.8 2.3.8 1.8.1 2.8-.8.8-1.2-.9-2.3.6-.4 2.6-.6 2.7.1 2.6 2.1-.1 1 1.6.8Z"
+                        data-name="sm_state_IS"
+                        opacity={1}
+                        style={{
+                            WebkitTapHighlightColor: "transparent",
+                            opacity: 1,
+                            cursor: "pointer",
+                            strokeOpacity: 1,
+                            strokeLinejoin: "round",
+                            fillOpacity: 1,
+                        }}
+                        transform="scale(.4562)"
+                    />
+                </TooltipTrigger>
+                <TooltipContent>{countryName}</TooltipContent>
+            </Tooltip>
+            <Tooltip>
+                <TooltipTrigger asChild onMouseEnter={onHover}>
+                    <path
+                        id="sm_state_AM"
+                        fill="currentColor"
+                        fillOpacity={1}
+                        stroke="#fff"
+                        strokeLinejoin="round"
+                        strokeOpacity={1}
+                        strokeWidth={1.621}
+                        className={cn(
+                            "transition-colors",
+                            isAvailable("sm_state_AM")
+                                ? "hover:text-[#03045E] cursor-pointer"
+                                : "text-gray-200 pointer-events-none"
+                        )}
+                        onClick={handleClick}
+                        d="m974.6 572.4-3.2-2.8-2.3-1.7-1.6-.7-3.5.4-2.9-.9-1.8-.9.5-.6-1.9-3-.8-1.9 1-1.4.2-2.3-1.7-3.3-1.7-1.2-1.3-1.6 4.4-.3 5.3-1.3 3.2.3 1.1-.2 3.5-.1-.5-.7 2.3-.5 1.3 1.5 1.6 1-.9.9 2.3 1h1.2l3.3 2.5v.7l-1.9 1.5-.2 1.1 3.2 3.4 2.4 1.4 3.2 1.5.2.9-.9 2.5h-3l.6.9 1.9 1.2 6.1 4.4 1.5-.3 2.2.9.2 1.3-1 1.4 1.9 1.4.8 1.5-1.8.5 1.4 1.5.5 2.6-2.2-.1-2.5.5-3-4.7.1-1-3.1-2.1.1-1.7-.8-1.2-1.7.2-1.9.9-2.9-1.6-1.2.2-.3-1.1-1.8-1.7-3.2.9Z"
+                        data-name="sm_state_AM"
+                        opacity={1}
+                        style={{
+                            WebkitTapHighlightColor: "transparent",
+                            opacity: 1,
+                            cursor: "pointer",
+                            strokeOpacity: 1,
+                            strokeLinejoin: "round",
+                            fillOpacity: 1,
+                        }}
+                        transform="scale(.4562)"
+                    />
+                </TooltipTrigger>
+                <TooltipContent>{countryName}</TooltipContent>
+            </Tooltip>
+            <Tooltip>
+                <TooltipTrigger asChild onMouseEnter={onHover}>
+                    <path
+                        id="sm_state_AL"
+                        fill="currentColor"
+                        fillOpacity={1}
+                        stroke="#fff"
+                        strokeLinejoin="round"
+                        strokeOpacity={1}
+                        strokeWidth={1.621}
+                        className={cn(
+                            "transition-colors",
+                            isAvailable("sm_state_AL")
+                                ? "hover:text-[#03045E] cursor-pointer"
+                                : "text-gray-200 pointer-events-none"
+                        )}
+                        onClick={handleClick}
+                        d="m654.7 528.1.5.4 2 2.9 1.4.5 1.9 1.3 1.4 3.2.1 2.2-.5 2.6.3 2.1-.8.8.7 2 .2 1.9 1.2 2.2 1.2 1.1 1.3 2.4 1.6-.2 1.3 1.1v1.1l1.1 1.8-.8 2.6-1.7.8-1.2 3.1-.3 2-.6.5-1.9.3-1.7 1.3 1 2.2-.9.7-.3 1.5-.7.7-2.7-.9-.7-2.5-1.7-2.7-4.9-2.6-1.2-1.1.4-1.5-.1-1.4-1.4-2.4.3-2.6.8-2.2-.3-2.7.1-2.1-.7-2.9.5-2.1.9-1.3-.2-2.2-1.5-1.1-1.6-.2v-3.1l-.3-.6h1.7l-1.7-2.8 3.2-5.3 1.1.3.8 2.1 3.4-1.2Z"
+                        data-name="sm_state_AL"
+                        opacity={1}
+                        style={{
+                            WebkitTapHighlightColor: "transparent",
+                            opacity: 1,
+                            cursor: "pointer",
+                            strokeOpacity: 1,
+                            strokeLinejoin: "round",
+                            fillOpacity: 1,
+                        }}
+                        transform="scale(.4562)"
+                    />
+                </TooltipTrigger>
+                <TooltipContent>{countryName}</TooltipContent>
+            </Tooltip>
+            <Tooltip>
+                <TooltipTrigger asChild onMouseEnter={onHover}>
+                    <path
+                        id="sm_state_IT"
+                        fill="currentColor"
+                        fillOpacity={1}
+                        stroke="#fff"
+                        strokeLinejoin="round"
+                        strokeOpacity={1}
+                        strokeWidth={1.621}
+                        className={cn(
+                            "transition-colors",
+                            isAvailable("sm_state_IT")
+                                ? "hover:text-[#03045E] cursor-pointer"
+                                : "text-gray-200 pointer-events-none"
+                        )}
+                        onClick={handleClick}
+                        d="m602.6 595.6-1.2 2.5-2.8 4.3-1.5 5.1.3 2 1.6 1.4-.7.5 1.6 1.8.1 1.3-1.8 1.9-.4 1.7.1 1.5-2.9-.6-1.4.3-3.7-1.4-1.9-2.8-3-2h-3l-1.4-.5-2.9-1.9-3-1.4-2.6-2.1-1.7-.4-1.5-1H566l-2.3-1.6-1.3-2.3 1.3-3.7 1.4-.8.9-1.2 2.3 2.3 1.8-.8 1.4-1.6 2.4.1.5.9 1.4.3 2.5 1.6 1.4.4 3.4-1 3 .4 2.8-.5 1.7-.6 1.2-1 1.4-.3 3.5.3 2-1.2.8.2 2-1.2 1.1 1.1Zm-78.3-41.5.7.9 1.8 5-.6 1.6-1.3 2 .8 2.8-.6 11.5-.6 2.9-.9.4-2.9-1.2-1.5.3-1.2-.6-.3 3-1.8 2.1-3-.2-.7-.6-2.4-3.8-.4-4.3.6-1.3v-2.5l1.1-.1v-1.7l-1.8-1.2v-1.9l.7-1.4-.1-2.6-.8-.9-.8-2.3-2.2-2.4.1-3.4 3.4.6 1.3-.3 3.1-1.5 2.1-2.5 1.4-.5 1.5-1.8.7.9 2.2.8 1.2 1.5.9.5-.7 1.4 1 .8Zm8.3-30.8.3 1.4-2.5.5-1.1-1.1 2.9-.2.4-.6Zm37.9-56.6-.2.9-3.3 2.3.7 1.4 2.3.7-1.6 2.1.3 1 1.3.2-.4 2 1.9 1.1 1.5 1.3.2 1.3-1.5.1.7-.6-2-2.2-2 .9-3.2-.9-2.1 2-1.5.4-1.7 1.1-3.2 1.2-1.8-.4-1 .7-.4 3.1.8.6 1.5 2.6 1.7 1.1-.7 1.9-.9.7-1.3-.5-.3 1.7.9 4.5 1.4 3.2 1.2 1.3 2.7 2.2 2.7 1.1 5.1 3.7 2.8 1.1.7.7 1.8 2.8 1.6 3.2 1.8 5.1 1.3 2.5 2.3 2.9 4.8 4.1 4.3 2.9 4 1.9 3 .3 7-.4 2.6.7.4 1.2-.4.9-2.9 2.1v1.7l1.5 1.2 7.1 3.2 7.2 2.6 2.2 1.4 2.7 2.1 6.4 2.9 1.1 1.4 4 3 1.8 2.4.5 1.8-1.5 4.4-1.6-.5-1.9-1.3-3.1-5.4-5-.5-2.9-1.3-.7-1.4-2.3-.4-1.3.9-1.4 2-1.5 3-1.5 4.3v1.7l1.1 1.7 2.9 1 2.4 1.5 1.6 1.6.3 3.8.9 2.1-.9 1.3-1.9-.3-2.5.7-1.7 1.4-.7 1.4.5 3.4-.3 1.4-3.3 2.5-1.6 2.5-1 2.3h-4.3l-1.1-1.5-.1-2.2.6-1.3 1.6-.7.9-2.8-.5-2 1.1-1.6 2.8-.7v-2.9l-1.4-1.3-1.4-5.1-2.4-4.3-1.4-3.8-1.1-1.8-1.4-1-3.7-.3-4.6-2.6-.3-1.1.6-1.1-1.1-2.8-2-1.7-2.6.6-1.2-.1-.1-1.5-2-1.3-2.7-.2-.7-.7-2.6-4-1.7-1.7-2.3.1-3.9-.9-2 .7-3.2-2.6-2.8-.9-5.7-5.3-1.8-2-3.5-2.2-2.3-3.2-1.8-1.2-4-1.4-.3-1.3-3.1-3.1-1.7-1-1.3-2.1-2.5-.5.1-2.7-1.2-3.5-1.7-2.2-1.2-5.3-.8-1.5-1.8-1.1-4-1.2-5.7-3.4-1.1-.1-3.4-1.3-2.1-.2-2.6 1.2-3.1 3.2-2.5 3.4-.9.6-3.4 1.2-3 .5-.2-1.5 2.1-2.6-.3-2-3.3.6-5.1-2.4-.9-.9-.1-1.4-.7-1.3 1.4-2.5.8-.7-.5-1.7-3.2-1.4-1.5-3.1.8-.4 1.9.2 1.7-1.3 1.2-.3.8-2.5-1.8-1.6-1.7-2.6-.9-.6-.1-1.6 2.6-1.7 1.4.7 2.4-.5 2.6-1 3.1.8 2.4-1.4 1.6-2.2-.6-1.5 3.4-2.9 1 .6.2 2.5 2.4 2 2.2.6-.4 1.2 1.3 1.2.9 1.4 1.2-.7-.7-1.7.2-1 2.2-2.6.5-1.1v-2.9l2-.1.8 2.1 2 .8 2.9-1.1.7.1 1.4 1.9 1.2-.3-1.5-3.5.6-1.8 1.3-.3 1 .9 1.9.2-.5-1.8.5-3.1 3 .3.9.8 2.1.4 1.1-.4 1.2-2.2 1.4-.6 3.4-.3 3.1.2 4.7-1.5v2.3l3.1 3.5 1.1.5 8.6 1.5 4 .3 2.6.5Z"
+                        data-name="sm_state_IT"
+                        opacity={1}
+                        style={{
+                            WebkitTapHighlightColor: "transparent",
+                            opacity: 1,
+                            cursor: "pointer",
+                            strokeOpacity: 1,
+                            strokeLinejoin: "round",
+                            fillOpacity: 1,
+                        }}
+                        transform="scale(.4562)"
+                    />
+                </TooltipTrigger>
+                <TooltipContent>{countryName}</TooltipContent>
+            </Tooltip>
+            <Tooltip>
+                <TooltipTrigger asChild onMouseEnter={onHover}>
+                    <path
+                        id="sm_state_CZ"
+                        fill="currentColor"
+                        fillOpacity={1}
+                        stroke="#fff"
+                        strokeLinejoin="round"
+                        strokeOpacity={1}
+                        strokeWidth={1.621}
+                        className={cn(
+                            "transition-colors",
+                            isAvailable("sm_state_CZ")
+                                ? "hover:text-[#03045E] cursor-pointer"
+                                : "text-gray-200 pointer-events-none"
+                        )}
+                        onClick={handleClick}
+                        d="m578.9 400.5 2.1-.4-.1-1.9 3.3.8.3 1.1 1 1.1 4.6 1.1 2.7 1.1.8.9 3.2-.7 1.8 1.2-.7 1.1-1.6 1.2 1.6.9 2 1.8 1.5 1.9 1 .4 3.5-2.5-1.7-2.4h1.3l2.2.6 3.3 1.9 3.6-.7v1.6l-1.4.5 2.7 2.3 1 .6 1.8-1 3.5 1.8.5-.2 2.7.8.5 1.8 2.8 2.2.5 1.6-2.8.3-2 1.5-.6.8-2.3 1.2-.7 3-1.6.8-2.1 1.9-1.5.7-1.7.2-3.6-.5-1.4 1.2-1.1 2.8-1-1.6-5.1-1.5-1.2.9-3.8-.2-3-1.7-1.5.1-4.8-1.7-1.4.4-1.6-.8-1.2.2-.3 3.2h-1.2l-1.3 1.6-.1 1.1-2.5-.4-1.4.7-3.9-.4-.8-1.3-2.2-1.2-.6-.7-2.9-2.2h-1.3l-1.3-1.6-2.5-1.5-2.9-2.6h-1.3l-2.3-2-1.8-2.7-1.4-1.5 1.2-1.7-.6-1.6-2.3-1.3-2.5-3.4.5-.7 1.9 2 1.9-2.6 1.1-.6 2.6-.6 2.1.4.8-1.3 2-.3.6-1 1.6-.7 1.1.1.6-1.2 4.4-1 3.5-1.5 1.9-.6-1.5-1.5.8-.6 2.2.4 1.5 1.5v.9l1.4.6.9-.7Z"
+                        data-name="sm_state_CZ"
+                        opacity={1}
+                        style={{
+                            WebkitTapHighlightColor: "transparent",
+                            opacity: 1,
+                            cursor: "pointer",
+                            strokeOpacity: 1,
+                            strokeLinejoin: "round",
+                            fillOpacity: 1,
+                        }}
+                        transform="scale(.4562)"
+                    />
+                </TooltipTrigger>
+                <TooltipContent>{countryName}</TooltipContent>
+            </Tooltip>
+            <Tooltip>
+                <TooltipTrigger asChild onMouseEnter={onHover}>
+                    <path
+                        id="sm_state_GE"
+                        fill="currentColor"
+                        fillOpacity={1}
+                        stroke="#fff"
+                        strokeLinejoin="round"
+                        strokeOpacity={1}
+                        strokeWidth={1.621}
+                        className={cn(
+                            "transition-colors",
+                            isAvailable("sm_state_GE")
+                                ? "hover:text-[#03045E] cursor-pointer"
+                                : "text-gray-200 pointer-events-none"
+                        )}
+                        onClick={handleClick}
+                        d="m972.9 547.7-2.3.5.5.7-3.5.1-1.1.2-3.2-.3-5.3 1.3-4.4.3-1.3-1.2-1.9-.2-1.1-1.7-3.5-2.5-1.2-.4-.6-1.1-1.4-.3-1.4.4-.9 1.9-3.4-.8-3.6-.1-1.1 1-4.3-1.3 1.9-3 .4-1.7-.4-2.4-1.7-2.7-3.7-8-1.1-1.2-4-1.4-1.1-1.6-3.2-2.1-4.1-.9-4.8-2.9-2.9-1.7.9-2.1.8-.2 4.8.9 1.5-.4 5.9 2.5 3.6.7 3.1 1.7 6 .5 2.8-.6h1.8l2 1.1 2.4-.2 3.2 1.2 1.5 1.6 3.5 1.4 2.8.8 3.2 1.5.2 2.4 2.5.4 4.3-2.1 2.1-.7 1.8.2 1.9 1.9.8-2.2 4.6 1.7 2.1 1.8 2.8-.1 2.2 1-.2 4.2 2.9 1.4 1.6 1.2 3.4.7 3.1 1.5-1.2 2.1-1.2.3v1.3l1.1.8.9 1.5 4.5 2.6.9.8-.2 2-1.8 1.4-4.1-2-1.7.5-3.2-.9-1.4-1 .1-.7-4-1.4-1.9-.4-3 2.5Z"
+                        data-name="sm_state_GE"
+                        opacity={1}
+                        style={{
+                            WebkitTapHighlightColor: "transparent",
+                            opacity: 1,
+                            cursor: "pointer",
+                            strokeOpacity: 1,
+                            strokeLinejoin: "round",
+                            fillOpacity: 1,
+                        }}
+                        transform="scale(.4562)"
+                    />
+                </TooltipTrigger>
+                <TooltipContent>{countryName}</TooltipContent>
+            </Tooltip>
+            <Tooltip>
+                <TooltipTrigger asChild onMouseEnter={onHover}>
+                    <path
+                        id="sm_state_AT"
+                        fill="currentColor"
+                        fillOpacity={1}
+                        stroke="#fff"
+                        strokeLinejoin="round"
+                        strokeOpacity={1}
+                        strokeWidth={1.621}
+                        className={cn(
+                            "transition-colors",
+                            isAvailable("sm_state_AT")
+                                ? "hover:text-[#03045E] cursor-pointer"
+                                : "text-gray-200 pointer-events-none"
+                        )}
+                        onClick={handleClick}
+                        d="m607.8 434.9-.9 2.4.1.8 1.6 2.9 2.3 2.9-.6.7-.6 1.9.7 2-3.9.3-2.5-.9-1.3 1.4 2.6.7.5 1.1-.5 1.4-2.2 1.2.4 1.5-.5.7 1.1 1.6-.3 1.8-2.5.5-1.8 1.7-1.3.9-.1 1.9-2.4-.5-1.6.2-2.3 1.1-2.8-.2-2.6.2-1.9.7-1 1.3-3 1.2-5-.7-5-.9-2.6-.5-4-.3-8.6-1.5-1.1-.5-3.1-3.5v-2.3l-4.7 1.5-3.1-.2-3.4.3-1.4.6-1.2 2.2-1.1.4-2.1-.4-.9-.8-3-.3-.5-1.5-.8-.3-2 1.9-2.3-.4-1.5-.8-.4-1-3.3-.8.3-.8-1.1-2.5 1-3-.9-.7 1.7-.5.7-.5 3.5 1.6.9 1.4 1.2.3-.1 1.3 1.6-.5 1-1.6.2-1.9 2.8-.1 2.7.4 1.4 1.9 3.8-.5 1.1-.9 3.9-1.5 5.7-.5.1-1.4 2 .3 1.5.8 2.5-.5 1.1.5.2 1.1 1.2.9 1.7.4.3-1.5-.3-1.9-1.7-.3.6-1.3-.1-1.3-2.5-2.8.6-1.3 3.1-1.8 2.9-.8 1-1 .7-2.9 2.3.9 1.3-.9.2-2.8 2.2 1.2.8 1.3 3.9.4 1.4-.7 2.5.4.1-1.1 1.3-1.6h1.2l.3-3.2 1.2-.2 1.6.8 1.4-.4 4.8 1.7 1.5-.1 3 1.7 3.8.2 1.2-.9 5.1 1.5 1 1.6Z"
+                        data-name="sm_state_AT"
+                        opacity={1}
+                        style={{
+                            WebkitTapHighlightColor: "transparent",
+                            opacity: 1,
+                            cursor: "pointer",
+                            strokeOpacity: 1,
+                            strokeLinejoin: "round",
+                            fillOpacity: 1,
+                        }}
+                        transform="scale(.4562)"
+                    />
+                </TooltipTrigger>
+                <TooltipContent>{countryName}</TooltipContent>
+            </Tooltip>
+            <Tooltip>
+                <TooltipTrigger asChild onMouseEnter={onHover}>
+                    <path
+                        id="sm_state_IE"
+                        fill="currentColor"
+                        fillOpacity={1}
+                        stroke="#fff"
+                        strokeLinejoin="round"
+                        strokeOpacity={1}
+                        strokeWidth={1.621}
+                        className={cn(
+                            "transition-colors",
+                            isAvailable("sm_state_IE")
+                                ? "hover:text-[#03045E] cursor-pointer"
+                                : "text-gray-200 pointer-events-none"
+                        )}
+                        onClick={handleClick}
+                        d="m329.3 352 .7 1.1-2.2.4 1.5 5.2.6.9v4.1l.9 3.2.1 2.5-1.3 1.8-.9 2.1-.2 1.8-1.6 2.1-1.5.9 1.6 1.5-2.8.8-2.6-.3-1.3.8-3.9.2-3.7.7-1.7 1.8-2.5.7-1 1-2.3.8-1.7-1.2-1 .2.2 2.1-2.9 1.3-1.8.3-1 .7-5.8 1.4-1.9-.5-3.3.8-1.2-.1 1.6-1.8 1.6-1.3-3.8.6-1.4.5-.6-.6 3.2-1.9-3.3.1-3-.4-.4-1 2.9-2.3 2.4-.9-.1-.9-5.1.1.5-1.1 1.7-1 1.8-.1 1.5.6 1.1-.8-.6-1.7 3.9-2.3 3-.3 3.3-.7 3.3-.8-2.4-1.2-2.3 1.8-2.6.3-1.9-.5H287l2.7-2 1.6-1.7-.8-.7 2-2.3 3.6-1-1.6-1.3-3.9.2-1.4-1.3-2.6.1.4-1.2-3.5-.2.5-1-.6-1.1 2.8-.6-.2-2 1.9-.8 2-.4.1-1.1-2-.2-2 .4.8-2.1-.8-1-.4-1.7-.9-1 2.8-.2 1.2-.5 4.7.1 1.9 1.3 1.7-1.2 4.8.9.6-2.6 3.8-1.5 1.2-2-3.7.4-3.6-1 .7-.8 2.1-.7 1.9-1.6-.3-1.1 1.7-2.7 3.1-.8h2.4l1.6-.9 1.2 2-1 1 .6.9 1.2-.8-.5-2.1.9-1.3 1.9-.3.6-.8 3.2 1.7-2.5 1.5-.5.7-1.9.9-1 2.3-1.2 1.6-2.2.8-1.6-.1-.2.8 1 1.4-2.9.9-1 1.4 2.7 2 .2 1 2.1.4.8.7 2.9.3 2.4-1.8-.5-.9 1.9-1.6 1.3.5 1.8 2.7 1.4.5-.1 1.5h2.9l2.1-.4Z"
+                        data-name="sm_state_IE"
+                        opacity={1}
+                        style={{
+                            WebkitTapHighlightColor: "transparent",
+                            opacity: 1,
+                            cursor: "pointer",
+                            strokeOpacity: 1,
+                            strokeLinejoin: "round",
+                            fillOpacity: 1,
+                        }}
+                        transform="scale(.4562)"
+                    />
+                </TooltipTrigger>
+                <TooltipContent>{countryName}</TooltipContent>
+            </Tooltip>
+            <Tooltip>
+                <TooltipTrigger asChild onMouseEnter={onHover}>
+                    <path
+                        id="sm_state_ES"
+                        fill="currentColor"
+                        fillOpacity={1}
+                        stroke="#fff"
+                        strokeLinejoin="round"
+                        strokeOpacity={1}
+                        strokeWidth={1.621}
+                        className={cn(
+                            "transition-colors",
+                            isAvailable("sm_state_ES")
+                                ? "hover:text-[#03045E] cursor-pointer"
+                                : "text-gray-200 pointer-events-none"
+                        )}
+                        onClick={handleClick}
+                        d="m420.4 584.7-.4 1-2-.4v-1.5l1.2-1.6 2.7-.7.8 1.3-2.3 1.9Zm21.7-13.6 1.2.5 1.3-.5 1.4.4.2 1-2.2 3.5-.6 1.4-2.1 1.3-4-1.7-.3-1.6-1.4-.7-1.7 1.3-1.4-1-.3-1.2 5.3-3.7 1.5-.9 3.2-.9.5 1.2-.6 1.6Zm14.7-.8-.3.2-3.9-1.9-1.6-.4.1-1.4 2.6-.2 2.1.7 1.2 1.8-.2 1.2Zm-77.4-55.5.5 1.3 4.3 1.3-.3 3.2 1.8-.4 4.4 1.7 2.2.2 2.2 2.1 3.6-.4 3.2 2.1 3.1-.4.7.4h4.7l.8-2.4 4 1.1 2.5 1 1.7.3 1.1 1.5v2.1l.7.4 2.8-1.1 2.8 1.2 1.3 1.2 2.1-1.1 4.7 1.2 1.2-.8 3.8-1.1 3.1.6 1.2 2.2-1.8.5-.2 1.4 1.2 1.3.1 2.1-3 2.8-8.7 4.7-2.9 2.7-6.6 1.5-4.5 1.5-2.2.5-4.1 3.8 1.1.3 1.2 1.2-.4.6-2.5 1.1h-.9l-2.9 4.6-2.6 3.3-1.5 1.5-1.5 2.1-3.2 5.6-.1 1.6 1.6 5.5 2.2 2.7 2.4 1.1.6 1-.8 1-2.4 1.7-4.3 2.3-1.8 1.9-.3 1.8-1.3.8-.5 2.5-1.8 4.4 1.3 1.2-1.3.8-6.5.3-4.1 2.8-2 2.4-1.9 4.5-2.2 2.6-1 .5-1.5-1.2-1.9-.1-1.9.3-1 1-1.5.5-1.5-.5-4.6-.2-2.3.8-1.9-.5-3.2-.3-7 .6-4 3.4h-3.4l-3.1 1.2-2.1 3-.5 1.6-1-.3-.3 1.2-2.1.8-2.4-1-2-1.5-1-.1-1.6-2.2-1.2-3.1V621l-1.5-.6-.3-1.4.2-1.6-1.2-2-5-3.7-3.7-.3-3 .5-1.1-6.4.8-2.2 3.5-4.3 2.1-.6.7-2.4-1.7.2-3-4.3.9-4 3.2-3 .6-2.4-.5-.8-1.7-.4-1.6-3.2-.3-1.9-1.4-1.2-1.1-1.9 1.1-.3h4.3l1-.5 1.7-3.5v-1.9l-1.4-1.3.2-1 2.7-2.1-.4-1.1.4-3.8-.4-3.5-.8-2 2-1.6 1.1-1.6 1.6-1.4 2.1-1.1 2.5-2.5-.3-1.1-1.9-.9-1.9-.2-.1-3.1-.7-1.1-5.2-.1-1.5-.5-.8 1.4-2.5.9h-1.4l-2.2-.8-2.9.1-3 1.1-.9-1.3 1.3-1.9-1-1.8-4.1 1-1.9.9-1.2 1.1-1.3-.1V535l2.6-2.6-1.6-.2 1.2-1.9-1-1 .1-2.6-2.3.9-.5-1.2 1.4-2.2-1.4-.2-2.3-2.5.8-3.1 2-1 1.9-1.5 2.6.3 1.7-.3 3.6-1.6-.4-1.5.4-.7 3.2-1.7 2-.2 1.9-.9 1.3.5 1.1-.1 1.3.6 1.7 1.6 2.5.6 2-.5 3.6-.1 1.7.2 3.2-.3 1.8.1 2.9-.8 2.3 1 4.4.4 2.6.8 7.2 1.4h2.7l3.7-.8 1.6-.5 1.5.3 2.1-.6 2.3 1 4.7 1.3 2.1-1.3 3.4.6 3.3 1.3 1.8.1 2.6-.3 2.5-1Z"
+                        data-name="sm_state_ES"
+                        opacity={1}
+                        style={{
+                            WebkitTapHighlightColor: "transparent",
+                            opacity: 1,
+                            cursor: "pointer",
+                            strokeOpacity: 1,
+                            strokeLinejoin: "round",
+                            fillOpacity: 1,
+                        }}
+                        transform="scale(.4562)"
+                    />
+                </TooltipTrigger>
+                <TooltipContent>{countryName}</TooltipContent>
+            </Tooltip>
+            <Tooltip>
+                <TooltipTrigger asChild onMouseEnter={onHover}>
+                    <path
+                        id="sm_state_ME"
+                        fill="currentColor"
+                        fillOpacity={1}
+                        stroke="#fff"
+                        strokeLinejoin="round"
+                        strokeOpacity={1}
+                        strokeWidth={1.621}
+                        className={cn(
+                            "transition-colors",
+                            isAvailable("sm_state_ME")
+                                ? "hover:text-[#03045E] cursor-pointer"
+                                : "text-gray-200 pointer-events-none"
+                        )}
+                        onClick={handleClick}
+                        d="m642.4 512.9.4 1.2 2.6 1.7 1.9 2 3 1.6 2.1.5 5.3 2.9.1 1-1.6.4-.2.7-2 .4.9 1.5-.2 1.3-3.4 1.2-.8-2.1-1.1-.3-3.2 5.3-.8.3-2.5-.2 1.6 1.9 1.7.8.3.6v3.1l-2.1-1.2-.9-1.8-3.1-2.9-3.5-2 .1-1-1.6.1-1.2-1.9 1.1-1 .1-.8-1.1-1.6-.6-3 .5-.7 1.7-.2-.1-1.5.5-1.7 2-1.7 2.3-.2-1.4-2.2 3.2-.5Z"
+                        data-name="sm_state_ME"
+                        opacity={1}
+                        style={{
+                            WebkitTapHighlightColor: "transparent",
+                            opacity: 1,
+                            cursor: "pointer",
+                            strokeOpacity: 1,
+                            strokeLinejoin: "round",
+                            fillOpacity: 1,
+                        }}
+                        transform="scale(.4562)"
+                    />
+                </TooltipTrigger>
+                <TooltipContent>{countryName}</TooltipContent>
+            </Tooltip>
+            <Tooltip>
+                <TooltipTrigger asChild onMouseEnter={onHover}>
+                    <path
+                        id="sm_state_MD"
+                        fill="currentColor"
+                        fillOpacity={1}
+                        stroke="#fff"
+                        strokeLinejoin="round"
+                        strokeOpacity={1}
+                        strokeWidth={1.621}
+                        className={cn(
+                            "transition-colors",
+                            isAvailable("sm_state_MD")
+                                ? "hover:text-[#03045E] cursor-pointer"
+                                : "text-gray-200 pointer-events-none"
+                        )}
+                        onClick={handleClick}
+                        d="m751.4 483.2-2-2.3.9-.7-1.4-5-.1-2.6.9-4.8-.5-2.9-1.4-2.3-1.4-2.9-3-2.1-1.3-1.7-2.1-1.8-2.5-3.2-1.5-1.3-3-4.9-2.5-3-2.5-1.6h-2.1l.2-.6 2.3-1.4.7.2 4 .1 1.2-1 .8.3 1.6-1 3.5 1 3.6 2.4 2.5.3.6 1.2 5.6.6 1.4 1.9 1.4 1 1.4-.7 1.4 1.4.6 2.3-.6 3.1.6 1.2 2.3 1.2 2.9 2v2.4l.9 1.9 2 1.3 2.1.8 1 1.6.2 2.9 2.9 1.7-.6.7-2.9.4-1.2-1.3-1.6.6-2.1-.8-1.9-.2-2.1-1-2.5 1.6.5 2.1 1 1.7-.4 2-2.3 1.7v1.3l-2.5 2.9.5 1.4-.4 1-2 .2-1.1.7Z"
+                        data-name="sm_state_MD"
+                        opacity={1}
+                        style={{
+                            WebkitTapHighlightColor: "transparent",
+                            opacity: 1,
+                            cursor: "pointer",
+                            strokeOpacity: 1,
+                            strokeLinejoin: "round",
+                            fillOpacity: 1,
+                        }}
+                        transform="scale(.4562)"
+                    />
+                </TooltipTrigger>
+                <TooltipContent>{countryName}</TooltipContent>
+            </Tooltip>
+            <Tooltip>
+                <TooltipTrigger asChild onMouseEnter={onHover}>
+                    <path
+                        id="sm_state_RS"
+                        fill="currentColor"
+                        fillOpacity={1}
+                        stroke="#fff"
+                        strokeLinejoin="round"
+                        strokeOpacity={1}
+                        strokeWidth={1.621}
+                        className={cn(
+                            "transition-colors",
+                            isAvailable("sm_state_RS")
+                                ? "hover:text-[#03045E] cursor-pointer"
+                                : "text-gray-200 pointer-events-none"
+                        )}
+                        onClick={handleClick}
+                        d="m651.6 473.1 1.7 2 2.9 1.7 1.8 2 .8-.2.4 4.1 2.2 1.8 3.8 1.9 2.6.8.9 1.1-1.5 2 2.3 1.1-1.8.8-.2.6 2.1.6 1.5 1.2 3.5.7 1.5.7 1 1.2 1.3-.2 1.7-1.8 1.7-.5 3 1.6-2.5 1.8.5 1.7 1.6.9.8 1.2-.9.7-.2 1.9-2.1 1-.4 2.3.6 2.4 2.4 3.9 2.9 1.5 1.3 1.6 1.6 1-.3 1.4-1.6 1.7-1.1 1.6-1.8.1-1.1.6v3.3l1.4 2.9-1.1 1.7-1 .3-1.4-.7-2.3.8-1.9-.3-2 .9-2.2.3-.6-1.3 1-.9 1.2-3.2.2-1.2-4.7-1.2v-1.3l-2.2-1.2-.2-.7-2.3-2.1-2.8-1.3-1.1-1.3-1.7.9.6 1.6-.4 1-1.7 1.3v1.4l-1.5.5-.1-1-5.3-2.9-2.1-.5-3-1.6-1.9-2-2.6-1.7-.4-1.2.7-.8 2.5.3.2-2.2-3.2-3.7.5-.8 3.1.1.3-.8-3.3-2.9-2.4-1.2-.5-.8.1-2.6 1.6-2.7.5-2.5-1.5-.8-2.8.7 1-1.6-.7-2.6 1.7-.4 2.3-.1-.9-1.5-3-1-1.2-1 .4-2-1.3-.4-.2-1.6-1.6-2.7.7-1.5 2.1-1.3 1.6.5 2.2-1 1.5-1.6 1-.3 2.9.4 1.1-.2 2.8.3 1 .5Z"
+                        data-name="sm_state_RS"
+                        opacity={1}
+                        style={{
+                            WebkitTapHighlightColor: "transparent",
+                            opacity: 1,
+                            cursor: "pointer",
+                            strokeOpacity: 1,
+                            strokeLinejoin: "round",
+                            fillOpacity: 1,
+                        }}
+                        transform="scale(.4562)"
+                    />
+                </TooltipTrigger>
+                <TooltipContent>{countryName}</TooltipContent>
+            </Tooltip>
+            <Tooltip>
+                <TooltipTrigger asChild onMouseEnter={onHover}>
+                    <path
+                        id="sm_state_CY"
+                        fill="currentColor"
+                        fillOpacity={1}
+                        stroke="#fff"
+                        strokeLinejoin="round"
+                        strokeOpacity={1}
+                        strokeWidth={1.621}
+                        className={cn(
+                            "transition-colors",
+                            isAvailable("sm_state_CY")
+                                ? "hover:text-[#03045E] cursor-pointer"
+                                : "text-gray-200 pointer-events-none"
+                        )}
+                        onClick={handleClick}
+                        d="M843.2 646.3h-.2l.1-.1.1.1Zm0 0h.2l.1.1H843.2v-.1Zm-.4-.3h-.1v-.1h.1v-.1l.1.1v.1h-.1Zm3.5-.8.2.1.3.3.2.4.1.3.2.2.2.1h-.5l-.3-.1-.2-.2h-.2l-.7.1-.6.1-.1.1-.1.1h-.6l-.1-.1.2-.1h.1l-.1-.3h-.2l-.2-.1v-.4l-.1-.1-.3-.1v-.2l.1-.1.2-.1.1.1.1.1.2-.1.1-.1.1-.1.1-.1.2.2.2.1h.1l.2.1h.1l.3-.1h.2l.1.1h.4v-.1Zm-4 1.1v.2l-.3.1-.3.3v.2l-.1.3V648.4h-.1l-.1.1v.3l-.1.1H840.7l-.2.1-.1.1-.1.2-.1.1-.2.1-.4.1-.4.2-.3.1-.2-.3.1.5-.4.2-.9.2-.2.1-.1.1-.2.1h-.2l-.9-.1-1 .1-.1.1-.2.1-.6.5-.1.3h-.3l-.3.1v.1l-.1-.1-.1-.2.1-.2.1.1h.3l-.1-.4-.4-.1-.2.2-.1.1-.2-.1v.1l-.4-.1-.3-.2-.1-.1v-.2h-.4l-.1.1v.1h-.2l-.1.2h-.4l-.1.1.1.2-.2.1h-.5l-.6-.1-.5-.2-.7-.4-.3-.1-.3-.1h-.5l-.3-.1-.2-.2-.6-.4-.1-.1-.1-.4v-.1l-.1-.1-.4-.9-.1-.1-.3-.2-.2-.1-.1-.1-.1-.2v-.2l.1-.2-.3-.4-.1-.2v-.4l-.1-.2-.3-.5-.2-.3-.1-.4.1-.3h.1l.3.1.4.5.3.1.2.1h.6l.4-.2.3-.4.3-.4.1-.5.1-.3.2-.1.1-.1v-.1h.1l.1.1H827.4l.1.1.2.2H828l.2-.2.1-.2v-.2l.4.1.2.4.1.2.1.2.2.1.4.1.3.1.2.2.2.1.1.2v.2l.1.1.1.1h.1l.4-.1.1-.2.1-.2.1-.1.1.1.1.1.2.1h.2l.2-.1.2-.2.2-.2.2-.1.3-.2.1-.2h.2l.3.1h.7l.1-.1h.1l.1-.2.3-.2h.2l.2.1.1.1H835.9l.2.2.2.2.2.1.3.1h.1l.1-.1v-.1l.1-.2.3-.3h.9v.2l.1.2.1.1.2.2.2.2v.1l.1.3v.9l-.1.3.1.2.1.1h.4v-.7l.1-.1.1-.1.1-.1.1.1.1.4.1.2.1.1.3-.1v-.2l.1-.1h.2l.1.1h.2l.1-.1.1.1h.1l.3.2H842l.3.2Z"
+                        data-name="sm_state_CY"
+                        opacity={1}
+                        style={{
+                            WebkitTapHighlightColor: "transparent",
+                            opacity: 1,
+                            cursor: "pointer",
+                            strokeOpacity: 1,
+                            strokeLinejoin: "round",
+                            fillOpacity: 1,
+                        }}
+                        transform="scale(.4562)"
+                    />
+                </TooltipTrigger>
+                <TooltipContent>{countryName}</TooltipContent>
+            </Tooltip>
+            <Tooltip>
+                <TooltipTrigger asChild onMouseEnter={onHover}>
+                    <path
+                        id="sm_state_MK"
+                        fill="currentColor"
+                        fillOpacity={1}
+                        stroke="#fff"
+                        strokeLinejoin="round"
+                        strokeOpacity={1}
+                        strokeWidth={1.621}
+                        className={cn(
+                            "transition-colors",
+                            isAvailable("sm_state_MK")
+                                ? "hover:text-[#03045E] cursor-pointer"
+                                : "text-gray-200 pointer-events-none"
+                        )}
+                        onClick={handleClick}
+                        d="m683.8 531.8 3.3 3.2 3.4 1.8 1.7 3.3.9 1-.5 1.7v4.2l-2 .3-.2 2.1-2.9 1-3.3-.6-3 .4-.8.3-1.7 2.5-2.4 1.3-2.3-.6-.9.6-4.6.3-1.3-1.1-1.6.2-1.3-2.4-1.2-1.1-1.2-2.2-.2-1.9-.7-2 .8-.8-.3-2.1.5-2.6 1.7.3.5-.8.2-2.6 3.4-1.5 1-.1 1.6 1.2 1.5-1.9 2.1-.4 2.2-.3 2-.9 1.9.3 2.3-.8 1.4.7Z"
+                        data-name="sm_state_MK"
+                        opacity={1}
+                        style={{
+                            WebkitTapHighlightColor: "transparent",
+                            opacity: 1,
+                            cursor: "pointer",
+                            strokeOpacity: 1,
+                            strokeLinejoin: "round",
+                            fillOpacity: 1,
+                        }}
+                        transform="scale(.4562)"
+                    />
+                </TooltipTrigger>
+                <TooltipContent>{countryName}</TooltipContent>
+            </Tooltip>
+            <Tooltip>
+                <TooltipTrigger asChild onMouseEnter={onHover}>
+                    <path
+                        id="sm_state_SK"
+                        fill="currentColor"
+                        fillOpacity={1}
+                        stroke="#fff"
+                        strokeLinejoin="round"
+                        strokeOpacity={1}
+                        strokeWidth={1.621}
+                        className={cn(
+                            "transition-colors",
+                            isAvailable("sm_state_SK")
+                                ? "hover:text-[#03045E] cursor-pointer"
+                                : "text-gray-200 pointer-events-none"
+                        )}
+                        onClick={handleClick}
+                        d="m674.8 427.7-1.5 3-.8 2.9-1.6 1.7.1 2.5-4.3 1.1-.6-.2-2.2-2.2-1.4-.9-4.6.7-2.5-.6-2.7-.1-1.8.4-1.6 3.5-5 2.5-3.5-1.4-.7.2-1 1.5-2.4.6-4.3.4-1.4.7-.4 1 .5 1.3-.6 1-7 .4-4.7-.1-1.6-.7-4.2-2.7-2.1-.3-2.3-2.9-1.6-2.9-.1-.8.9-2.4 1.1-2.8 1.4-1.2 3.6.5 1.7-.2 1.5-.7 2.1-1.9 1.6-.8.7-3 2.3-1.2.6-.8 2-1.5 2.8-.3 1.3.2.5 1.5h2.2l1-1.7 2.2-1.3 3 3 1.4.4.6 2.7 1.4-.4 1.7.6 1.1-2.1 2.3-1 3-.1 2.4 1 1.8.1 1.4-1.5 3.2-.2 3.6.3 3.1 1 1 .7.8 1.4 5.7 1.9.9.2Z"
+                        data-name="sm_state_SK"
+                        opacity={1}
+                        style={{
+                            WebkitTapHighlightColor: "transparent",
+                            opacity: 1,
+                            cursor: "pointer",
+                            strokeOpacity: 1,
+                            strokeLinejoin: "round",
+                            fillOpacity: 1,
+                        }}
+                        transform="scale(.4562)"
+                    />
+                </TooltipTrigger>
+                <TooltipContent>{countryName}</TooltipContent>
+            </Tooltip>
+            <Tooltip>
+                <TooltipTrigger asChild onMouseEnter={onHover}>
+                    <path
+                        id="sm_state_SI"
+                        fill="currentColor"
+                        fillOpacity={1}
+                        stroke="#fff"
+                        strokeLinejoin="round"
+                        strokeOpacity={1}
+                        strokeWidth={1.621}
+                        className={cn(
+                            "transition-colors",
+                            isAvailable("sm_state_SI")
+                                ? "hover:text-[#03045E] cursor-pointer"
+                                : "text-gray-200 pointer-events-none"
+                        )}
+                        onClick={handleClick}
+                        d="m605.2 467.1-2.5-.6-.9.8v1.7h-2l-.7 1-4.4 1.7-.4 1.4.9.9.2 2.2-.4 1.1-2.1.6-2.1 1 1 1.1-.7.7.8 2.3-1.2.4-1.6-.2-2-.7-1.3.5-1.5-.7-2.6-2.1-1.2 2.2-.6.3-3.6.1-1.1-.5-1.4 1.3-3.3-.8-.5-.6 1.7-1.1 1.5-.1-.2-1.3-1.5-1.3-1.9-1.1.4-2-1.3-.2-.3-1 1.6-2.1-2.3-.7-.7-1.4 3.3-2.3.2-.9 5 .9 5 .7 3-1.2 1-1.3 1.9-.7 2.6-.2 2.8.2 2.3-1.1 1.6-.2 2.4.5.1-1.9 1.3-.9 2.4.1 1.4 3.3 1.9 2.2Z"
+                        data-name="sm_state_SI"
+                        opacity={1}
+                        style={{
+                            WebkitTapHighlightColor: "transparent",
+                            opacity: 1,
+                            cursor: "pointer",
+                            strokeOpacity: 1,
+                            strokeLinejoin: "round",
+                            fillOpacity: 1,
+                        }}
+                        transform="scale(.4562)"
+                    />
+                </TooltipTrigger>
+                <TooltipContent>{countryName}</TooltipContent>
+            </Tooltip>
+            <Tooltip>
+                <TooltipTrigger asChild onMouseEnter={onHover}>
+                    <path
+                        id="sm_state_UA"
+                        fill="currentColor"
+                        fillOpacity={1}
+                        stroke="#fff"
+                        strokeLinejoin="round"
+                        strokeOpacity={1}
+                        strokeWidth={1.621}
+                        className={cn(
+                            "transition-colors",
+                            isAvailable("sm_state_UA")
+                                ? "hover:text-[#03045E] cursor-pointer"
+                                : "text-gray-200 pointer-events-none"
+                        )}
+                        onClick={handleClick}
+                        d="M796.7 471.6v.6l-3.9-.8-.9-.9 4.8 1.1Zm-26.4 14.6-1.9-1.8-2.2-.7-2.2.2-2.2 1.3-1.6.5-.9-.3-.6 1.2-4-.9-1.8-.9-1.5-1.6 1.1-.7 2-.2.4-1-.5-1.4 2.5-2.9v-1.3l2.3-1.7.4-2-1-1.7-.5-2.1 2.5-1.6 2.1 1 1.9.2 2.1.8 1.6-.6 1.2 1.3 2.9-.4.6-.7-2.9-1.7-.2-2.9-1-1.6-2.1-.8-2-1.3-.9-1.9v-2.4l-2.9-2-2.3-1.2-.6-1.2.6-3.1-.6-2.3-1.4-1.4-1.4.7-1.4-1-1.4-1.9-5.6-.6-.6-1.2-2.5-.3-3.6-2.4-3.5-1-1.6 1-.8-.3-1.2 1-4-.1-.7-.2-2.3 1.4-.2.6-3.7.8-.2 1.4-1.1 1.9-8.4 1.2-3.4 1.3-1 1.2-2.1.5-4.3-3.3-1.2-.3-3.6.7-6.9-1.4-2.7.1-2.7-1.5h-.7l-.9 1.2-2.1.9-.7-1.7-.9-.7-2.3-.4-.9-1.1-2.2-.8-1.4-2.3H671l-.1-2.5 1.6-1.7.8-2.9 1.5-3 3.3.7.4-.9-1.9-1.4.1-1.8-1.5-3.8.6-1 3.4-4.4 2.4-2.7 4.8-4.6 3-.5 1.2-1.8-.1-1.3-1.8-2.6 1.2-1.3-1.4-1-1.9-2.8-2.7-2.8v-1.3l-1.2-1.8-.1-1.4 1.1-.5 1.9.3 1.1.5 1.9-1.2 1.6-1.6.8-1.4 5.9-.5 2.3-.5 2.4-.1 7.8.4 6.5 1.5 6.1.9h2.3l1.8 2.1 1 .3 3-.1 1.1.4.8 1.4 1.2-1.7 1.9.5 1.9-.7 5.1 1 .8 1.3 1 .3.6-1.1 3.8-1.6 2.5 3 .6.5 2.3-.8 7.1-.6 2 1.1.5 1.2 2.7.9.8-1.4-1.8-3.6 1-3.3.8-1.2 2.2-2.3 1.1-.5 1.7.4 1.4-.8 5 .1 2.6.8 1.7-.1 1.8-.9.5-2.4 1.6-.6 3.7.9 1-.1 2.7-1.2 1.6-.2 2 .3 3.4-.2 2.5 1.4 1.4 1.4 1.7 2.7 4 3-.1 1-2.9.5 1.3 1.9.5 2 1.2 1.7-.4 1 3.1.1 2.9 1 4.1-.5 1.5 2.2 1.9.2.2.9 1.4 2.8.9 1.1-.2 1.8.5 1 1.9 1.6.7 1 1.1.4 2.3-1.4 2.8.4 2.7 2h2.3l1.7 1.1 1.4-1.3 4.3-.9 2.3-1 1 .1 2.3 1.8.5 1.2 1.5 1.6 4.7 2.9 1.3-.6.9-1.5 2.6 1.4 2.4.2 3.6 1.9 1.4.1 1.6-.6 2 1.8 1.9.2 4.4 2.3 2.9-.3 1 .8-.1 1.7 1 .9-.1 2.6-1.7 2.1-2.3.8 1.1 1.5 3.1.9-.9.9-1.4-.2-.8 1-.3 2.3 2.5.7 1.2 2.8v1.1l1.2.3-1.3 4.7-.1 1.8-4.2.2-6-.3-.9.2-.9 1.9-2.3 1.4-1.7.2-.8.8v2.3l-.4 1.3 1.1.7-.7 1.6.5 1.3-.5.1-4.3-.2-3.4.3-2.1 2.4h-1.5l-3.2 1.5-1.4 1.7-1.4-.8-3.1.5-1.7 1.1-3.1-.1-2.3.6-4.6 3.8-1.3.1-1-1-1.6 2.6-2.4 1.2.6 3.1 2.8 4.5 3.6 3.9 1.7 1.4 2.4.7 3.1-1.4 2.4.4 1.7-1.2 1.5-.1 3.7 1-1.1 2.5-.3 2.6-1.9.6-2.2-.1-2.2.4-2.7-1.5h-2.5l-1.1 1.9-2.3 1.3-.6 1.4-2.6-.3-2.1.2-2.8 1.4-1.9 2.8-2.3 1.8-1.9.5-2-.1-1.3-.6-2.9-1.8.7-2 .5-3.5-1.2-2.9-2.3-1.4-1.6.2-.9-.3-3.7-2.4-1.9-.2-1.9.5-1.5-1.2 3.5-2.9 3.5-2.4 1.7-.2 2.1-1.2 2.2-1.6-1.3-2.3-1.9.6-2.2-1.1-.9-.8-3.1.8-1.8-.1-3.8.8-1.9-.8-4-2-2.6-.3v-1l1.8-.3.1-1-3.8-.6-.1-1.3 2 .5 3.2.2 2.9.5 2.1-1.8-2.4.5-2.9-.5-2.1-1.8-2.2 1.2-3.2-.5-2.4.8-2.3-.2-4.1 1.1-.4 2.9-2 4-3.1 3.7-4.6 2.1-1.7-.4-.9 1.1.2 1.3 1 .9 1.1 3.1-.1 1.3Z"
+                        data-name="sm_state_UA"
+                        opacity={1}
+                        style={{
+                            WebkitTapHighlightColor: "transparent",
+                            opacity: 1,
+                            cursor: "pointer",
+                            strokeOpacity: 1,
+                            strokeLinejoin: "round",
+                            fillOpacity: 1,
+                        }}
+                        transform="scale(.4562)"
+                    />
+                </TooltipTrigger>
+                <TooltipContent>{countryName}</TooltipContent>
+            </Tooltip>
+            <Tooltip>
+                <TooltipTrigger asChild onMouseEnter={onHover}>
+                    <path
+                        id="sm_state_SE"
+                        fill="currentColor"
+                        fillOpacity={1}
+                        stroke="#fff"
+                        strokeLinejoin="round"
+                        strokeOpacity={1}
+                        strokeWidth={1.621}
+                        className={cn(
+                            "transition-colors",
+                            isAvailable("sm_state_SE")
+                                ? "hover:text-[#03045E] cursor-pointer"
+                                : "text-gray-200 pointer-events-none"
+                        )}
+                        onClick={handleClick}
+                        d="m591.1 319.4-1.5-.3-.3-3.8 2-4.6 1-.3 2.7-6.5.5 2-1.5 3.2-.3 2.2-.6.5-2 7.6Zm26.2-22.7-1.3 1.4-1.4.5.1 3.3 1.5 1.2-1.3.5-.7 1.8-1.8.6-1.5 1.6-.3 1.6-2.1.9 1.2-2.4-.9-.7-1.4-2.1.4-.9-.6-3.2 2.7-2.9 1.3-1.1 3.3-1h1.3l1.5.9Zm36.8-113-2.7.3-2.2-.6-1 .3-3.8.3-1.1.7-2.1-.7-2-1.2-2 1.1-1.6-1-1 1.9.1 1.8-1.8-.2.3 1.1-2 1.5-3.2.2.7 1.5-.9.7 1 1.7-1.3 1.5-2.1 1.9-.5 1 1.7 1.1 1.6 2.5 1.6 1.1-.4 1.2-2.1 1.1-2.2 1.7-2 4.3-3.1 1.3-2.4 1.6-3 .7-2.4 2.2-1.8-.8-1.5.5-1 1.8-1.9 1.5-2.4-.2.2.8-2.3.3-1 4-2.2.6-.7.8-.9-.6-2.1.1 1.6 2.8-1.7 1.8h-1.2l-1.5.7-1.9-.8-.2 1.2.8 1.3 1.3 1-.1 1.3-.9 4.3.7 1.8-2.1 1.2-.8 1.1.6 1.7-.1 1.1.7 1.9.8 4.2 1.1 2-.1 1.6 1.3.9 2.1-.1 1.4 1.6 3.1-.8.8 1.1 2.9 2.2 1.7.3 1.9 1.2v1.5l2.9 1 1.9 2 .8 1.6-.1 1-2.6 1.5-1.3 1.3-3.8 2.1-.6-.1-2.1 1 2 .6 1.4-.7 2.6-.6 1.4 1.2-2.2.5-.3 1.6-.8 1-2 .7-2.8 1.5-4 1.4-1.1 1.2-2.6 1-1.3.8h-3.8l-3.7-.1 1 .9.9-.2 3.6.4 1.7 1.3-3 .9 1.7 3.2-.7.8.4 3.5-1.1.1-.3 1.4.6 2.5 1 2.1-.1 1-1.5 2.4.9 2.9-1.5 5.3-1.9 3.1-1.3 4.1-1.8 1.4-2.4-.9-3.4.5-3.2-.3-3 .2-.8.4.7 1.4-2.3-.2-1.7 1.1-2 2.1v1.5l1.9 3-1.7 2h-1.1l-3.2-.5-5.5 1.2-5.1-1 .5-1 .2-3.1-.6-1.7-1.3-1.1-3.1-3.8-1.2-2.3 2.4.9 1-.5-1.8-2.6 2.2-.1.7-1-.6-1.5-1.9-.6-1.9-2.4-1.8-1.2-3.5-4.7-1.3-3.2-1.1.3-1.2-3.7-1.7-.6-.6-3.7-1.8-.4-1.3-1.7-.4-3.2-1.2-.6-.8-1.4-.8-3-.3-2.7-.9-1.8.5-1.2 1.1-.2 1.1.8 1 1.8 1.9-.2.7-1.4.6-3.9-1.6-4.4 1.5-1.5.9-2.4 2.6-.7 1.3-.8 1.9-2 .1-2.8.6-2.1-.5-1.4-3.1-4.9-.3-1.6 1.8-.6h2.4l1.3-2.5.4-1.9-3.4-2.7-1.2-.4-3.8-2.1.9-6.4v-1.6l-2.5-4.4.1-1.8-.6-2.8 1.1-1.1-2.7-4.1 2-2.8-.5-1.5 1.2-1 3.5-3.8 3.3-1.5 3.3-.4 7.1.9 1.7-2.2-.1-1.2-1.1-2.9-4.7-1.6 4.4-5 3.3-5 .1-4.7.6-2.7-1.4-3.9 3.8-.4 2.4-.5 3.3-1.5-1-2.5 1.3-.9 3-2.9 3.3-2.9 1.5-1 .2-1.4-1-1.3-2.7-2.3.5-1.1 2.7-.6 1.1-1.1 1.5-3.5 3.7-1.9 1.5-.9 6.3 1.8 2.1-3.1-.8-3.6v-.8l2.1-.5 4.1.9 2.9.1 8.6 1.7 1 .1 2.5-1.6-2.9-.9 1.6-.9 1.4-1.9-.1-2-2.6-1.6 5.1-.2 2.9.8.4.9 2.9 1.1 4.8 2.3 4.2 1.8 8.3 1.7 3.5 1.8 1.2 1.6 1.4.1 1.9 1.5 1.8.9-1.1 1 .4 2.4.7 1.4-.3 1.9 2.8.4.6 1.3-1 .8-.1 1.1.8 1.6 3.3 2.6.6.9-.7 1.4.1 1.8-1.5 1.3v1.3l1.3 2.6 1.8.6 1.9 2.2 1.6 2.5Z"
+                        data-name="sm_state_SE"
+                        opacity={1}
+                        style={{
+                            WebkitTapHighlightColor: "transparent",
+                            opacity: 1,
+                            cursor: "pointer",
+                            strokeOpacity: 1,
+                            strokeLinejoin: "round",
+                            fillOpacity: 1,
+                        }}
+                        transform="scale(.4562)"
+                    />
+                </TooltipTrigger>
+                <TooltipContent>{countryName}</TooltipContent>
+            </Tooltip>
+            <Tooltip>
+                <TooltipTrigger asChild onMouseEnter={onHover}>
+                    <path
+                        id="sm_state_GB"
+                        fill="currentColor"
+                        fillOpacity={1}
+                        stroke="#fff"
+                        strokeLinejoin="round"
+                        strokeOpacity={1}
+                        strokeWidth={1.621}
+                        className={cn(
+                            "transition-colors",
+                            isAvailable("sm_state_GB")
+                                ? "hover:text-[#03045E] cursor-pointer"
+                                : "text-gray-200 pointer-events-none"
+                        )}
+                        onClick={handleClick}
+                        d="m389.1 403.1-1.6 1.3-1.3.2-2.5-1.2v-.5l2.5-1.1 2 .6.9.7Zm-36.5-39.7 1.3.9-3.4 1.9-1.2-.6-.9-1.2-.1-1.9 1.2-.5h1.8l1.3 1.4ZM329.3 352l-2.1.4h-2.9l.1-1.5-1.4-.5-1.8-2.7-1.3-.5-1.9 1.6.5.9-2.4 1.8-2.9-.3-.8-.7-2.1-.4-.2-1-2.7-2 1-1.4 2.9-.9-1-1.4.2-.8 1.6.1 2.2-.8 1.2-1.6 1-2.3 1.9-.9 1.3.6 1.9-2 2.8-.1 2.7-.7 3.9.3 1.1 1.1.5 1.7 1.3 1.7 1.7 1.4v.9l-2 1.1 3.5.3 1.2 2.5-2.1.3-.1 1.4 1.1.2-.6 1.4-2.6.6-1.4 2.2-1 .5-2.3-.5Zm13.7-20.2-2.6-.5-.6-2 .9-1.4 1.8.7.6 1.3-.1 1.9Zm-11.5-7.1.7 3.4-2.4 1.3-.8-2.4-1.4 1 .2-1.9 1.5-.3 2.2-1.1Zm1.7 1.7-1.1-1.2 1.6-2.2 1.7-1-.1 1.6-2.1 2.8Zm2.5-7.8-4.6.8.6-3-1.9-.9.3-.9 2.1-.5 1.7 1.7 2.1.6-.3 2.2Zm-16.2-11.4-1.5-.2-.4-1.4.2-2.3 1.6.2.1 3.7Zm12.8-5.7-.1 2.8 2.9.8 2-.1.4.6-3.3 2.7-.7-.1-.2-2.2-1.4.3-1.9-.3-1.2-1.9-2.7-.5-.9-1.1 1.4-.6.3-1.2 2.8-.6 1.5-.7.9 1 .2 1.1Zm-11.9-2.6 1.2.9-1.1 1.3H319l-2.2-1 .2-.5 3.4-.7Zm11.8-9.9-1.6 2.6-1 .7-.2 1.7-3 1.6-3.2 2.4-1.4-1 2.6-1.7-2.1-1-.2-2.6.8-.7 1.4.7 1.9-.3-.7-1.2 6.3-3.2.4 2Zm34.8-2.2v1.2l-1.3 1.6-2.2 1.2-4.2 2.8-2.5 1.3-.5 1.6 1.4.1.2.8-2.2 1.6-.6 1.5 3-.4 5.3-1.5 3.6.5 2.6-.3 6.9.2 1.9-.3 2.3 1.3 1 1.7-2.8 3.4-.8 2.3-2 3.5-1.9 2-2 2.5-2.1 1.1-3.1.5 4.5 1.9-1.4 1.8-2.4.1-2.3 1.7-2.1.7 3.6 1.1 2.4-1 2.7-.1 5.2 1.9 3.6 3.4 2 1.5.5 1.1 2.1 6.9 1.5 3.8 1.6 1.8 4.5 1.6 1.1.6 3.4 3.3 3.4 2.4-1.4 1.5.4 1.2 2.1 2.9.3 1.6-1.3-.1-2.3-1.4-.3.7 5 3.3 1.6 2 1 2.7-.6 1.1-3 2.7 2.8 1.4 1.2-.2 2-2.1 1.7-.2 4.2.3 3.8 1 3.3 2.1.7 1.1.4 3.1-2.2 5.8-2.8 1.9-.5 1.7-2.1.9-1.7-.3-2.4 1.2 1.7.6v1.7l-1.1.6-2.5.2 1.1 2 2.5.4 4.3-.2 1.9.2-.2 2.7-.4.4-3.8 1.7-1 1.8-2.2-.1-1.1.7-5.7 1.9-4.9-.8-2.9.1-4 .6-4.2-1.2-1.8-.2-2.8 1.7-4.2.5-2-.2.9 1.5-.9.4-3.8-.5-1 .5-1.4-.2-2.7-1.4-2.6-.1-4.9 1.2-1 1.3-1.3 3.5-1.1 1.2-1.4.2-4.5-2.5-1.5.5-2.5.3-2.7.7-3.9 2.4-.9 1.5-1.3.2-1.1-.9-1.4-.3-2.3.8-.3-1.3 1-1 2.8-.7 2.5-1.9 2.2-2.3 4.6-3.8.8-3.1 2.7-.7 1.4-2.5 4.1-.6h2.8l2.8.5 2.9-.1 1.1-.7 1.9-2.4 3.6-3-4.7 1-3.8 2.3-3.2-.4-2.3-1.9-2.1-.8-2.1.4-.7-.9-2.4-1.7h-2.6l-3.6 1.7-2.6-1.2-.9-2.3.3-1.4 1.1-.7 2.5-.6 3.8-1.7 2.2-.7 2.8-1.9 1.2-2.3-.3-2 .5-1.4-.9-1.7.3-1.5-3 .3-2.7 1.2-.7-1.1 2.8-1.8 1-1.4 2.6-1.7 3.6-1.3 1.9.1 3.7-.7 2.7 1.3-.8-2.1 1.2-.4.1-2.4 1.6-2.2-1.2-.6.1-2 1.5-.8.7-2.6-1.7-.5-2.1.6-1.7-1.5-2.8-3.6-.3-1.4 1.6-3.1 2.3-2-1.9-.8-1.4.2-2.7 1.2-2 1.3h-2.1l-.8-.9-1.1.1-2.5 1.1-3.5-1.3-1.1 2.3-2.6-2.5-.3-1.9h1.3l1.2-2.4 2.9-4 .6-1.2-.5-1.4-1.9-1.5.3-2.6.8-1 1.5-.4-1.9-1.2-2.9.9-1.8.9.3-2-.6-.4-1.5 1.4.1 3.3-2.1 5.7-1.1.9-1.4-.5 1.1-3.9 1.4-2.5-.6-.3.3-3.6 1-2.9 1.7-3.8 2.2-3.5-4.1 2.7-1 .5-2.4-.4-.8-.7-1-2.3 1.8-.2 1.7-1.1-1.5-.7 1.5-.9 1.7-2.1.4-1.9-1-1.5-1.6-.6-.2-.9 1.7-1.9-.7-1.5 1.6-3.1 3 .1 1.9-.4-2.3-2 .7-2.9 3.7-.3-.8-1.8.3-2 1.6-.9 1.3.2 1 .9 2.6-.9.6.8 2.8-.6 3.7-.3 4.5-.6 2.2-.4 2.3.2-.6 1.7Zm-.6-4-1.3.1-1.3-1.4 1.5-.3 1.1 1.6Zm1.3-3.4 2.7.6-.6 1.4-1.4-.7-2 .3-1.9-1 .4-2.1 1.7-.1 1.2.5-.1 1.1Zm3.7-2.3-1 .3-.4-1.2-1.7-.6.4-.8 2.7 2.3Zm16.1-19.5 1.6 1.8 1 .5-1.3 3.8-.2 1.6-1 1.7-.8-.4.9-2.9-.5-1.1-1.7.3-.4-.9 1.6-1.4-.8-2-1.1-.2 1.5-1.6 1.2.8Zm2.9.4-1.4-1.3 1.3-.6.1 1.9Z"
+                        data-name="sm_state_GB"
+                        opacity={1}
+                        style={{
+                            WebkitTapHighlightColor: "transparent",
+                            opacity: 1,
+                            cursor: "pointer",
+                            strokeOpacity: 1,
+                            strokeLinejoin: "round",
+                            fillOpacity: 1,
+                        }}
+                        transform="scale(.4562)"
+                    />
+                </TooltipTrigger>
+                <TooltipContent>{countryName}</TooltipContent>
+            </Tooltip>
+        </svg>
+    );
+};

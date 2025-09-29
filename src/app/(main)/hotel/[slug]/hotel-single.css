@@ -1,0 +1,61 @@
+.hotel-single-slider .swiper-pagination-slider .swiper-pagination-bullet {
+    width: 8px !important;
+    height: 8px !important;
+    border: solid 1px #0077B6 !important;
+    background-color: transparent !important;
+    border-radius: 100%;
+    transition: all 0.3s ease-in-out;
+}
+
+.hotel-single-slider .swiper-pagination-slider {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #ffffff;
+    gap: 2px;
+}
+
+.hotel-single-slider .swiper-pagination-slider .swiper-pagination-bullet-active {
+    width: 40px !important;
+    height: 8px !important;
+    border: solid 1px #0077B6 !important;
+    background-color: #0077B6 !important;
+    border-radius: 30px;
+    transition: all 0.3s ease-in-out;
+}
+
+/* src/app/(main)/hotel/single/hotel-single.css second slider */
+.hotel-same-hotels-slider .swiper-pagination-hotels-slider .swiper-pagination-bullet {
+    width: 8px !important;
+    height: 8px !important;
+    border: solid 1px #0077B6 !important;
+    background-color: transparent !important;
+    border-radius: 100%;
+    transition: all 0.3s ease-in-out;
+}
+
+.hotel-same-hotels-slider .swiper-pagination-hotels-slider {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+}
+
+.hotel-same-hotels-slider .swiper-pagination-hotels-slider .swiper-pagination-bullet-active {
+    width: 40px !important;
+    height: 8px !important;
+    border: solid 1px #0077B6 !important;
+    background-color: #0077B6 !important;
+    border-radius: 30px;
+    transition: all 0.3s ease-in-out;
+}
+@keyframes marqueeServices {
+    0%   { transform: translateX(100%); }
+    100% { transform: translateX(-100%); }
+}
+
+.marqueeServices {
+    display: inline-block;
+    white-space: nowrap;
+    animation: marqueeServices 8s linear infinite;
+}

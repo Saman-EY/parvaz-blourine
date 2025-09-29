@@ -1,0 +1,70 @@
+// fakeData.ts
+
+export interface Option {
+    label: string;
+    value: string | number;
+    checked: boolean;
+}
+
+export interface HotelsFilterType {
+    price: {
+        min: number;
+        max: number;
+        step: number;
+        selected: [number, number];
+    };
+    continents: Option[];
+    countries: Option[];
+    starRating: Option[];
+    hotelRating: Option[];
+    hotelClasses: Option[];
+    locations: Option[];
+}
+
+// export const fakeFilters = {
+//     price: {
+//         min: 100000,
+//         max: 10000000,
+//         step: 50000,
+//         selected: [200000, 8000000],
+//     },
+//     continents: [
+//         { label: "اروپا", value: "europe", checked: true },
+//         { label: "آمریکا", value: "america", checked: false },
+//         { label: "آسیا", value: "asia", checked: false },
+//         { label: "استرالیا", value: "australia", checked: false },
+//         { label: "آفریقا", value: "africa", checked: false },
+//     ],
+//     countries: [
+//         { label: "ایتالیا", value: "italy", checked: false },
+//         { label: "فرانسه", value: "france", checked: false },
+//         { label: "اسپانیا", value: "spain", checked: true },
+//         { label: "آلمان", value: "germany", checked: false },
+//         { label: "بریتانیا", value: "uk", checked: false },
+//         // …
+//     ],
+//     starRating: [
+//         { label: "★☆☆☆☆", value: 1, checked: false },
+//         { label: "★★☆☆☆", value: 2, checked: false },
+//         { label: "★★★☆☆", value: 3, checked: true },
+//         { label: "★★★★☆", value: 4, checked: false },
+//         { label: "★★★★★", value: 5, checked: false },
+//     ],
+//     hotelRating: [
+//         { label: "عالی", value: "excellent", checked: true },
+//         { label: "خیلی خوب", value: "very_good", checked: false },
+//         { label: "خوب", value: "good", checked: false },
+//         { label: "متوسط", value: "average", checked: false },
+//     ],
+//     hotelClasses: [
+//         { label: "اقتصادی", value: "budget", checked: false },
+//         { label: "میان‌رده", value: "midrange", checked: true },
+//         { label: "لوکس", value: "luxury", checked: false },
+//     ],
+//     locations: [
+//         { label: "مرکز شهر", value: "downtown", checked: true },
+//         { label: "حومه", value: "suburbs", checked: false },
+//         { label: "نزدیک ساحل", value: "beachfront", checked: false },
+//         { label: "منطقه تاریخی", value: "historic", checked: false },
+//     ],
+// };

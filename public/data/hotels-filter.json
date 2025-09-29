@@ -1,0 +1,1037 @@
+{
+  "price": {
+    "min": 0,
+    "max": 10000000,
+    "step": 100000,
+    "selected": [
+      0,
+      5000000
+    ]
+  },
+  "continents": [
+    {
+      "value": "europe",
+      "label": "اروپا",
+      "checked": false,
+      "countries": [
+        {
+          "value": "germany",
+          "label": "آلمان",
+          "checked": false,
+          "cities": [
+            {
+              "value": "berlin",
+              "label": "برلین",
+              "checked": false
+            },
+            {
+              "value": "munich",
+              "label": "مونیخ",
+              "checked": false
+            },
+            {
+              "value": "hamburg",
+              "label": "هامبورگ",
+              "checked": false
+            },
+            {
+              "value": "cologne",
+              "label": "کلن",
+              "checked": false
+            },
+            {
+              "value": "frankfurt",
+              "label": "فرانکفورت",
+              "checked": false
+            }
+          ]
+        },
+        {
+          "value": "france",
+          "label": "فرانسه",
+          "checked": false,
+          "cities": [
+            {
+              "value": "paris",
+              "label": "پاریس",
+              "checked": false
+            },
+            {
+              "value": "lyon",
+              "label": "لیون",
+              "checked": false
+            },
+            {
+              "value": "marseille",
+              "label": "مارسی",
+              "checked": false
+            },
+            {
+              "value": "nice",
+              "label": "نیس",
+              "checked": false
+            },
+            {
+              "value": "lille",
+              "label": "لیل",
+              "checked": false
+            }
+          ]
+        },
+        {
+          "value": "italy",
+          "label": "ایتالیا",
+          "checked": false,
+          "cities": [
+            {
+              "value": "rome",
+              "label": "رم",
+              "checked": false
+            },
+            {
+              "value": "milan",
+              "label": "میلان",
+              "checked": false
+            },
+            {
+              "value": "naples",
+              "label": "ناپولی",
+              "checked": false
+            },
+            {
+              "value": "florence",
+              "label": "فلورانس",
+              "checked": false
+            },
+            {
+              "value": "venice",
+              "label": "ونیز",
+              "checked": false
+            }
+          ]
+        },
+        {
+          "value": "spain",
+          "label": "اسپانیا",
+          "checked": false,
+          "cities": [
+            {
+              "value": "madrid",
+              "label": "مادرید",
+              "checked": false
+            },
+            {
+              "value": "barcelona",
+              "label": "بارسلونا",
+              "checked": false
+            },
+            {
+              "value": "valencia",
+              "label": "والنسیا",
+              "checked": false
+            },
+            {
+              "value": "seville",
+              "label": "سویا",
+              "checked": false
+            },
+            {
+              "value": "bilbao",
+              "label": "بیلبائو",
+              "checked": false
+            }
+          ]
+        },
+        {
+          "value": "netherlands",
+          "label": "هلند",
+          "checked": false,
+          "cities": [
+            {
+              "value": "amsterdam",
+              "label": "آمستردام",
+              "checked": false
+            },
+            {
+              "value": "rotterdam",
+              "label": "روتردام",
+              "checked": false
+            },
+            {
+              "value": "utrecht",
+              "label": "اوترخت",
+              "checked": false
+            },
+            {
+              "value": "the_hague",
+              "label": "لاهه",
+              "checked": false
+            },
+            {
+              "value": "eindhoven",
+              "label": "آیندهوون",
+              "checked": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "value": "asia",
+      "label": "آسیا",
+      "checked": false,
+      "countries": [
+        {
+          "value": "iran",
+          "label": "ایران",
+          "checked": false,
+          "cities": [
+            {
+              "value": "tehran",
+              "label": "تهران",
+              "checked": false
+            },
+            {
+              "value": "mashhad",
+              "label": "مشهد",
+              "checked": false
+            },
+            {
+              "value": "isfahan",
+              "label": "اصفهان",
+              "checked": false
+            },
+            {
+              "value": "tabriz",
+              "label": "تبریز",
+              "checked": false
+            },
+            {
+              "value": "shiraz",
+              "label": "شیراز",
+              "checked": false
+            }
+          ]
+        },
+        {
+          "value": "china",
+          "label": "چین",
+          "checked": false,
+          "cities": [
+            {
+              "value": "beijing",
+              "label": "پکن",
+              "checked": false
+            },
+            {
+              "value": "shanghai",
+              "label": "شانگهای",
+              "checked": false
+            },
+            {
+              "value": "guangzhou",
+              "label": "گوانگ‌ژو",
+              "checked": false
+            },
+            {
+              "value": "shenzhen",
+              "label": "شنژن",
+              "checked": false
+            },
+            {
+              "value": "chengdu",
+              "label": "چنگدو",
+              "checked": false
+            }
+          ]
+        },
+        {
+          "value": "japan",
+          "label": "ژاپن",
+          "checked": false,
+          "cities": [
+            {
+              "value": "tokyo",
+              "label": "توکیو",
+              "checked": false
+            },
+            {
+              "value": "osaka",
+              "label": "اوساکا",
+              "checked": false
+            },
+            {
+              "value": "kyoto",
+              "label": "کیوتو",
+              "checked": false
+            },
+            {
+              "value": "nagoya",
+              "label": "ناگویا",
+              "checked": false
+            },
+            {
+              "value": "sapporo",
+              "label": "ساپورو",
+              "checked": false
+            }
+          ]
+        },
+        {
+          "value": "india",
+          "label": "هند",
+          "checked": false,
+          "cities": [
+            {
+              "value": "delhi",
+              "label": "دهلی",
+              "checked": false
+            },
+            {
+              "value": "mumbai",
+              "label": "بمبئی",
+              "checked": false
+            },
+            {
+              "value": "bangalore",
+              "label": "بنگلور",
+              "checked": false
+            },
+            {
+              "value": "kolkata",
+              "label": "کولکاتا",
+              "checked": false
+            },
+            {
+              "value": "chennai",
+              "label": "چنای",
+              "checked": false
+            }
+          ]
+        },
+        {
+          "value": "south_korea",
+          "label": "کره جنوبی",
+          "checked": false,
+          "cities": [
+            {
+              "value": "seoul",
+              "label": "سئول",
+              "checked": false
+            },
+            {
+              "value": "busan",
+              "label": "بوسان",
+              "checked": false
+            },
+            {
+              "value": "incheon",
+              "label": "اینجئون",
+              "checked": false
+            },
+            {
+              "value": "daegu",
+              "label": "دائگو",
+              "checked": false
+            },
+            {
+              "value": "gwangju",
+              "label": "گوانگجو",
+              "checked": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "value": "north_america",
+      "label": "آمریکای شمالی",
+      "checked": false,
+      "countries": [
+        {
+          "value": "usa",
+          "label": "ایالات متحده",
+          "checked": false,
+          "cities": [
+            {
+              "value": "new_york",
+              "label": "نیویورک",
+              "checked": false
+            },
+            {
+              "value": "los_angeles",
+              "label": "لس‌آنجلس",
+              "checked": false
+            },
+            {
+              "value": "chicago",
+              "label": "شیکاگو",
+              "checked": false
+            },
+            {
+              "value": "houston",
+              "label": "هیوستون",
+              "checked": false
+            },
+            {
+              "value": "miami",
+              "label": "میامی",
+              "checked": false
+            }
+          ]
+        },
+        {
+          "value": "canada",
+          "label": "کانادا",
+          "checked": false,
+          "cities": [
+            {
+              "value": "toronto",
+              "label": "تورنتو",
+              "checked": false
+            },
+            {
+              "value": "vancouver",
+              "label": "ونکوور",
+              "checked": false
+            },
+            {
+              "value": "montreal",
+              "label": "مونترال",
+              "checked": false
+            },
+            {
+              "value": "calgary",
+              "label": "کلگری",
+              "checked": false
+            },
+            {
+              "value": "ottawa",
+              "label": "اتاوا",
+              "checked": false
+            }
+          ]
+        },
+        {
+          "value": "mexico",
+          "label": "مکزیک",
+          "checked": false,
+          "cities": [
+            {
+              "value": "mexico_city",
+              "label": "مکزیکوسیتی",
+              "checked": false
+            },
+            {
+              "value": "guadalajara",
+              "label": "گوادالاخارا",
+              "checked": false
+            },
+            {
+              "value": "monterrey",
+              "label": "مونتری",
+              "checked": false
+            },
+            {
+              "value": "tijuana",
+              "label": "تیخوانا",
+              "checked": false
+            },
+            {
+              "value": "puebla",
+              "label": "پوئبلا",
+              "checked": false
+            }
+          ]
+        },
+        {
+          "value": "cuba",
+          "label": "کوبا",
+          "checked": false,
+          "cities": [
+            {
+              "value": "havana",
+              "label": "هاوانا",
+              "checked": false
+            },
+            {
+              "value": "santiago",
+              "label": "سانتیاگو",
+              "checked": false
+            },
+            {
+              "value": "camaguey",
+              "label": "کاماگوئی",
+              "checked": false
+            },
+            {
+              "value": "holguin",
+              "label": "هولگوین",
+              "checked": false
+            },
+            {
+              "value": "guantanamo",
+              "label": "گوانتانامو",
+              "checked": false
+            }
+          ]
+        },
+        {
+          "value": "panama",
+          "label": "پاناما",
+          "checked": false,
+          "cities": [
+            {
+              "value": "panama_city",
+              "label": "پاناماسیتی",
+              "checked": false
+            },
+            {
+              "value": "colon",
+              "label": "کلن",
+              "checked": false
+            },
+            {
+              "value": "david",
+              "label": "دیوید",
+              "checked": false
+            },
+            {
+              "value": "la_chorrera",
+              "label": "لاچوره‌را",
+              "checked": false
+            },
+            {
+              "value": "santiago",
+              "label": "سانتیاگو",
+              "checked": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "value": "south_america",
+      "label": "آمریکای جنوبی",
+      "checked": false,
+      "countries": [
+        {
+          "value": "brazil",
+          "label": "برزیل",
+          "checked": false,
+          "cities": [
+            {
+              "value": "sao_paulo",
+              "label": "سائوپائولو",
+              "checked": false
+            },
+            {
+              "value": "rio",
+              "label": "ریودوژانیرو",
+              "checked": false
+            },
+            {
+              "value": "brasilia",
+              "label": "برازیلیا",
+              "checked": false
+            },
+            {
+              "value": "salvador",
+              "label": "سالوادور",
+              "checked": false
+            },
+            {
+              "value": "fortaleza",
+              "label": "فورتالزا",
+              "checked": false
+            }
+          ]
+        },
+        {
+          "value": "argentina",
+          "label": "آرژانتین",
+          "checked": false,
+          "cities": [
+            {
+              "value": "buenos_aires",
+              "label": "بوئنوس آیرس",
+              "checked": false
+            },
+            {
+              "value": "cordoba",
+              "label": "کوردوبا",
+              "checked": false
+            },
+            {
+              "value": "rosario",
+              "label": "روزاریا",
+              "checked": false
+            },
+            {
+              "value": "mendoza",
+              "label": "مندوزا",
+              "checked": false
+            },
+            {
+              "value": "la_plata",
+              "label": "لا پلاتا",
+              "checked": false
+            }
+          ]
+        },
+        {
+          "value": "chile",
+          "label": "شیلی",
+          "checked": false,
+          "cities": [
+            {
+              "value": "santiago",
+              "label": "سانتیاگو",
+              "checked": false
+            },
+            {
+              "value": "valparaiso",
+              "label": "والپارایسو",
+              "checked": false
+            },
+            {
+              "value": "concepcion",
+              "label": "کنسپسیون",
+              "checked": false
+            },
+            {
+              "value": "la_serena",
+              "label": "لاسرنا",
+              "checked": false
+            },
+            {
+              "value": "iquique",
+              "label": "ای‌کیکه",
+              "checked": false
+            }
+          ]
+        },
+        {
+          "value": "colombia",
+          "label": "کلمبیا",
+          "checked": false,
+          "cities": [
+            {
+              "value": "bogota",
+              "label": "بوگوتا",
+              "checked": false
+            },
+            {
+              "value": "medellin",
+              "label": "مدئین",
+              "checked": false
+            },
+            {
+              "value": "cali",
+              "label": "کالی",
+              "checked": false
+            },
+            {
+              "value": "barranquilla",
+              "label": "باررانکییا",
+              "checked": false
+            },
+            {
+              "value": "cartagena",
+              "label": "کارتاخنا",
+              "checked": false
+            }
+          ]
+        },
+        {
+          "value": "peru",
+          "label": "پرو",
+          "checked": false,
+          "cities": [
+            {
+              "value": "lima",
+              "label": "لیما",
+              "checked": false
+            },
+            {
+              "value": "arequipa",
+              "label": "آرکیپا",
+              "checked": false
+            },
+            {
+              "value": "trujillo",
+              "label": "تروخیو",
+              "checked": false
+            },
+            {
+              "value": "chiclayo",
+              "label": "چیکلایو",
+              "checked": false
+            },
+            {
+              "value": "piura",
+              "label": "پیورا",
+              "checked": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "value": "africa",
+      "label": "آفریقا",
+      "checked": false,
+      "countries": [
+        {
+          "value": "egypt",
+          "label": "مصر",
+          "checked": false,
+          "cities": [
+            {
+              "value": "cairo",
+              "label": "قاهره",
+              "checked": false
+            },
+            {
+              "value": "alexandria",
+              "label": "اسکندریه",
+              "checked": false
+            },
+            {
+              "value": "giza",
+              "label": "جیزه",
+              "checked": false
+            },
+            {
+              "value": "luxor",
+              "label": "لوکسور",
+              "checked": false
+            },
+            {
+              "value": "aswan",
+              "label": "اسوان",
+              "checked": false
+            }
+          ]
+        },
+        {
+          "value": "nigeria",
+          "label": "نیجریه",
+          "checked": false,
+          "cities": [
+            {
+              "value": "lagos",
+              "label": "لاگوس",
+              "checked": false
+            },
+            {
+              "value": "abuja",
+              "label": "آبوجا",
+              "checked": false
+            },
+            {
+              "value": "kano",
+              "label": "کانو",
+              "checked": false
+            },
+            {
+              "value": "ibadan",
+              "label": "ایبادان",
+              "checked": false
+            },
+            {
+              "value": "port_harcourt",
+              "label": "پورت هارکورت",
+              "checked": false
+            }
+          ]
+        },
+        {
+          "value": "south_africa",
+          "label": "آفریقای جنوبی",
+          "checked": false,
+          "cities": [
+            {
+              "value": "johannesburg",
+              "label": "ژوهانسبورگ",
+              "checked": false
+            },
+            {
+              "value": "cape_town",
+              "label": "کیپ‌تاون",
+              "checked": false
+            },
+            {
+              "value": "durban",
+              "label": "دوربان",
+              "checked": false
+            },
+            {
+              "value": "pretoria",
+              "label": "پرتوریا",
+              "checked": false
+            },
+            {
+              "value": "bloemfontein",
+              "label": "بلومفونتن",
+              "checked": false
+            }
+          ]
+        },
+        {
+          "value": "kenya",
+          "label": "کنیا",
+          "checked": false,
+          "cities": [
+            {
+              "value": "nairobi",
+              "label": "نایروبی",
+              "checked": false
+            },
+            {
+              "value": "mombasa",
+              "label": "مومباسا",
+              "checked": false
+            },
+            {
+              "value": "kisumu",
+              "label": "کیسومو",
+              "checked": false
+            },
+            {
+              "value": "nakuru",
+              "label": "ناکورو",
+              "checked": false
+            },
+            {
+              "value": "eldoret",
+              "label": "الدورت",
+              "checked": false
+            }
+          ]
+        },
+        {
+          "value": "morocco",
+          "label": "مراکش",
+          "checked": false,
+          "cities": [
+            {
+              "value": "casablanca",
+              "label": "کازابلانکا",
+              "checked": false
+            },
+            {
+              "value": "rabat",
+              "label": "رباط",
+              "checked": false
+            },
+            {
+              "value": "marrakesh",
+              "label": "مراکش",
+              "checked": false
+            },
+            {
+              "value": "fes",
+              "label": "فاس",
+              "checked": false
+            },
+            {
+              "value": "tangier",
+              "label": "طنجه",
+              "checked": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "value": "australia",
+      "label": "استرالیا",
+      "checked": false,
+      "countries": [
+        {
+          "value": "australia",
+          "label": "استرالیا",
+          "checked": false,
+          "cities": [
+            {
+              "value": "sydney",
+              "label": "سیدنی",
+              "checked": false
+            },
+            {
+              "value": "melbourne",
+              "label": "ملبورن",
+              "checked": false
+            },
+            {
+              "value": "brisbane",
+              "label": "بریزبن",
+              "checked": false
+            },
+            {
+              "value": "perth",
+              "label": "پرت",
+              "checked": false
+            },
+            {
+              "value": "adelaide",
+              "label": "آدلاید",
+              "checked": false
+            }
+          ]
+        },
+        {
+          "value": "new_zealand",
+          "label": "نیوزیلند",
+          "checked": false,
+          "cities": [
+            {
+              "value": "auckland",
+              "label": "آوکلند",
+              "checked": false
+            },
+            {
+              "value": "wellington",
+              "label": "ولینگتون",
+              "checked": false
+            },
+            {
+              "value": "christchurch",
+              "label": "کرایست‌چرچ",
+              "checked": false
+            },
+            {
+              "value": "hamilton",
+              "label": "همیلتون",
+              "checked": false
+            },
+            {
+              "value": "dunedin",
+              "label": "دوندین",
+              "checked": false
+            }
+          ]
+        }
+      ],
+      "starRating": [
+        {
+          "value": 5,
+          "label": "★★★★★",
+          "checked": false
+        },
+        {
+          "value": 4,
+          "label": "★★★★",
+          "checked": false
+        },
+        {
+          "value": 3,
+          "label": "★★★",
+          "checked": false
+        },
+        {
+          "value": 2,
+          "label": "★★",
+          "checked": false
+        },
+        {
+          "value": 1,
+          "label": "★",
+          "checked": false
+        }
+      ],
+      "hotelRating": [
+        {
+          "value": "luxury",
+          "label": "لوکس",
+          "checked": false
+        },
+        {
+          "value": "boutique",
+          "label": "بوتیک",
+          "checked": false
+        },
+        {
+          "value": "economy",
+          "label": "اقتصادی",
+          "checked": false
+        },
+        {
+          "value": "family",
+          "label": "خانوادگی",
+          "checked": false
+        },
+        {
+          "value": "business",
+          "label": "تجاری",
+          "checked": false
+        }
+      ],
+      "hotelClasses": [
+        {
+          "value": "spa",
+          "label": "اسپا",
+          "checked": false
+        },
+        {
+          "value": "gym",
+          "label": "باشگاه ورزشی",
+          "checked": false
+        },
+        {
+          "value": "pool",
+          "label": "استخر",
+          "checked": false
+        },
+        {
+          "value": "pet_friendly",
+          "label": "مجاز به همراهی حیوانات خانگی",
+          "checked": false
+        },
+        {
+          "value": "parking",
+          "label": "پارکینگ",
+          "checked": false
+        },
+        {
+          "value": "breakfast",
+          "label": "صبحانه",
+          "checked": false
+        },
+        {
+          "value": "wifi",
+          "label": "وای‌فای رایگان",
+          "checked": false
+        }
+      ],
+      "locations": [
+        {
+          "value": "city_center",
+          "label": "مرکز شهر",
+          "checked": false
+        },
+        {
+          "value": "nearby",
+          "label": "نزدیک شهر",
+          "checked": false
+        },
+        {
+          "value": "beach_front",
+          "label": "کنار ساحل",
+          "checked": false
+        },
+        {
+          "value": "mountain",
+          "label": "کوهستان",
+          "checked": false
+        },
+        {
+          "value": "airport",
+          "label": "نزدیک فرودگاه",
+          "checked": false
+        }
+      ]
+    }
+  ]
+

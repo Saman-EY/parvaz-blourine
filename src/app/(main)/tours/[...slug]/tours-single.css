@@ -1,0 +1,21 @@
+
+.tours-single-periods-slider .swiper-slide-active {
+    @apply bg-primary text-white;
+}
+.tours-single-periods-slider .swiper-slide-active span{
+    @apply  text-lightGray;
+}
+.tours-single-periods-slider .gradient-box {
+    -webkit-mask-size: 100% 100%;
+    mask-size: cover;
+    background: #F5F5F5;
+    mask-image: url("/assets/images/static/slider-foreground-tours.svg") ;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    mask-position: center center;
+}
+@media (min-width: 1024px) {
+    .tours-single-periods-slider .gradient-box {
+        mask-image: radial-gradient(circle, rgba(255, 255, 255, 1) 50%, rgba(255, 255, 255, 0) 99%);
+    }
+}

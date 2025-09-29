@@ -1,0 +1,23 @@
+.weblog-single-slider .swiper-pagination-weblog-single-slider {
+    z-index: 10;
+    @apply !flex rounded-3xl px-4 py-2;
+    transition: all 0.3s ease-in-out;
+}
+
+.weblog-single-slider .swiper-pagination-weblog-single-slider .swiper-pagination-bullet {
+    width: 8px !important;
+    height: 8px !important;
+    border: solid 1px #0077B6 !important;
+    background-color: transparent !important;
+    border-radius: 100%;
+    transition: all 0.3s ease-in-out;
+}
+
+.weblog-single-slider .swiper-pagination-weblog-single-slider .swiper-pagination-bullet-active {
+    width: 40px !important;
+    height: 8px !important;
+    border: solid 1px #0077B6 !important;
+    background-color: #0077B6 !important;
+    border-radius: 30px;
+    transition: all 0.3s ease-in-out;
+}

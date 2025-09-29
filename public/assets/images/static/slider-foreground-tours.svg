@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 800 600">
+  <defs>
+    <linearGradient id="linear-gradient" x1="91" y1="134.04" x2="91" y2="-133.31" gradientTransform="translate(491 145.14) rotate(-180) scale(1 -1)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#fff"/>
+      <stop offset=".27" stop-color="#fdfdfd" stop-opacity=".99"/>
+      <stop offset=".4" stop-color="#f8f8f8" stop-opacity=".97"/>
+      <stop offset=".5" stop-color="#efefef" stop-opacity=".93"/>
+      <stop offset=".58" stop-color="#e3e2e2" stop-opacity=".87"/>
+      <stop offset=".65" stop-color="#d3d2d2" stop-opacity=".8"/>
+      <stop offset=".72" stop-color="#bfbebe" stop-opacity=".71"/>
+      <stop offset=".78" stop-color="#a7a6a6" stop-opacity=".6"/>
+      <stop offset=".84" stop-color="#8b8a8a" stop-opacity=".48"/>
+      <stop offset=".89" stop-color="#6d6b6b" stop-opacity=".34"/>
+      <stop offset=".9" stop-color="#696767" stop-opacity=".32"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-2" x1="90" y1="380.93" x2="90" y2="96.45" gradientTransform="translate(490 206.83) rotate(-180) scale(1 -1)" xlink:href="#linear-gradient"/>
+  </defs>
+  <rect width="800" height="290.69" fill="url(#linear-gradient)"/>
+  <rect y="290.69" width="800" height="309.31" transform="translate(800 890.69) rotate(180)" fill="url(#linear-gradient-2)"/>
+</svg>

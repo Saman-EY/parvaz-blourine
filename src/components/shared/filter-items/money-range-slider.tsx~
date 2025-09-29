@@ -1,0 +1,64 @@
+'use client'
+
+import React from 'react'
+import ReactSlider from 'react-slider'
+
+export interface MoneyRangeSliderProps {
+    min: number
+    max: number
+    step?: number
+    value: [number, number]
+    onChangeAction: (value: [number, number]) => void
+}
+
+export function MoneyRangeSlider({
+                                     min,
+                                     max,
+                                     step = 1000,
+                                     value,
+                                     onChangeAction,
+                                 }: MoneyRangeSliderProps) {
+    return (
+        <div className="double-range-slider">
+            <div className="value-display flex justify-between mb-2">
+                <span>
+                    <span>از</span>
+                    <span className={'text-green-600'}>{value[0].toLocaleString('fa-IR')} </span>
+                    <span>تومان</span>
+                </span>
+                <span>
+                    <span>تا</span>
+                    <span className={'text-green-600'}>{value[1].toLocaleString('fa-IR')} </span>
+                    <span>تومان</span>
+                </span>
+            </div>
+
+            <ReactSlider
+                min={min}
+                max={max}
+                step={step}
+                value={value}
+                onChange={(v: number | number[]) =>
+                    onChangeAction(v as [number, number])
+                }
+                trackClassName="slider-track bg-gray-300 h-2"
+                thumbClassName="slider-thumb w-4 h-4 bg-white border border-gray-400 rounded-full"
+                withTracks={true}
+                renderTrack={(props, state) => {
+                    const isActive = state.index === 1
+                    return (
+                        <div
+                            {...props}
+                            key={state.index}
+                            className={
+                                isActive
+                                    ? 'slider-track--active bg-green-500 h-2'
+                                    : 'slider-track bg-gray-300 h-2'
+                            }
+                        />
+                    )
+                }}
+            />
+        </div>
+    )
+}

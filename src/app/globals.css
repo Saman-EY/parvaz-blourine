@@ -1,0 +1,199 @@
+@import "../../public/assets/fonts/fontiran.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    html {
+        background-color: #ffffff;
+    }
+
+    body {
+        font-family: IRANSansX, serif !important;
+        direction: rtl;
+        margin: 0;
+    }
+
+    .container-main {
+        @apply max-w-1440 mx-auto mt-36 px-8 lg:px-0;
+    }
+
+    .flex-center {
+        @apply flex items-center justify-center;
+    }
+
+    .container-main-small {
+        @apply max-w-1086 mx-auto mt-36 px-8 lg:px-0;
+    }
+
+    .container-rounded {
+        @apply rounded-10 lg:rounded-15 mt-4 lg:mt-5;
+    }
+    .input-main{
+        outline: none !important;
+        border: none !important;
+        @apply h-[40px] lg:h-[50px] shadow-sm ring-0 border-2 focus:border-primary outline-none px-3 py-3  transition-all text-16 block w-full sm:text-sm rounded-10 text-dark border-[#CCCCCC];
+    }
+}
+
+
+.footer-slider-container .swiper-pagination {
+    position: relative !important;
+
+}
+
+.footer-slider-container .swiper-pagination-bullet {
+    text-align: center;
+    line-height: 30px;
+    font-size: 12px;
+    opacity: 1 !important;
+    background: transparent !important;
+    border: 1px solid #263238 !important;
+}
+
+.footer-slider-container .swiper-pagination-bullet-active {
+    color: #fff;
+    background: #263238 !important;
+}
+
+.hexagon-clip-path {
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+}
+
+#radix-«R1jdl7» > button,
+.lucide.lucide-x.h-4.w-4 {
+    display: none !important;
+}
+
+.loading-spinner {
+    padding: 8px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: #25b09b;
+    --_m: conic-gradient(#0000 10%, #000),
+    linear-gradient(#000 0 0) content-box;
+    -webkit-mask: var(--_m);
+    mask: var(--_m);
+    -webkit-mask-composite: source-out;
+    mask-composite: subtract;
+    animation: l3 1s infinite linear;
+}
+
+@keyframes l3 {
+    to {
+        transform: rotate(1turn);
+    }
+}
+
+.double-range-slider {
+    width: 100%;
+    padding: 1rem;
+}
+
+.double-range-slider .slider-track {
+    position: relative;
+    height: 5px;
+    background-color: #CFD8DC;
+    border-radius: 8px;
+}
+
+.double-range-slider .slider-track--active {
+    background-color: #388E3C;
+    height: 5px;
+    border-radius: 8px;
+}
+
+.double-range-slider .slider-thumb {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 11px;
+    width: 11px;
+    background-color: #388E3C;
+    border-radius: 50%;
+    cursor: grab;
+    margin-top: 0.7mm;
+}
+
+.double-range-slider .slider-thumb:focus {
+    border: none !important;
+    outline: none !important;
+}
+
+.double-range-slider .value-display {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+    font-size: 0.875rem;
+    color: #374151;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+.menu-dropdown-menu #radix-«r47» > svg {
+    transform: rotate(180deg) !important;
+}
+
+.szh-menu__item.szh-menu__item--submenu::after {
+    display: none !important;
+}
+
+.szh-menu__item.szh-menu__item--submenu {
+    padding-right: 25px !important;
+}
+
+.slider-buttons-outline .swiper-pagination-buttons-outline {
+    z-index: 10;
+    @apply flex flex-center gap-1 lg:gap-2 ;
+    transition: all 0.3s ease-in-out;
+}
+
+.slider-buttons-outline .swiper-pagination-buttons-outline .swiper-pagination-bullet{
+    width: 8px !important;
+    height: 8px !important;
+    border: solid 1px #0077B6 !important;
+    background-color: transparent !important;
+    border-radius: 100%;
+    transition: all 0.3s ease-in-out;
+}
+
+.slider-buttons-outline .swiper-pagination-buttons-outline .swiper-pagination-bullet-active{
+    width: 40px !important;
+    height: 8px !important;
+    border: solid 1px #0077B6 !important;
+    background-color: #0077B6 !important;
+    border-radius: 30px;
+    transition: all 0.3s ease-in-out;
+}
+
+/* custom classes */
+.tourCalneder .rmdp-calendar {
+    /* background-color: lightblue; */
+    width: 100%;
+    max-width: 270px;
+} 
+ 
+.tourCalneder .rmdp-day-picker {
+  display: grid !important;
+  grid-template-rows: repeat(2, auto) !important;
+}
+.tourCalneder .rmdp-header {
+ width: 100%;
+ max-width: fit-content;
+ margin: 0 auto;
+}

@@ -1,0 +1,50 @@
+
+.contact-agency-gallery .swiper-pagination-agency-gallery .swiper-pagination-bullet {
+    width: 8px !important;
+    height: 8px !important;
+    border: solid 1px #0077B6 !important;
+    background-color: transparent !important;
+    border-radius: 100%;
+    transition: all 0.3s ease-in-out;
+}
+
+.contact-agency-gallery .swiper-pagination-agency-gallery .swiper-pagination-bullet-active {
+    width: 40px !important;
+    height: 8px !important;
+    border: solid 1px #0077B6 !important;
+    background-color: #0077B6 !important;
+    border-radius: 30px;
+    transition: all 0.3s ease-in-out;
+}
+
+.contact-agency-gallery .swiper-slide h4,
+.contact-agency-gallery .swiper-slide p,
+.contact-agency-gallery .swiper-slide figure {
+    transform: scale(0.8) !important;
+    transition: transform 0.3s ease;
+}
+
+.contact-agency-gallery .swiper-slide-active h4,
+.contact-agency-gallery .swiper-slide-active p,
+.contact-agency-gallery .swiper-slide-active figure {
+    transform: scale(1) !important;
+}
+
+
+@media (min-width: 768px) {
+    .contact-agency-gallery .gradient-box {
+        -webkit-mask-size: 100% 100%;
+        mask-size: 100% 100%;
+        background: white;
+        mask-image: radial-gradient(circle, rgba(255, 255, 255, 1) 40%, rgba(255, 255, 255, 0) 99%);
+        -webkit-mask-repeat: no-repeat;
+        mask-repeat: no-repeat;
+    }
+    .contact-video-background {
+        background-image: url("/assets/images/static/contact-video-backgroud-vector.svg");
+        background-repeat: no-repeat;
+        background-size: contain;
+    }
+}
+
+

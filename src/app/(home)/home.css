@@ -1,0 +1,161 @@
+.home-hero-slider-container .swiper-pagination-home {
+    position: absolute !important;
+    right: auto !important;
+    z-index: 10;
+    left: 10px !important;
+    @apply flex flex-col;
+}
+
+.swiper-pagination-home .swiper-pagination-bullet {
+    width: 12px;
+    height: 12px;
+    border: solid 1px #ffffff !important;
+    background-color: transparent !important;
+    border-radius: 100%;
+    transition: all 0.3s ease-in-out;
+}
+
+.swiper-pagination-home .swiper-pagination-bullet-active {
+    background-color: #ffffff !important;
+    transition: all 0.3s ease-in-out;
+}
+
+.outline-text {
+    -webkit-text-stroke: 2px white;
+    color: transparent;
+}
+
+.not-iranian-number {
+    font-family: monospace, sans-serif;
+    font-variant-numeric: normal;
+}
+
+.slider-gradient-bg {
+    background: radial-gradient(65.04% 65.04% at 50% 65.04%, rgba(0, 0, 0, 0) 12.81%, rgba(0, 0, 0, 0.15) 41.98%, rgba(0, 0, 0, 0.6) 87.43%);
+}
+
+.home-select-country .swiper-pagination-country {
+    z-index: 10;
+    transition: all 0.3s ease-in-out;
+    @apply !flex rounded-3xl px-4 py-2;
+}
+
+.home-select-country .swiper-pagination-country .swiper-pagination-bullet {
+    width: 8px !important;
+    height: 8px !important;
+    border: solid 1px #03045E !important;
+    background-color: transparent !important;
+    border-radius: 100%;
+    transition: all 0.3s ease-in-out;
+}
+
+.home-select-country .swiper-pagination-country .swiper-pagination-bullet-active {
+    width: 40px !important;
+    height: 8px !important;
+    border: solid 1px #03045E !important;
+    background-color: #03045E !important;
+    border-radius: 30px;
+    transition: all 0.3s ease-in-out;
+}
+
+.home-weblog-slider .swiper-pagination-home-weblog, .home-chosen-tours .swiper-pagination-chosen-tours {
+    z-index: 10;
+    @apply !flex rounded-3xl px-4 py-2;
+    transition: all 0.3s ease-in-out;
+}
+
+.home-weblog-slider .swiper-pagination-home-weblog .swiper-pagination-bullet, .home-chosen-tours .swiper-pagination-chosen-tours .swiper-pagination-bullet {
+    width: 8px !important;
+    height: 8px !important;
+    border: solid 1px #0077B6 !important;
+    background-color: transparent !important;
+    border-radius: 100%;
+    transition: all 0.3s ease-in-out;
+}
+
+.home-weblog-slider .swiper-pagination-home-weblog .swiper-pagination-bullet-active, .home-chosen-tours .swiper-pagination-chosen-tours .swiper-pagination-bullet-active {
+    width: 40px !important;
+    height: 8px !important;
+    border: solid 1px #0077B6 !important;
+    background-color: #0077B6 !important;
+    border-radius: 30px;
+    transition: all 0.3s ease-in-out;
+}
+
+.home-memories-bg {
+    background: url("/assets/images/static/home-memories-bg.png") no-repeat center;
+    background-size: cover;
+}
+
+.home-memories-bg-vector {
+    background: url("/assets/images/static/home-memories-vector.svg") no-repeat center;
+    background-size: contain;
+}
+
+
+.home-memories .swiper-pagination-home-memories {
+    z-index: 10;
+    @apply !flex rounded-3xl px-4 py-2;
+    transition: all 0.3s ease-in-out;
+}
+
+.home-memories .swiper-pagination-home-memories .swiper-pagination-bullet {
+    width: 8px !important;
+    height: 8px !important;
+    border: solid 1px white !important;
+    background-color: transparent !important;
+    border-radius: 100%;
+    transition: all 0.3s ease-in-out;
+}
+
+.home-memories .swiper-pagination-home-memories .swiper-pagination-bullet-active {
+    width: 8px !important;
+    height: 8px !important;
+    border: solid 1px white !important;
+    background-color: white !important;
+    border-radius: 30px;
+    transition: all 0.3s ease-in-out;
+}
+
+.custom-swiper-scrollbar .swiper-scrollbar {
+    display: block !important;
+    width: 3px;
+    margin-left: auto;
+    margin-right: auto;
+    opacity: 100% !important;
+    background: #0892DC !important;
+    transition: all 0.3s ease-in-out;
+}
+
+.custom-swiper-scrollbar .swiper-scrollbar-drag {
+    opacity: 100% !important;
+    background: #ffffff !important;
+    border-radius: 4px;
+    transition: all 0.3s ease-in-out;
+}
+
+.home-memories-text-overlay {
+    -webkit-mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
+    mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+}
+
+.home-weblog-vector {
+    width: 100%;
+    content: "";
+    position: relative;
+    background-image: url("/assets/images/static/home-weblog-background.svg");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 100% 100%;
+}
+
+.home-weblog-slider .swiper-slide-active {
+    scale: 1 !important;
+}
+
+.home-weblog-slider .swiper-slide {
+    scale: 0.8;
+    transition: all 0.3s ease-in-out;
+}
